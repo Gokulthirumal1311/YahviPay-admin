@@ -1,0 +1,21 @@
+
+   [ {
+        "id":"1",
+        "name":"Gokul",
+        "enquiry_id":"123456",
+        "loanStatus":"KYCVERIFIED"
+    },
+    {
+        "id":"2",
+        "name":"Mathes",
+        "enquiry_id":"123457",
+        "loanStatus":"KYCPENDING",
+        "Loan":"INPROGRESS"
+    },
+    {
+        "id":"3",
+        "name":"Mani",
+        "enquiry_id":"123458",
+        "loanStatus":"MANDATEVERIFIED"
+    }
+]
