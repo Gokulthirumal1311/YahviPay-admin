@@ -1,28 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Button from './screens/Button'
-import IntegratedExample from './screens/IntegratedExample'
-import { TableContent } from './screens/TableContent'
 import { Layout } from './screens/Layout'
+import { Routes, Route } from 'react-router-dom'
+import { AdminDashboard } from './screens/AdminDashboard'
+import { EmployeeAgent } from './screens/EmployeeAgent'
+import { AllMerchantAccount } from './screens/AllMerchantAccount'
+import { UserDetails } from './screens/UserDetails'
 
 function App() {
-    const [count, setCount] = useState(0)
 
     return (
+        <>
+            <Routes>
+                <Route path = '/' element = {<Layout />}>
+                    <Route path = 'adminDashboard' element = {<AdminDashboard />} />
+                    <Route path = 'employeeAgent' element = {<EmployeeAgent />} />
 
-        <div className = 'p-5'>
-            {/* <div>
-                <h1 className = ''>New</h1>                
-                <Button />
-
-                <IntegratedExample />
-                <TableContent />
-            </div>  */}
-        
-            <Layout />
-        </div>
+                    <Route path = 'AllMerchantAccount' element = {<AllMerchantAccount />} />
+                    <Route path = 'UserDetails' element = {<UserDetails />} />
+                </Route>
+            </Routes>
+        </>
     )
 }
 

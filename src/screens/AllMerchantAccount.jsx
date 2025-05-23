@@ -1,0 +1,28 @@
+import React from 'react'
+import SingleSearchBar from '../components/SingleSearchBar'
+import Cards from '../components/Cards'
+
+const pageContent = {
+    "title" : "All Merchant Account By Phone Number",
+    "subTitle" : "Search all Merchant from one place with phone number"
+}
+
+export const AllMerchantAccount = () => {
+  return (
+    <div className='m-2 mr-0 bg-white relative bottom-0 overflow-hidden '>
+        <div className = 'p-5 h-[85vh] flex flex-col'>
+            <div>
+
+                <h2 className = 'text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
+                <h4 className = 'text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
+            </div>
+            <SingleSearchBar />
+            <div className = 'flex-1 overflow-y-auto mt-4'>
+                
+                <Cards/>
+            </div>
+
+        </div>
+    </div>
+  )
+}
