@@ -46,19 +46,20 @@ const menuItems = [
       {
         category: 'Lead',
         items: [
-          { name: 'All Agents', url: 'AllAgents' },
-          { name: 'Add Leads', url: 'addleads' },
-          { name: 'Get All Leads', url: 'getallleads' }
+          
+          { name: 'Get All Leads', url: 'GetAllLeads' },
+          { name: 'Leads Details', url: 'LeadsDetails' },
         ]
       },
       {
         category: 'Marketing Agents',
         items: [
+          { name: 'Get All Agents', url: 'GetAllAgents' },
+          { name: 'Agent Details', url: 'AgentsDetails' },
+          { name: 'Register Devices Count', url: 'RegisterDevicesCount' },
+          { name: 'Track Location', url: 'TrackLocation' },
           { name: 'Search Shop', url: 'SearchShop' },
-          { name: 'Agent', url: 'Agent' },
-          { name: 'Registered Device Count By Agent', url: 'RegisteredDeviceCountByAgent' },
-          { name: 'Track Location', url: 'tracklocation' },
-          { name: 'KycPending', url: 'getkycpending' }
+          { name: 'KYC Pending', url: 'KYCPending' }
         ]
       },
       {
@@ -99,16 +100,7 @@ const menuItems = [
     hasDropdown: true,
     subItems: [
       { name: 'All Merchant by phone', url: 'AllMerchantAccount' },
-      { name: 'User Details', url: 'UserDetails' },
-      { name: 'Business Details', url: 'BusinessDetails' },
-      { name: 'KYC Details', url: 'KycDetails' },
-      { name: 'Agents Details', url: 'AgentsDetails' },
-      { name: 'Charges', url: 'Charges' },
-      { name: 'Set LoanCode', url: 'SetLoanCode' },
-      { name: 'Set BusinessVPA', url: 'SetBusinessVpa' },
-      { name: 'Set Marketing Agents', url: 'setmarketing' },
-      { name: 'Activate/Deactivate Account', url: 'activate-deactivate' },
-      { name: 'Status', url: 'accountstatus' },
+      { name: 'Merchant by Details', url: 'MerchantDetails' },
       { name: 'Set Location', url: 'setlocation' },
       { name: 'Verify Flags', url: 'verifyflags' },
       { name: 'Transaction Details', url: 'TransactionDetails' },
@@ -121,28 +113,28 @@ const menuItems = [
     icon: CreditCard,
     hasDropdown: true,
     subItems: [
-      { name: 'Settlements Summary By Status', url: 'SettlementDetailsByStatus' },
-      { name: 'Settlements Summary By Action', url: 'SettlementDetailsByAction' },
-      { name: 'Settlements Summary By Phone', url: 'SettlementDetailsByPhone' }
+      { name: 'Settlements By Status', url: 'SettlementDetailsByStatus' },
+      { name: 'Settlements By Action', url: 'SettlementDetailsByAction' },
+      { name: 'Settlements By Phone', url: 'SettlementDetailsByPhone' }
     ]
   },
-  {
-    id: 'loans',
-    title: 'Loans',
-    icon: DollarSign,
-    hasDropdown: true,
-    subItems: [
-      { name: 'New Loans', url: 'newloans' },
-      { name: 'Get Unpaid Loans', url: 'getunpaidloans' },
-      { name: 'Create Loans', url: 'CreateLoans' },
-      { name: 'Loan Details', url: 'loandetails' },
-      { name: 'Loans Details By Phone', url: 'loansbyphone' },
-      { name: 'Loans Details By Status', url: 'loanbystatus' },
-      { name: 'Get Verify Loans', url: 'verifiedloans' },
-      { name: 'Followup Loans', url: 'followuploans' },
-      { name: 'Above Followup Counter (5)', url: 'getabovecounter' }
-    ]
-  },
+//   {
+//     id: 'loans',
+//     title: 'Loans',
+//     icon: DollarSign,
+//     hasDropdown: true,
+//     subItems: [
+//       { name: 'New Loans', url: 'newloans' },
+//       { name: 'Get Unpaid Loans', url: 'getunpaidloans' },
+//       { name: 'Create Loans', url: 'CreateLoans' },
+//       { name: 'Loan Details', url: 'loandetails' },
+//       { name: 'Loans Details By Phone', url: 'loansbyphone' },
+//       { name: 'Loans Details By Status', url: 'loanbystatus' },
+//       { name: 'Get Verify Loans', url: 'verifiedloans' },
+//       { name: 'Followup Loans', url: 'followuploans' },
+//       { name: 'Above Followup Counter (5)', url: 'getabovecounter' }
+//     ]
+//   },
   {
     id: 'orders',
     title: 'Order Details',
@@ -309,9 +301,10 @@ export const SideNavBar = () => {
                                         {subItem.category}
                                     </div>
                                     {subItem.items.map((nestedItem, nestedIndex) => (
-                                        <button
+                                        <Link
                                             key={nestedIndex}
                                             onClick={() => handleNavigation(nestedItem.url)}
+                                            to = {`/${nestedItem.url}`}
                                             className={`w-full flex items-center space-x-3 px-4 py-2.5 text-left h-full text-md rounded-lg transition-all duration-200 ${
                                                 currentPath === removeSlash(nestedItem.url)
                                                     ? 'bg-blue-600 text-white font-medium shadow-sm'
@@ -326,7 +319,7 @@ export const SideNavBar = () => {
                                                 }`} />
                                             </div>
                                             <span>{nestedItem.name}</span>
-                                        </button>
+                                        </Link>
                                     ))}
                                 </div>
                             );
@@ -366,26 +359,28 @@ export const SideNavBar = () => {
             {/* Sidebar */}
             <div 
                 ref={sidebarRef}
-                className={`overflow-hidden overflow-y-auto scrollbar-thin fixed bottom-2 top-25 bg-white border-r border-gray-200 shadow-lg transition-all duration-300 
-                    w-72 ${ sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]' } lg:translate-x-0` }
+                className={`overflow-hidden overflow-y-auto scrollbar-thin fixed bottom-2 top-25 bg-white border-r border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm transition-all duration-300 
+                    w-72 ${ sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]' } lg:translate-x-0 rounded-xl` }
             >
                 {/* Navigation */}
                 <div className="flex-1 py-6">
                     <nav className="space-y-4 px-4">
                         { menuItems.map((item) => (
                             <div key={item.id} className="group">
-                                <button 
+                                <Link 
                                     onClick={() => 
                                         item.hasDropdown 
                                             ? handleDropdownClick(item.id) 
                                             : handleNavigation(item.pageUrl, item.isExternal)
                                     }
+                                    to={!item.hasDropdown && `/${item.pageUrl}`}
                                     className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-xl font-medium transition-all duration-200 ${
                                         activeDropdown === item.id || currentPath === removeSlash(item.pageUrl || '') 
                                             ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-200' 
                                             : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                                     }`}
                                 >
+                                    
                                     <div className="flex items-center space-x-3">
                                         <item.icon className={`w-5 h-5 ${
                                             activeDropdown === item.id || currentPath === removeSlash(item.pageUrl || '')
@@ -406,7 +401,7 @@ export const SideNavBar = () => {
                                             }`} 
                                         />
                                     )}
-                                </button>
+                                </Link>
                                 
                                 {item.hasDropdown && renderSubItems(item.subItems, item.id)}
                             </div>

@@ -15,15 +15,15 @@ export const Header = () => {
     };
     return (
     <>
-        <header className="z-50 bg-white shadow-sm border-b border-gray-200">
+        <header className="z-50 bg-white border-b border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm rounded-xl">
                 <div className="flex items-center justify-between px-6 py-4">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                                <span className="text-white font-bold text-lg">MK</span>
+                                <span className="text-white font-bold text-lg">YP</span>
                             </div>
                             <div className="hidden lg:block">
-                                <h1 className="text-xl font-bold text-gray-800">MyKaasu Admin</h1>
+                                <h1 className="text-xl font-bold text-gray-800">YahviPay Admin</h1>
                                 <p className="text-sm text-gray-500">Management Portal</p>
                             </div>
                         </div>
@@ -50,7 +50,7 @@ export const Header = () => {
                                 <ChevronDown size={16} className="text-gray-500 group-hover:text-gray-700" />
                             </div>
                             
-                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                                 <div className="px-4 py-3 border-b border-gray-100">
                                     <div className="text-sm font-semibold text-gray-900">{username}</div>
                                     <div className="text-xs text-gray-500">administrator@mykaasu.com</div>

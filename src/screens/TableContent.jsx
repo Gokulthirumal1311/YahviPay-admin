@@ -2,7 +2,7 @@ import React from 'react'
 
 export const TableContent = () => {
   return (
-    <div>
+    <div className='bg-gray-900'>
         <section class="container px-4 mx-auto">
     <div class="flex items-center gap-x-3">
         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Team members</h2>
