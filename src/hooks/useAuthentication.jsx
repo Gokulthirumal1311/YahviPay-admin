@@ -15,5 +15,4 @@ function useAuthentication(expectedName, expectedEnquiryId) {
   }, [expectedName, expectedEnquiryId])
   return isAuth
 }
-
 export default useAuthentication
