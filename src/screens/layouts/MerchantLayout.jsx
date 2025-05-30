@@ -62,12 +62,14 @@ export const MerchantLayout = () => {
                 </div>
 
                 <DoubleSearchBar />
+                <div className='my-4'>
+                    <TabNavigation
+                        tabs = {tabs} 
+                        activeTab = {activeTab} 
+                        setActiveTab = {setActiveTab}
+                    />
 
-                <TabNavigation
-                    tabs = {tabs} 
-                    activeTab = {activeTab} 
-                    setActiveTab = {setActiveTab}
-                />
+                </div>
                 <div className="tab-content">
                     {renderTabContent()}
                 </div>

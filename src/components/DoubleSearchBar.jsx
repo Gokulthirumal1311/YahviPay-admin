@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export const DoubleSearchBar = () => {
+export const DoubleSearchBar = ({ placeholder1, placeholder2 }) => {
 
     const [ phoneNumber, setPhoneNumber ] = useState('');
     const [ referenceId, setReferenceId ] = useState('');
@@ -18,14 +18,14 @@ export const DoubleSearchBar = () => {
     }, []);
 
     return (
-        <div className="flex items-center justify-center pb-8">
+        <div className="flex items-center justify-center">
             <form onSubmit={handleSubmit} className="w-full">       
                 <div className="flex w-full overflow-hidden rounded-md gap-2">
                     <input
                         type="text"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="Phone number"
+                        placeholder={placeholder1}
                         className="flex-1 px-4 py-2 text-sm text-gray-900 border-[1px] border-gray-500 rounded-md"
                     />
 
@@ -33,7 +33,7 @@ export const DoubleSearchBar = () => {
                         type="text"
                         value={referenceId}
                         onChange={(e) => setReferenceId(e.target.value)}
-                        placeholder="Merchent ID"
+                        placeholder={placeholder2}
                         className="flex-1 px-4 py-2 text-sm text-gray-900 border-[1px] border-gray-500 rounded-md"
                     />
 

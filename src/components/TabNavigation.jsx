@@ -7,7 +7,7 @@ const TabNavigation = ({ tabs, activeTab, setActiveTab }) => {
 
     <div className="">
       {/* Tab Navigation */}
-      <div className="bg-purple-50 p-2 rounded-lg mb-6">
+      <div className="bg-purple-50 p-2 rounded-lg">
         <div className="flex space-x-1 flex-wrap gap-y-3">
           { tabs.map((tab, index) => (
             <button

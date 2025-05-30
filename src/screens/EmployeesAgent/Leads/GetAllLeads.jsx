@@ -4,10 +4,9 @@ import SingleSearchBar from '../../../components/SingleSearchBar'
 import { LeadCards } from '../../../components/LeadCards'
 
 const pageContent = {
-    "title" : "Get All Leads Account",
 
+    "title" : "Get All Leads Account",
     "subTitle" : "Get a complete overview of all lead accounts and manage their details in one place."
-    
 }
 
 const stores = [

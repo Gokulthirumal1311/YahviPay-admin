@@ -19,8 +19,10 @@ export const Header = () => {
                 <div className="flex items-center justify-between px-6 py-4">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                                <span className="text-white font-bold text-lg">YP</span>
+                            <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+                                {/* <span className="text-white font-bold text-lg">YP</span> */}
+                                <img src="https://www.yahvipay.com/assets/favIconYahvi.png" alt="" className='rounded-full'/>
+                                {/* <link rel="icon" type="image/png" href="assets/favIconYahvi.png" style="width: 32px; height: 32px; border-radius: 50%; display: block;"></link> */}
                             </div>
                             <div className="hidden lg:block">
                                 <h1 className="text-xl font-bold text-gray-800">YahviPay Admin</h1>
@@ -50,7 +52,7 @@ export const Header = () => {
                                 <ChevronDown size={16} className="text-gray-500 group-hover:text-gray-700" />
                             </div>
                             
-                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                 <div className="px-4 py-3 border-b border-gray-100">
                                     <div className="text-sm font-semibold text-gray-900">{username}</div>
                                     <div className="text-xs text-gray-500">administrator@mykaasu.com</div>

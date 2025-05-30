@@ -4,7 +4,9 @@ import Cards from '../../components/Cards'
 
 const pageContent = {
     "title" : "All Merchant Account By Phone Number",
-    "subTitle" : "Search all Merchant from one place with phone number"
+
+    "subTitle" : "Search all Merchant from one place with phone number",
+    "searchInputPlaceholderName" : 'Enter the Merchant ID'
 }
 
 export const AllMerchantAccount = () => {
@@ -16,7 +18,7 @@ export const AllMerchantAccount = () => {
                 <h2 className = 'text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className = 'text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <SingleSearchBar />
+            <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholderName} />
             <div className = 'flex-1 overflow-y-auto mt-4'>
                 
                 <Cards />

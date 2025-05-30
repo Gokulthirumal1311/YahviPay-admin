@@ -18,6 +18,7 @@ const SampleData = {
     RegisteredDate: "06/05/2025, 12:23:37",
     Status: "active",
 };
+
 const stores = [
   {
     shopName: "Gokul10",

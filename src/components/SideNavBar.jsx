@@ -87,8 +87,8 @@ const menuItems = [
       {
         category: 'Services',
         items: [
-          { name: 'Get All Services', url: 'getallservices' },
-          { name: 'Service By Id', url: 'ServiceById' }
+          { name: 'Get All Services', url: 'GetAllServices' },
+          { name: 'Service By Id', url: 'GetServicesByID' }
         ]
       }
     ]
@@ -102,9 +102,10 @@ const menuItems = [
       { name: 'All Merchant by phone', url: 'AllMerchantAccount' },
       { name: 'Merchant by Details', url: 'MerchantDetails' },
       { name: 'Set Location', url: 'setlocation' },
-      { name: 'Verify Flags', url: 'verifyflags' },
+      { name: 'Verify Flags', url: 'VerifyFlags' },
       { name: 'Transaction Details', url: 'TransactionDetails' },
-      { name: 'Download Report', url: 'report' }
+      
+      { name: 'Download Report', url: 'DownloadReport' }
     ]
   },
   {
@@ -113,9 +114,9 @@ const menuItems = [
     icon: CreditCard,
     hasDropdown: true,
     subItems: [
-      { name: 'Settlements By Status', url: 'SettlementDetailsByStatus' },
-      { name: 'Settlements By Action', url: 'SettlementDetailsByAction' },
-      { name: 'Settlements By Phone', url: 'SettlementDetailsByPhone' }
+      { name: 'Settlements By Status', url: 'SettlementsByStatus' },
+      { name: 'Settlements By Action', url: 'SettlementsByAction' },
+      { name: 'Settlements By Phone', url: 'SettlementsByPhoneNumber' }
     ]
   },
 //   {
