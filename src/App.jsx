@@ -20,7 +20,6 @@ import {MarketingAgentSelect} from './components/MarketingAgentSelect'
 import {RegisteredDeviceCount} from './components/RegisteredDeviceCount'
 import { LeadAccountSettingForm } from './components/LeadAccountSettingForm'
 import LeadDetails from './components/LeadDetails'
-
 import { Kycverification } from './components/Kycverification'
 import WorkingDeviceTable from './components/WorkingDeviceTable'
 import WorkingDeviceParts from './components/WorkingDeviceParts'
@@ -31,6 +30,17 @@ import { SettlementDetailsByAction } from './components/SettlementDetailsByActio
 import { SettlementDetailsByPhone } from './components/SettlementDetailsByPhone'
 import SettlementDetails from './components/SettlementDetails'
 import Status from './components/Status'
+import { GetAllServices } from './components/GetAllServices'
+import TransactionDetails from './components/TransactionDetails'
+import DownloadReport from './components/DownloadReport'
+import GetTicketsByPhone from './components/GetTicketsByPhone'
+import { AddDevices } from './components/AddDevices'
+import { DeviceReports } from './components/DeviceReports'
+import SearchDevices from './components/SearchDevices'
+import UserCard from './components/UserCard'
+import { NewDeviceOrder } from './components/NewDeviceOrder'
+
+
 
 
 
@@ -45,23 +55,32 @@ function App() {
       <TableComponent/>
       <AgentsAreas/>
       {/* <AgentandAreaCards/>      */}
-
       <MarketingAgentSelect/>
       <SearchShopCard/>
       <RegisteredDeviceCount/>
       <LeadDetails/>
       <Kycverification/>
       <WorkingDeviceTable/>
-
       <WorkingDeviceParts/>
       <DamagedDevice/>
       <DamagedDeviceParts/>
-
       <SettlementSummaryByStatus/>
       <SettlementDetailsByAction/>
       <SettlementDetailsByPhone/>
       <SettlementDetails/>
       <Status/>
+      <GetAllServices/>
+      <TransactionDetails/>
+      <DownloadReport/>
+      <GetTicketsByPhone/>
+      <DeviceReports/>
+      <AddDevices/>
+      <SearchDevices/>
+
+      <UserCard/>
+      <NewDeviceOrder category='device'/>
+
+     
     </div>
   )
 }
