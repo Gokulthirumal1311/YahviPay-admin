@@ -19,7 +19,7 @@ export const LeadAccountSettingForm = ({ onClose }) => {
                 >
                 <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-1">
-                        Phone num
+                        Phone number
                     </label>
                     <input
                         type="text"

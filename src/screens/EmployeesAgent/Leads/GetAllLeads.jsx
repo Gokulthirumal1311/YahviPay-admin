@@ -43,7 +43,7 @@ export const GetAllLeads = () => {
                 <h2 className = 'text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className = 'text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <div className = 'flex-1 overflow-y-auto mt-6'>
+            <div className = 'flex-1 overflow-y-auto'>
 
                 <LeadCards stores = {stores} />
             </div>

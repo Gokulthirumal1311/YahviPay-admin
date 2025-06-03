@@ -56,7 +56,10 @@ export const VerifyFlags = () => {
                                             <span className="text-sm font-medium text-gray-600 block">
                                                 Aadhaar Verify
                                             </span>
-                                            <span className="text-gray-800 font-semibold">
+                                            <span className={`font-bold ${store.creditscore === "yes"
+                                                    ? "text-green-600"
+                                                    : "text-red-600"
+                                                    }`}>
                                                 {store.aadhaarValid === "yes" ? <Check /> : <X />}
                                             </span>
                                         </div>
@@ -65,13 +68,16 @@ export const VerifyFlags = () => {
                                             <span className="text-sm font-medium text-gray-600 block">
                                                 Bank Verify
                                             </span>
-                                            <span>{store.bankValid === "yes" ? <Check /> : <X />}</span>
+                                            <span className={`font-bold ${store.creditscore === "yes"
+                                                    ? "text-green-600"
+                                                    : "text-red-600"
+                                                    }`}>{store.bankValid === "yes" ? <Check /> : <X />}</span>
                                         </div>
                                         <div>
                                             <span className="text-sm font-medium text-gray-600 block">
                                                 Business Verify
                                             </span>
-                                            <span className={`font-bold ${store.bankValid === "yes" ? "text-green-600" : "text-red-600"
+                                            <span className={`font-bold ${store.business === "yes" ? "text-green-600" : "text-red-600"
                                                 }`}
                                             >
                                                 {store.business === "yes" ? <Check /> : <X />}
@@ -83,7 +89,7 @@ export const VerifyFlags = () => {
                                                 Creditscore
                                             </span>
                                             <span
-                                                className={`font-bold ${store.aadhaarValid === "yes"
+                                                className={`font-bold ${store.creditscore === "yes"
                                                     ? "text-green-600"
                                                     : "text-red-600"
                                                     }`}
@@ -97,7 +103,7 @@ export const VerifyFlags = () => {
                                                 GST
                                             </span>
                                             <span
-                                                className={`font-bold ${store.panValid === "yes" ? "text-green-600" : "text-red-600"
+                                                className={`font-bold ${store.gst === "yes" ? "text-green-600" : "text-red-600"
                                                     }`}
                                             >
                                                 {store.gst === "yes" ? <Check /> : <X />}
@@ -108,7 +114,7 @@ export const VerifyFlags = () => {
                                                 Location
                                             </span>
                                             <span
-                                                className={`font-bold ${store.panValid === "yes" ? "text-green-600" : "text-red-600"
+                                                className={`font-bold ${store.location === "yes" ? "text-green-600" : "text-red-600"
                                                     }`}
                                             >
                                                 {store.location === "yes" ? <Check /> : <X />}
@@ -130,7 +136,7 @@ export const VerifyFlags = () => {
                                                 User
                                             </span>
                                             <span
-                                                className={`font-bold ${store.panValid === "yes" ? "text-green-600" : "text-red-600"
+                                                className={`font-bold ${store.user === "yes" ? "text-green-600" : "text-red-600"
                                                     }`}
                                             >
                                                 {store.user === "yes" ? <Check /> : <X />}

@@ -3,19 +3,20 @@ import React, { useState } from "react";
 
 
 const initialAgents = [
-  {
-    agentID: "MKTG111008",
-    agentName: "User008",
-    agentPhone: "9876543210",
-    assignedArea: "Pallavaram",
-  },
-  {
-    agentID: "MKTG111009",
-    agentName: "User009",
-    agentPhone: "9876543211",
-    assignedArea: "Velachery",
-  },
+    {
+        agentID: "MKTG111008",
+        agentName: "User008",
+        agentPhone: "9876543210",
+        assignedArea: "Pallavaram",
+    },
+    {
+        agentID: "MKTG111009",
+        agentName: "User009",
+        agentPhone: "9876543211",
+        assignedArea: "Velachery",
+    },
 ];
+
 
 
 export const AgentsAreas = () => {

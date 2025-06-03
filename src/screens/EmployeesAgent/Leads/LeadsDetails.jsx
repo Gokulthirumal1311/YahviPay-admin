@@ -5,14 +5,16 @@ import { LeadCards } from '../../../components/LeadCards'
 import { LeadAccountSettingForm } from '../../../components/LeadAccountSettingForm'
 import { AgentsAreas } from '../../../components/AgentsAreas'
 
+import { DynamicModel } from '../../../components/DynamicModel/DynamicModel'
+
+
 const pageContent = {
     "title": "Get All Leads Details",
 
     "subTitle": "Leads Details from one place with LeadId",
-    "searchInputPlaceholderName" : 'Enter the Lead ID'
+    "searchInputPlaceholderName": 'Enter the Lead ID'
 }
-
-const SampleData = {
+let SampleData = {
     LeadId: "MKTG111005",
     LeadName: "User005",
     LeadEmail: "gokul13@gmail.com",
@@ -24,24 +26,41 @@ const SampleData = {
 export const LeadsDetails = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const [userData, setUserData] = useState({
+        LeadName : SampleData.LeadName, 
+        LeadEmail : SampleData.LeadEmail,
+        PhoneNumber : SampleData.PhoneNumber,
+    });
+
     const handleEdit = () => {
         setIsModalOpen(true);
+    };
+    const handleSave = (updatedFields) => {
+        const updated = { ...SampleData, ...updatedFields };
+        localStorage.setItem('userData', JSON.stringify(updated));
+        setUserData({
+
+            LeadName : updatedFields.LeadName ? updatedFields.LeadName : SampleData.LeadName, 
+            LeadEmail : updatedFields.LeadEmail ? updatedFields.LeadEmail : SampleData.LeadEmail,
+            PhoneNumber : updatedFields.PhoneNumber ? updatedFields.PhoneNumber : SampleData.PhoneNumber,
+        })
+        SampleData = updated;
     };
 
     return (
         <div className='lg:ml-2 mt-2 mr-0 bg-white relative bottom-0 overflow-hidden rounded-xl' >
             <div className='p-5 h-[85vh] overflow-y-auto flex flex-col'>
-
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
-                <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholderName}/>
+                <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} />
                 <div className='flex-1 mt-6'>
                     <div className=" ">
 
                         <div className="relative bg-white border border-gray-200 rounded-2xl p-8 shadow-lg w-full ">
-                            <div className="flex justify-between items-center mb-6">
+                            <div className="flex justify-between items-center mb-6 border-b-2 border-b-gray-300 pb-4">
                                 <div>
 
                                     <h2 className="text-2xl font-bold text-blue-600">Lead Details</h2>
@@ -68,14 +87,26 @@ export const LeadsDetails = () => {
                                     </div>
                                 ))}
                             </div>
-                            
-                            <div className='pt-8'>
-                                <h2 className='text-2xl font-bold text-blue-600'>Agent's Assign Area</h2>
+
+                            <div className='pt-8 '>
+                                <div className='border-b-2 border-b-gray-300 pb-4 flex justify-between items-center mb-6'>
+
+                                    <h2 className='text-2xl font-bold text-blue-600'>Agent's List</h2>
+                                    <button
+                                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl"
+                                        onClick={handleEdit}
+                                    >
+                                        Add Agent
+                                    </button>
+                                </div>
                                 <AgentsAreas />
                                 {isModalOpen && (
-                                    
-                                    <LeadAccountSettingForm
-                                    onClose={() => setIsModalOpen(false)}
+
+                                    <DynamicModel
+                                        title="Edit User Info"
+                                        userData={userData}
+                                        onSave={handleSave}
+                                        onClose={() => setIsModalOpen(false)}
                                     />
                                 )}
                             </div>

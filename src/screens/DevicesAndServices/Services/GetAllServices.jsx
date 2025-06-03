@@ -50,7 +50,9 @@ export const GetAllServices = () => {
 
     return (
         <Layout>
+            <div className='overflow-y-auto'>
 
+           
             <div>
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
@@ -128,6 +130,8 @@ export const GetAllServices = () => {
                         )}
                     </div>
                 ))}
+            </div>
+            
             </div>
         </Layout>
     );

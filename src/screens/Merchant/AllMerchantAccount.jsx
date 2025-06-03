@@ -6,7 +6,7 @@ const pageContent = {
     "title" : "All Merchant Account By Phone Number",
 
     "subTitle" : "Search all Merchant from one place with phone number",
-    "searchInputPlaceholderName" : 'Enter the Merchant ID'
+    "searchInputPlaceholderName" : 'Enter the Phone Number'
 }
 
 export const AllMerchantAccount = () => {

@@ -79,9 +79,9 @@ const menuItems = [
       {
         category: 'Device Management',
         items: [
-          { name: 'Add Devices', url: 'AddDevice' },
-          { name: 'Search Devices', url: 'SearchDevice' },
-          { name: 'Get Devices By Phone', url: 'DeviceDetails' }
+          { name: 'Add & Search Devices', url: 'AddAndSearchDevices' },
+        //   { name: 'Search Devices', url: 'SearchDevice' },
+          { name: 'Get Device By Phone', url: 'GetDeviceByPhone' }
         ]
       },
       {
@@ -142,10 +142,10 @@ const menuItems = [
     icon: ShoppingCart,
     hasDropdown: true,
     subItems: [
-      { name: 'New Orders', url: 'neworders' },
-      { name: 'Create Orders', url: 'createorders' },
-      { name: 'Get Orders By Phone', url: 'getordersphone' },
-      { name: 'Get Orders By Status', url: 'getordersstatus' }
+      { name: 'New Orders', url: 'NewOrders' },
+      { name: 'Create Orders', url: 'CreateOrders' },
+      { name: 'Get Orders By Phone', url: 'GetOrdersByPhone' },
+      { name: 'Get Orders By Status', url: 'GetOrdersByStatus' }
     ]
   },
   {
@@ -154,9 +154,9 @@ const menuItems = [
     icon: Ticket,
     hasDropdown: true,
     subItems: [
-      { name: 'New Tickets Status', url: 'NewticketsStatus' },
-      { name: 'Create Tickets', url: 'createtickets' },
-      { name: 'Get Tickets By Phone', url: 'getticketsphone' }
+    //   { name: 'New Tickets Status', url: 'NewticketsStatus' },
+      { name: 'Create & New Tickets Status', url: 'CreateNewTicketsStatus' },
+      { name: 'Get Tickets By Phone', url: 'GetTicketsByPhoneNumber' }
     ]
   },
   {

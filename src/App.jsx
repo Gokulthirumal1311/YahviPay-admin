@@ -26,6 +26,14 @@ import { GetServicesByID } from './screens/DevicesAndServices/Services/GetServic
 import { TransactionDetails } from './screens/Merchant/TransactionDetails'
 import { DownloadReport } from './screens/Merchant/DownloadReport'
 import { SetLocation } from './screens/Merchant/SetLocation'
+import GetTicketsByPhoneNumber from './screens/Tickets/GetTicketsByPhoneNumber'
+import { CreateNewTicketsStatus } from './screens/Tickets/CreateNewTicketsStatus'
+import { AddAndSearchDevices } from './screens/DevicesAndServices/DevicesManagement/AddAndSearchDevices'
+import { GetDeviceByPhoneNumber } from './screens/DevicesAndServices/DevicesManagement/GetDeviceByPhoneNumber'
+import { NewOrders } from './screens/OrderDetails/NewOrders'
+import { CreateOrders } from './screens/OrderDetails/CreateOrders'
+import { GetOrderByPhone } from './screens/OrderDetails/GetOrderByPhone'
+import { GetOrderByStatus } from './screens/OrderDetails/GetOrderByStatus'
 
 function App() {
 
@@ -61,10 +69,20 @@ function App() {
 
                     <Route path = 'LoanAgentCount' element = {<LoanAgentCount />} />
 
+                    <Route path = 'AddAndSearchDevices' element = {<AddAndSearchDevices />} />
+                    <Route path = 'GetDeviceByPhone' element = {<GetDeviceByPhoneNumber />} />
+
                     <Route path = 'SettlementsByAction' element = {<SettlementsByAction />} />
                     <Route path = 'SettlementsByPhoneNumber' element = {<SettlementsByPhoneNumber />} />
                     <Route path = 'SettlementsByStatus' element = {<SettlementsByStatus />} />
                     
+                    <Route path = 'GetTicketsByPhoneNumber' element = {<GetTicketsByPhoneNumber />} />
+                    <Route path = 'CreateNewTicketsStatus' element = {<CreateNewTicketsStatus />} />
+
+                    <Route path = 'NewOrders' element = {<NewOrders />} />
+                    <Route path = 'CreateOrders' element = {<CreateOrders />} />
+                    <Route path = 'GetOrdersByPhone' element = {<GetOrderByPhone />} />
+                    <Route path = 'GetOrdersByStatus' element = {<GetOrderByStatus />} />
                     {/* <Route path = 'UserDetails' element = {<UserDetails />} /> */}
                     {/* <Route path = 'BusinessDetails' element = {<UserDetails />} /> */}
                 </Route>

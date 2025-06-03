@@ -109,7 +109,7 @@ export const AgentsDetails = () => {
 
             
             <div className='pb-4 border-b-2 border-gray-300'>
-                <h2 className='text-xl font-semibold'>Agent Details</h2>
+                <h2 className='text-xl font-bold text-blue-600'>Agent Details</h2>
             </div>
             <div className = 'flex-1 mt-6'>
                 
@@ -179,7 +179,7 @@ export const AgentsDetails = () => {
 
             <div className='pt-5 mt-8 border-t-2 border-gray-300'>
                 <div className="flex items-center mb-5">
-                    <h2 className="text-2xl font-semibold text-gray-800">{pageContent.WorkingDevicesTitle}</h2>
+                    <h2 className="text-2xl font-bold text-blue-600">{pageContent.WorkingDevicesTitle}</h2>
                 </div>
                 <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap">
                     <button onClick={() => setShowWorkingDevicesParts('devices')} 
@@ -229,7 +229,7 @@ export const AgentsDetails = () => {
 
             <div className='pt-5 mt-8 border-t-2 border-gray-300'>
                 <div className="flex items-center mb-5">
-                    <h2 className="text-2xl font-semibold text-gray-800">{pageContent.DamageDevicesTitle}</h2>
+                    <h2 className="text-2xl font-bold text-blue-600">{pageContent.DamageDevicesTitle}</h2>
                 </div>
                 <div class="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap">
                     
