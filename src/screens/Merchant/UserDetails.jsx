@@ -22,12 +22,12 @@ export const UserDetails = () => {
     const[userData,setUserData]=useState(SampleData);
     const [isModalOpen,setIsModalOpen]=useState(false);
     
-    useEffect(()=>{
-        const stored=localStorage.getItem('userData');
-        if(stored){
-            setUserData(JSON.parse(stored));
-        }
-    },[]);
+    // useEffect(()=>{
+    //     const stored=localStorage.getItem('userData');
+    //     if(stored){
+    //         setUserData(JSON.parse(stored));
+    //     }
+    // },[]);
 
     function handleSave(updatedFields) {
         const updated = { ...userData, ...updatedFields };

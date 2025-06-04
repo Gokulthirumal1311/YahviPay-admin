@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* style.css or global.css */
+
+.layout-outer {
+  @apply lg:ml-2 mt-2 mr-0 bg-white bottom-0 overflow-hidden shadow-lg shadow-blue-100/50 rounded-xl;
+}
+
+.layout-inner {
+  @apply p-5 h-[85vh] flex flex-col;
+}

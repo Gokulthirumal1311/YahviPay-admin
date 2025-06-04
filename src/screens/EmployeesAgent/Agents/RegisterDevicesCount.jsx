@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar'
 import AgentTable from '../../../components/AgentTable'
+import { Layout } from '../Layout/Layout';
 
 const pageContent = {
     "title" : "Register Devices Account",
 
     "subTitle" : "Search all Agents from one place with AgentID",
-    "searchInputPlaceholderName" : "Enter the MerchantID"
+    "searchInputPlaceholderName" : "Enter the AgentId"
 }
 
 const deviceData = [
@@ -73,16 +74,16 @@ export const RegisterDevicesCount = () => {
   }, [deviceCount]);
 
     return (
-        <div className='lg:ml-2 mt-2 mr-0 bg-white relative bottom-0 overflow-hidden rounded-xl' >
-        <div className = 'p-5 h-[85vh] flex flex-col'>
-
+        <Layout>
+            <div className='overflow-y-auto'>
+                
+            
             <div>
                 <h2 className = 'text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
-                <h4 className = 'text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
+                <h4 className = 'text-md font-semibold text-gray-500 '>{pageContent.subTitle}</h4>
             </div>
-            <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholderName}/>
 
-            <div className = 'flex-1 overflow-y-auto mt-6'>
+            <div className = 'flex-1 overflow-y-auto mt-5'>
                 <div className="flex justify-center">
                     <form onSubmit={handleSubmit} className="w-full">
                         <div className="flex gap-4">
@@ -148,9 +149,9 @@ export const RegisterDevicesCount = () => {
                 
 
             </div>
-
+        
         </div>
-    </div>
+        </Layout>
 
         
     )

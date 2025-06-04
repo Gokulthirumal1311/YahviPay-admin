@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const agents = [
     {
@@ -78,6 +79,12 @@ export default function AgentTable() {
         }
     }
 
+    const handleStoreAgentIdInLocalStorage = (agentId) => {
+        localStorage.setItem('agentId', JSON.stringify({ agentId : agentId }))
+    }
+    const handleStoreLeadIdInLocalStorage = (leadId) => {
+        localStorage.setItem('leadId', JSON.stringify({ leadId : leadId }))        
+    }
     return (
         <div className="">
             <section className="container">
@@ -142,7 +149,10 @@ export default function AgentTable() {
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         { filteredAgent.map((agent) => (
                                             <tr key={agent.agentID} className="">
-                                                <td className="px-4 py-4 text-md font-semibold text-gray-950 whitespace-nowrap text-center tracking-wider">{agent.agentID}</td>
+                                                <td className="px-4 py-4 text-md font-semibold text-blue-700 whitespace-nowrap text-center tracking-wider">
+                                                    
+                                                    <Link to={'/AgentsDetails'} onClick={() => handleStoreAgentIdInLocalStorage(agent.agentID)}>{agent.agentID}</Link>
+                                                </td>
                                                 <td className="px-12 py-4 text-sm font-semibold text-gray-700 whitespace-nowrap text-center">
                                                     <div className={`inline-flex items-center px-3 py-1 rounded-md gap-x-2 ${color(agent.agentType)}`}>
                                                         <span className={`w-2 h-2 rounded-full ${dotColor(agent.agentType)}`}></span>
@@ -153,7 +163,9 @@ export default function AgentTable() {
                                                 </td>
                                                 <td className="px-4 py-4 text-md text-gray-950 whitespace-nowrap tracking-wider font-semibold">{agent.agentName}</td>
                                                 <td className="px-4 py-4 text-md text-gray-950 whitespace-nowrap tracking-wider font-semibold">{agent.agentPhone}</td>
-                                                <td className="px-4 py-4 text-md text-gray-950 whitespace-nowrap tracking-wider font-semibold">{agent.assignedLead}</td>
+                                                <td className="px-4 py-4 text-md text-blue-700 whitespace-nowrap tracking-wider font-semibold">
+                                                    <Link to={'/LeadsDetails'} onClick={() => handleStoreLeadIdInLocalStorage(agent.assignedLead)}>{agent.assignedLead}</Link>
+                                                </td>
                                             </tr>
                                         ))}
                                         {filteredAgent.length === 0 && (

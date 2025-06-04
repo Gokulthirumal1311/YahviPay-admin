@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 
-const SingleSearchBar = ({ placeholderName }) => {
-    const [searchTerm, setSearchTerm] = useState('');
+const SingleSearchBar = ({ placeholderName, value, onChange }) => {
+    
 
 
     const handleSubmit = (e) => {
@@ -17,8 +17,8 @@ const SingleSearchBar = ({ placeholderName }) => {
                 <input
                     type="text"
                     id="Search"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
                     placeholder={placeholderName}
                     className=" bg-white w-full px-4 py-2 text-sm text-gray-900 rounded-tl-md rounded-bl-md"
                 />

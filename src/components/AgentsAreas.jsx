@@ -17,34 +17,14 @@ const initialAgents = [
     },
 ];
 
+export const AgentsAreas = ({}) => {
 
-
-export const AgentsAreas = () => {
   const [agents, setAgents] = useState(initialAgents);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMode, setModalMode] = useState("add");
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [areaName, setAreaName] = useState("");
 
-
-  const openAddModal = (agent) => {
-    setSelectedAgent(agent);
-    setAreaName("");
-    setModalMode("add");
-    setShowModal(true);
-  };
-
-
-  const openRemoveModal = (agent) => {
-    setSelectedAgent(agent);
-    setAreaName(agent.assignedArea || "");
-    setModalMode("remove");
-    setShowModal(true);
-  };
-
-
   const handleCloseModal = () => {
-    setShowModal(false);
+
     setSelectedAgent(null);
     setAreaName("");
   };
@@ -52,10 +32,6 @@ export const AgentsAreas = () => {
 
   const handleSaveArea = (newAreaName) => {
     if (!selectedAgent) return;
-
-
-   
-    setShowModal(false);
     setSelectedAgent(null);
     setAreaName("");
   };
@@ -88,7 +64,7 @@ export const AgentsAreas = () => {
                         <td className="px-4 py-4 text-md text-gray-700 font-semibold text-center">
                           <button
                             onClick={() => openAddModal(agent)}
-                            className="bg-blue-500 text-white px-2 py-1 rounded text-sm"
+                            className="transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm"
                           >
                             Add / Update
                           </button>
@@ -96,7 +72,7 @@ export const AgentsAreas = () => {
                             onClick={() => openRemoveModal(agent)}
                             disabled={!agent.assignedArea}
                             className={`ml-3 px-2 py-1 rounded text-sm text-white ${
-                              agent.assignedArea ? "bg-red-500 hover:bg-red-600" : "bg-gray-300 cursor-not-allowed"
+                              agent.assignedArea ? "transition-all bg-red-600 hover:bg-red-700" : "bg-gray-300 cursor-not-allowed"
                             }`}
                           >
                             Remove
