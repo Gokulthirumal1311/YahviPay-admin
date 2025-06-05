@@ -65,7 +65,6 @@ export const  AddDevices = () => {
                   </div>
                 ))}
 
-                {/* Select fields */}
                 {[
                   ["Supplier Name", "supplierName", ["airtel", "vodafone"]],
                   ["Version", "version", ["V1", "V2"]],

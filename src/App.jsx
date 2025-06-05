@@ -27,6 +27,7 @@ import { DamagedDevice } from './components/DamagedDevice'
 import { DamagedDeviceParts } from './components/DamagedDeviceParts'
 import { SettlementSummaryByStatus } from './components/SettlementSummaryByStatus'
 import { SettlementDetailsByAction } from './components/SettlementDetailsByAction'
+
 import { SettlementDetailsByPhone } from './components/SettlementDetailsByPhone'
 import SettlementDetails from './components/SettlementDetails'
 import Status from './components/Status'
@@ -39,6 +40,16 @@ import { DeviceReports } from './components/DeviceReports'
 import SearchDevices from './components/SearchDevices'
 import UserCard from './components/UserCard'
 import { NewDeviceOrder } from './components/NewDeviceOrder'
+import { CreateOrders } from './components/CreateOrders'
+import { CalenderGrid } from './components/CalenderGrid'
+import { AdminPage } from './components/AdminPage'
+
+import DashboardCards from './components/DashBoardCards'
+import Loading from './components/LoadingScreen'
+import TabNavigation from './components/TabNavigation'
+import { Tab } from './components/Tab'
+import AddAndSearchDevices from './components/AddAndSearchDevice'
+
 
 
 
@@ -47,6 +58,7 @@ import { NewDeviceOrder } from './components/NewDeviceOrder'
 function App() {
   return (
     <div>
+      <DashboardCards/>
       <SearchBar/>
       <DualSearchBar/>
       <Modal/>
@@ -65,7 +77,6 @@ function App() {
       <DamagedDevice/>
       <DamagedDeviceParts/>
       <SettlementSummaryByStatus/>
-      <SettlementDetailsByAction/>
       <SettlementDetailsByPhone/>
       <SettlementDetails/>
       <Status/>
@@ -76,12 +87,17 @@ function App() {
       <DeviceReports/>
       <AddDevices/>
       <SearchDevices/>
-
       <UserCard/>
       <NewDeviceOrder category='device'/>
-
-     
-    </div>
+      <CreateOrders/>
+      <CalenderGrid/>
+      <AdminPage/>
+      {/* <Loading/> */}
+      <Tab/>
+      <SettlementDetailsByAction />
+      <AddAndSearchDevices/>
+      
+    </div> 
   )
 }
 export default App

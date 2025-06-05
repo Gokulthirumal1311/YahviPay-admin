@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { SkeletonLoader } from "./SkeletonLoader";
+
 
 const deviceData = [
   {
@@ -33,31 +35,39 @@ export const RegisteredDeviceCount = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [deviceCount, setDeviceCount] = useState(0);
-  const [searched,setSearched]=useState(false);
+  const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSearched(false);
 
-    const count = deviceData.reduce((acc, device) => {
-      const [day, month, year] = device.registeredDate.split("-");
-      const formattedDate = `${year}-${month}-${day}`;
+    setTimeout(() => {
+      const count = deviceData.reduce((acc, device) => {
+        const [day, month, year] = device.registeredDate.split("-");
+        const formattedDate = `${year}-${month}-${day}`;
 
-      if (
-        device.agentId === agentId &&
-        formattedDate >= fromDate &&
-        formattedDate <= toDate
-      ) {
-        return acc + 1;
-      }
-      return acc;
-    }, 0);
-    setDeviceCount(count);
-    setSearched(true);
+        if (
+          device.agentId === agentId &&
+          formattedDate >= fromDate &&
+          formattedDate <= toDate
+        ) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+
+      setDeviceCount(count);
+      setLoading(false);
+      setSearched(true);
+    }, 2000);
   };
 
   useEffect(() => {
     console.log(deviceCount);
   }, [deviceCount]);
+
   return (
     <>
       <div className="flex justify-center">
@@ -106,7 +116,15 @@ export const RegisteredDeviceCount = () => {
         </form>
       </div>
 
-      {searched && (
+      {/* loader */}
+      {loading && (
+        <div className="bg-gray-100 mt-6 p-4 rounded-md">
+          <SkeletonLoader/>
+        </div>
+      )}
+
+      {/* result */}
+      {searched && !loading && (
         <div className="bg-gray-100 mt-4 p-2 rounded-md">
           {deviceCount > 0 ? (
             <>

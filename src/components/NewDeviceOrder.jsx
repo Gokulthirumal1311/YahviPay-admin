@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-const products=[
+import React, { useState } from "react";
+
+const products = [
   {
-    "title": "YahviPay SoundBox 4G",
-    "Price": "125",
-    "id": "P001",
-    "img": "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/soundbox01.png",
-    "description": [
+    title: "YahviPay SoundBox 4G",
+    Price: "125",
+    id: "P001",
+    img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/soundbox01.png",
+    description: [
       "Monthly charges of Rs.125 applicable",
       "In the Box - 1 Soundbox with SIM, User Manual, Power Adapter and Cable",
       "Get instant audio confirmation for every successful payment",
@@ -13,163 +14,163 @@ const products=[
       "Delivered in pre-activated state",
       "Soundbox is delivered pre-linked to your merchant account. To place a valid order, please ensure you are logged in with the Mobile number registered against your YahviPay business account."
     ],
-    "enabled": "yes",
-    "category": "device",
-    "version": "v1",
-    "languages": ["english"],
-    "sim": ["airtel", "vodafone"],
-    "status": "available",
-    "fullPrice": "180",
-    "delivery": "50",
-    "keywords": ["Soundbox", "4G"]
-  },
-  {
-    "title": "YahviPay SoundBox 4G",
-    "Price": "150",
-    "id": "P004",
-    "img": "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/soundbox02.png",
-    "description": [
-      "Monthly charges of Rs.150 applicable",
-      "In the Box - 1 Soundbox with SIM, User Manual, Power Adapter and Cable",
-      "Get instant audio confirmation for every successful payment",
-      "Supports all UPI supported applications",
-      "Delivered in pre-activated state",
-      "Soundbox is delivered pre-linked to your merchant account. To place a valid order, please ensure you are logged in with the Mobile number registered against your YahviPay business account."
-    ],
-    "enabled": "yes",
-    "category": "device",
-    "version": "v2",
-    "languages": ["english", "hindi", "tamil", "telugu", "malayalam", "kannada"],
-    "sim": ["airtel", "vodafone"],
-    "status": "available",
-    "fullPrice": "200",
-    "delivery": "50",
-    "keywords": ["Soundbox", "4G"]
+    enabled: "yes",
+    category: "device",
+    version: "v1",
+    languages: ["english"],
+    sim: ["airtel", "vodafone"],
+    status: "available",
+    fullPrice: "180",
+    delivery: "50",
+    keywords: ["Soundbox", "4G"]
   }
-]
-
-
-
-
+];
 
 export const NewDeviceOrder = ({ category }) => {
-  let filteredProducts;
+  const [selections, setSelections] = useState({});
 
-    if (category !== "All") {
-        filteredProducts = products.filter((ele) => ele.category === category);
-    } else {
-        filteredProducts = products;
-    }
+  const filteredProducts =
+    category !== "All"
+      ? products.filter((ele) => ele.category === category)
+      : products;
 
-    return filteredProducts.map((ele, ind) => (
+  const handleLanguageChange = (id, value) => {
+    setSelections((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        language: value
+      }
+    }));
+  };
+
+  const handleSimChange = (id, value) => {
+    setSelections((prev) => ({
+      ...prev,
+      [id]: {
+        ...prev[id],
+        sim: value
+      }
+    }));
+  };
+
+  const revieworder = (ele) => {
+    console.log("Order review", ele, selections[ele.id]);
+  };
+
+  return (
+    <div className="p-8 flex flex-wrap gap-8 justify-center">
+      {filteredProducts.map((ele) => (
         <div
-            key={ind}
-            className="m-5 p-5 rounded-3xl shadow-lg transition duration-300 ease-in-out bg-white"
+          key={ele.id}
+          className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden w-full md:max-w-2xl hover:shadow-2xl transition duration-300"
         >
-            <div className="flex flex-wrap gap-5 justify-center">
-                {/* Left Image and Status */}
-                <div className="flex flex-col items-center gap-3 w-1/5 min-w-[200px]">
-                    <div
-                        className={`flex items-center justify-center border w-full h-60 rounded-xl overflow-hidden ${ele.status === "outofstock" ? "opacity-30" : "opacity-100"
-                            }`}
-                    >
-                        <img
-                            src={ele.img}
-                            alt=""
-                            className={`object-fill ${ele.title === "All In One QR Stickers (Set Of 3)"
-                                ? "w-48 h-56"
-                                : "w-60 h-56"
-                                }`}
-                        />
-                    </div>
-                    <div className="text-center font-semibold text-lg">
-                        {ele.status === "outofstock" ? (
-                            <span className="text-red-600">Out of Stock</span>
-                        ) : (
-                            <span className="text-green-600">Available</span>
-                        )}
-                    </div>
-                    <button
-                        type="button"
-                        className="btn btn-outline-primary h-9 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-md px-3"
-                        disabled={ele.status === "outofstock"}
-                        onClick={() => revieworder(ele, ind)}
-                    >
-                        Order Now
-                    </button>
-                </div>
-
-                {/* Right Details */}
-                <div className="flex-1 p-2 space-y-3">
-                    <p className="text-xl font-bold">{ele.title}</p>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                            <label className="block text-gray-600 font-medium">Price:</label>
-                            <span className="font-semibold">₹{ele.Price}</span>
-                        </div>
-                        <div>
-                            <label className="block text-gray-600 font-medium">Delivery:</label>
-                            <span className="font-semibold">₹{ele.delivery}</span>
-                        </div>
-                        <div>
-                            <label className="block text-gray-600 font-medium">Order ID:</label>
-                            <span className="font-semibold">{ele.id}</span>
-                        </div>
-                        <div>
-                            <label className="block text-gray-600 font-medium">Version:</label>
-                            <span className="font-semibold">{ele.version || "nill"}</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-gray-600 font-medium">Description:</label>
-                        <ul className="list-disc pl-5 space-y-1 text-sm mt-1">
-                            {ele.description.map((desc, i) => (
-                                <li key={i}>{desc}</li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Device specific options */}
-                    {ele.category === "device" && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block mb-1 font-medium text-gray-600">Languages:</label>
-                                <select
-                                    className="border border-gray-300 rounded-md p-2 w-full"
-                                    value={ele.languages[ind] || ""}
-                                    onChange={(e) => handleLanguageChange(ind, e.target.value)}
-                                >
-                                    <option value="">Select Language</option>
-                                    { ele.languages ? ele.languages.map((lang, i) => (
-                                        <option key={i} value={lang}>
-                                            {lang}
-                                        </option>
-                                    )) : ''}
-                                </select>
-                            </div>
-
-                            <div>
-                                <label className="block mb-1 font-medium text-gray-600">Sim:</label>
-                                <select
-                                    className="border border-gray-300 rounded-md p-2 w-full"
-                                    value={ele.sim[ind] || ""}
-                                    onChange={(e) => handlesimChange(ind, e.target.value)}
-                                >
-                                    <option value="">Select Sim</option>
-                                    {ele.sim.map((simItem, i) => (
-                                        <option key={i} value={simItem}>
-                                            {simItem}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                    )}
-                </div>
+          <div className="flex flex-col md:flex-row">
+            {/* Product Image */}
+            <div className="md:w-1/3 flex flex-col items-center justify-center p-4 bg-gray-50">
+              <img
+                src={ele.img}
+                alt={ele.title}
+                className="object-cover w-48 h-48 rounded-xl"
+              />
+              <span
+                className={`mt-4 font-semibold text-sm ${
+                  ele.status === "available"
+                    ? "text-green-600"
+                    : "text-red-500"
+                }`}
+              >
+                {ele.status === "available" ? "Available" : "Out of Stock"}
+              </span>
+              <button
+                onClick={() => revieworder(ele)}
+                disabled={ele.status !== "available"}
+                className={`mt-3 px-4 py-2 rounded-lg text-sm font-medium border transition duration-300 ${
+                  ele.status === "available"
+                    ? "border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+                    : "border-gray-300 text-gray-400 cursor-not-allowed"
+                }`}
+              >
+                Order Now
+              </button>
             </div>
-        </div>
-    ));
-};
 
+            {/* Product Details */}
+            <div className="md:w-2/3 p-5 flex flex-col justify-between space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold mb-2">{ele.title}</h2>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="text-gray-500">Price:</span>{" "}
+                    <span className="font-medium">₹{ele.Price}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">Delivery:</span>{" "}
+                    <span className="font-medium">₹{ele.delivery}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">Order ID:</span>{" "}
+                    <span className="font-medium">{ele.id}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">Version:</span>{" "}
+                    <span className="font-medium">{ele.version}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-gray-700 font-medium">Description:</p>
+                <ul className="list-disc ml-5 mt-1 text-gray-600 text-sm space-y-1">
+                  {ele.description.map((desc, idx) => (
+                    <li key={idx}>{desc}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Selection Options */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">
+                    Language
+                  </label>
+                  <select
+                    value={selections[ele.id]?.language || ""}
+                    onChange={(e) =>
+                      handleLanguageChange(ele.id, e.target.value)
+                    }
+                    className="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select Language</option>
+                    {ele.languages.map((lang, i) => (
+                      <option key={i} value={lang}>
+                        {lang}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">
+                    SIM
+                  </label>
+                  <select
+                    value={selections[ele.id]?.sim || ""}
+                    onChange={(e) => handleSimChange(ele.id, e.target.value)}
+                    className="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select SIM</option>
+                    {ele.sim.map((simItem, i) => (
+                      <option key={i} value={simItem}>
+                        {simItem}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
