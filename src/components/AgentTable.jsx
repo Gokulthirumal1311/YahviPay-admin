@@ -1,57 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const agents = [
-    {
-        agentID: "MKTG111006",
-        agentName: "User006",
-        agentType: "marketing",
-        assignedLead: "MKTG111005",
-        agentPhone: "7299700576",
-    },
-    {
-        agentID: "MKTG111004",
-        agentName: "Rajesh",
-        agentType: "marketing",
-        assignedLead: "MKTG111005",
-        agentPhone: "8925046655",
-    },
-    {
-        agentID: "MKTG111008",
-        agentName: "User008",
-        agentType: "marketing",
-        assignedLead: "MKTG111005",
-        agentPhone: "1234000006",
-    },
-    {
-        agentID: "MKTG111013",
-        agentName: "User013",
-        agentType: "marketing",
-        assignedLead: "MKTG111005",
-        agentPhone: "1234567891",
-    },
-    {
-        agentID: "MKTG111012",
-        agentName: "User012",
-        agentType: "loan",
-        assignedLead: "MKTG111005",
-        agentPhone: "8667223194",
-    },
-    {
-        agentID: "MKTG111010",
-        agentName: "User010",
-        agentType: "marketing",
-        assignedLead: "MKTG111005",
-        agentPhone: "1234567890",
-    },
-];
 
-export default function AgentTable() {
+export default function AgentTable({ filteredAgent }) {
 
-    const [selectedType, setSelectedType] = useState("");
-
-
-    const filteredAgent = selectedType ? agents.filter((agent) => agent.agentType === selectedType) : agents;
 
     function color(type) {
         switch (type) {
@@ -90,22 +42,6 @@ export default function AgentTable() {
             <section className="container">
                 <div className="flex flex-col">
                     <div className="">
-                        <div className="flex justify-between items-center mb-4">
-                            <button className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-                                Add Agents
-                            </button>
-
-                            <select
-                                value={selectedType}
-                                onChange={(e) => setSelectedType(e.target.value)}
-                                className="px-3 py-2 border border-gray-300 rounded-md"
-                            >
-                                <option value="">All Types</option>
-                                <option value="marketing">Marketing</option>
-                                <option value="loan">Loan</option>
-                                <option value="support">Support</option>
-                            </select>
-                        </div>
                         <div className="inline-block min-w-full py-2 align-middle">
                             <div className="overflow-hidden border border-gray-200 dark:border-gray-400 md:rounded-lg">
                                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-400">

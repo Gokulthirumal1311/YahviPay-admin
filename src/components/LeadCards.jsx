@@ -4,8 +4,8 @@ import { User, Users } from 'lucide-react'
 
 export const LeadCards = ({ stores }) => {
 
-    const backgroundColorByStatus = (status) => {
 
+    const backgroundColorByStatus = (status) => {
         if(status.toLowerCase().trim() === 'active') {
             return 'bg-emerald-200 bg-emerald-100/60 text-emerald-700 rounded-2xl'
         }
@@ -13,13 +13,13 @@ export const LeadCards = ({ stores }) => {
             return 'bg-red-200 bg-red-100/60 text-red-700 rounded-2xl '
         }
     }
-    const changeFirstCharacterUpperCase = (status) => {
 
+    const changeFirstCharacterUpperCase = (status) => {
         return status.charAt(0).toUpperCase() + status.slice(1)
     }
     const createDotColor = (status) => {
-        if(status.toLowerCase().trim() === 'active') {
 
+        if(status.toLowerCase().trim() === 'active') {
             return 'bg-emerald-700 bg-emerald-100/60 rounded-full'
         }
         else {

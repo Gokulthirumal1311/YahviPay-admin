@@ -6,7 +6,8 @@ import { LeadAccountSettingForm } from '../../../components/LeadAccountSettingFo
 import { AgentsAreas } from '../../../components/AgentsAreas'
 import { DynamicModel } from '../../../components/DynamicModel/DynamicModel'
 import { Layout } from '../Layout/Layout'
-
+import { InputModal } from '../../../components/DynamicModel/InputModal'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 const pageContent = {
     "title": "Leads Details",
     "subTitle": "View and manage complete information for the selected lead, including contact details and follow-up status.",
@@ -90,14 +91,14 @@ export const LeadsDetails = () => {
         closeModal('editLeadDetail');
     };
 
-    const handleAddAgent = (newAgentData) => {
-        const newAgent = {
-            id: agents.length + 1,
-            ...newAgentData
-        };
-        setAgents(prev => [...prev, newAgent]);
-        closeModal('addAgent');
-    };
+    // const handleAddAgent = (newAgentData) => {
+    //     const newAgent = {
+    //         id: agents.length + 1,
+    //         ...newAgentData
+    //     };
+    //     setAgents(prev => [...prev, newAgent]);
+    //     closeModal('addAgent');
+    // };
 
     const handleUpdateArea = (updateArea) => {
         const newAgent = {
@@ -154,6 +155,35 @@ export const LeadsDetails = () => {
     }, []);
     const isAnyModalOpen = Object.values(modalStates).some(state => state);
 
+    const [editLeadDetails, setEditLeadDetails] = useState({
+        leadName: SampleData.LeadName,
+        leadPhoneNumber: SampleData.PhoneNumber,
+        leadEmail: SampleData.LeadEmail
+    })
+    const [addAgent, setAddAgent] = useState({
+        agentId : '',
+        assignArea : ''
+    });
+    const [updateArea, setUpdateArea] = useState('');
+
+    const handleEditLeadDetail = (e) => {
+
+        setEditLeadDetails(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleAddAgent = (e) => {
+
+        setAddAgent(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+    const handleSubmitEditDetails = (e) => {
+
+    }
     return (
 
         <Layout>
@@ -175,12 +205,113 @@ export const LeadsDetails = () => {
                             <div>
                                 <h2 className="text-2xl font-bold text-blue-600">Lead Details</h2>
                             </div>
-                            <button
+                            {/* <InputModal /> */}
+                            {/* <button
                                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl"
                                 onClick={() => openModal('editLeadDetail')}
                             >
                                 Edit Lead Detail
-                            </button>
+                            </button> */}
+                            <Dialog>
+                                <form onSubmit={handleSubmitEditDetails}>
+                                    <DialogTrigger asChild>
+                                        <button
+                                            type="button"
+                                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                        >
+                                            Edit Lead Details
+                                        </button>
+                                    </DialogTrigger>
+
+                                    <DialogContent className="sm:max-w-[600px] w-full">
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Lead Details</DialogTitle>
+                                            <DialogDescription>
+                                                Change lead details in case any mistake.
+                                            </DialogDescription>
+                                        </DialogHeader>
+
+                                        {/* Responsive Grid */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                            {/* Lead Name */}
+                                            <div className="flex flex-col">
+                                                <label
+                                                    htmlFor="leadName"
+                                                    className="text-sm font-medium text-gray-700 capitalize mb-1"
+                                                >
+                                                    Lead Name
+                                                </label>
+                                                <input
+                                                    id="leadName"
+                                                    name="leadName"
+                                                    type='text'
+                                                    className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                    value={editLeadDetails.leadName}
+                                                    onChange={handleEditLeadDetail}
+                                                    required
+                                                />
+                                            </div>
+
+                                            {/* Lead Email */}
+                                            <div className="flex flex-col">
+                                                <label
+                                                    htmlFor="leadEmail"
+                                                    className="text-sm font-medium text-gray-700 capitalize mb-1"
+                                                >
+                                                    Lead Email
+                                                </label>
+                                                <input
+                                                    id="leadEmail"
+                                                    name="leadEmail"
+                                                    type='mail'
+                                                    className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                    value={editLeadDetails.leadEmail}
+                                                    onChange={handleEditLeadDetail}
+                                                    required
+                                                />
+                                            </div>
+
+                                            {/* Lead Phone Number */}
+                                            <div className="md:col-span-2 flex flex-col">
+                                                <label
+                                                    htmlFor="leadPhoneNumber"
+                                                    className="text-sm font-medium text-gray-700 capitalize mb-1"
+                                                >
+                                                    Lead Phone Number
+                                                </label>
+                                                <input
+                                                    id="leadPhoneNumber"
+                                                    name="leadPhoneNumber"
+                                                    type='text'
+                                                    className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                    value={editLeadDetails.leadPhoneNumber}
+                                                    onChange={handleEditLeadDetail}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Footer Buttons */}
+                                        <DialogFooter className="mt-6 flex justify-end gap-4">
+                                            <DialogClose asChild>
+                                                <button
+                                                    type="button"
+                                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </DialogClose>
+                                            <button
+                                                type="submit"
+                                                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                            >
+                                                Save Changes
+                                            </button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </form>
+                            </Dialog>
+
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -201,12 +332,92 @@ export const LeadsDetails = () => {
                             <div className='border-b-2 border-b-gray-300 pb-4 flex justify-between items-center mb-6'>
                                 <h2 className='text-2xl font-bold text-blue-600'>Agent's List</h2>
                                 <div className="flex gap-3">
-                                    <button
+                                    {/* <button
                                         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl"
                                         onClick={() => openModal('addAgent')}
                                     >
                                         Add Agent
-                                    </button>
+                                    </button> */}
+                                    <Dialog>
+                                        <form onSubmit={handleSubmitEditDetails}>
+                                            <DialogTrigger asChild>
+                                                <button
+                                                    type="button"
+                                                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                                >
+                                                    Add Agent
+                                                </button>
+                                            </DialogTrigger>
+
+                                            <DialogContent className="sm:max-w-[600px] w-full">
+                                                <DialogHeader>
+                                                    <DialogTitle>Add Agent</DialogTitle>
+                                                    <DialogDescription>
+                                                        Add & Assign Agent to the Lead.
+                                                    </DialogDescription>
+                                                </DialogHeader>
+
+                                                {/* Responsive Grid */}
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                                    {/* Lead Name */}
+                                                    <div className="flex flex-col">
+                                                        <label
+                                                            htmlFor="agentId"
+                                                            className="text-sm font-medium text-gray-700 capitalize mb-1"
+                                                        >
+                                                            Agent Id
+                                                        </label>
+                                                        <input
+                                                            id="agentId"
+                                                            name="agentId"
+                                                            type='text'
+                                                            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                            value={addAgent.agentId}
+                                                            onChange={handleAddAgent}
+                                                            required
+                                                        />
+                                                    </div>
+
+                                                    {/* Lead Email */}
+                                                    <div className="flex flex-col">
+                                                        <label
+                                                            htmlFor="assignArea"
+                                                            className="text-sm font-medium text-gray-700 capitalize mb-1"
+                                                        >
+                                                            Assign Area
+                                                        </label>
+                                                        <input
+                                                            id="assignArea"
+                                                            name="assignArea"
+                                                            type='mail'
+                                                            className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                            value={addAgent.assignArea}
+                                                            onChange={handleAddAgent}
+                                                            required
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                {/* Footer Buttons */}
+                                                <DialogFooter className="mt-6 flex justify-end gap-4">
+                                                    <DialogClose asChild>
+                                                        <button
+                                                            type="button"
+                                                            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                                        >
+                                                            Cancel
+                                                        </button>
+                                                    </DialogClose>
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                                    >
+                                                        Save Changes
+                                                    </button>
+                                                </DialogFooter>
+                                            </DialogContent>
+                                        </form>
+                                    </Dialog>
                                 </div>
                             </div>
                             {/* <AgentsAreas  {...getModalContent()} /> */}
@@ -233,12 +444,39 @@ export const LeadsDetails = () => {
                                                                 <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.agentPhone}</td>
                                                                 <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.assignedArea || "-"}</td>
                                                                 <td className="px-4 py-4 text-md text-gray-700 font-semibold text-center">
-                                                                    <button
+                                                                    {/* <button
                                                                         onClick={() => openModal('updateArea')}
                                                                         className="transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm"
                                                                     >
                                                                         Add / Update
-                                                                    </button>
+                                                                    </button> */}
+                                                                    <Dialog>
+                                                                        <form className='inline-block'>
+                                                                            <DialogTrigger asChild>
+                                                                                <button variant="outline" className="transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm">Update Area</button>
+                                                                            </DialogTrigger>
+                                                                            <DialogContent className="sm:max-w-[425px]">
+                                                                                <DialogHeader>
+                                                                                    <DialogTitle>Update Agent Assign Area</DialogTitle>
+                                                                                    <DialogDescription>
+                                                                                        Update agent assign area 
+                                                                                    </DialogDescription>
+                                                                                </DialogHeader>
+                                                                                <div className="grid gap-4">
+                                                                                    <div className="grid gap-1">
+                                                                                        <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
+                                                                                        <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <DialogFooter>
+                                                                                    <DialogClose asChild>
+                                                                                        <button variant="outline" className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-xl transition-all">Cancel</button>
+                                                                                    </DialogClose>
+                                                                                    <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all">Save changes</button>
+                                                                                </DialogFooter>
+                                                                            </DialogContent>
+                                                                        </form>
+                                                                    </Dialog>
                                                                     <button
                                                                         onClick={() => openModal('removeAgent')}
                                                                         disabled={!agent.assignedArea}
@@ -267,10 +505,12 @@ export const LeadsDetails = () => {
 
                         </div>
 
-                        {/* Render appropriate modal */}
+                        {/* Render appropriate modal
                         {isAnyModalOpen && (
                             <DynamicModel {...getModalContent()} />
-                        )}
+                        )} */}
+
+
                     </div>
                 </div>
             </div>

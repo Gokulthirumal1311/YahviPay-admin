@@ -360,8 +360,7 @@ export const SideNavBar = () => {
             {/* Sidebar */}
             <div 
                 ref={sidebarRef}
-                className={`overflow-hidden overflow-y-auto scrollbar-thin fixed bottom-2 top-25 bg-white border-r border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm transition-all duration-300 
-                    w-72 ${ sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]' } lg:translate-x-0 rounded-xl` }
+                className={`layout-sidebar layout-sidebar-w ${sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]'} lg:translate-x-0 overflow-hidden overflow-y-auto `}
             >
                 {/* Navigation */}
                 <div className="flex-1 py-6">

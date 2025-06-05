@@ -6,10 +6,10 @@ import { Header } from '../../components/Header'
 export const Layout = () => {
   return (
 
-    <div className = 'p-2 bg-[#dee2e6] h-screen'>
+    <div className = 'layout-container'>
         <Header />
         <SideNavBar />
-        <div className = 'lg:ml-72'>
+        <div className = 'layout-content-container-ml'>
             <Outlet />
 
         </div>
