@@ -1,31 +1,53 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TabNavigation = ({ tabs, activeTab, setActiveTab }) => {
+    const scrollRef = useRef(null);
 
-  return (
+    const scroll = (scrollOffset) => {
+        scrollRef.current.scrollBy({
+            left: scrollOffset,
+            behavior: "smooth",
+        });
+    };
 
-    <div className="">
-      {/* Tab Navigation */}
-      <div className="bg-purple-50 p-2 rounded-lg">
-        <div className="flex space-x-1 flex-wrap gap-y-3">
-          { tabs.map((tab, index) => (
+    return (
+        <div className="relative">
+            {/* Left Scroll Button */}
             <button
-              key={index}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 ${
-                activeTab === tab.id
-                  ? 'bg-blue-500 text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-800 hover:bg-white/50'
-              }`}
+                onClick={() => scroll(-150)}
+                className="absolute -left-6 top-1/2 bg-white -translate-y-1/2 z-10 hover:bg-white text-gray-700 hover:text-black h-full p-2 transition-all duration-200"
             >
-              {tab.label}
+                <ChevronLeft size={20} />
             </button>
-          ))}
+
+            {/* Tab Navigation */}
+            <div className="bg-purple-50 p-2 rounded-lg overflow-x-auto no-scrollbar" ref={scrollRef}>
+                <div className="flex space-x-1 flex-nowrap gap-y-3 whitespace-nowrap">
+                    {tabs.map((tab, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
+                                    ? "bg-blue-500 text-white shadow-md"
+                                    : "text-gray-600 hover:text-gray-800 hover:bg-white/50"
+                                }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Right Scroll Button */}
+            <button
+                onClick={() => scroll(150)}
+                className="absolute -right-6 top-1/2 bg-white -translate-y-1/2 z-10 hover:bg-white text-gray-700 hover:text-black h-full p-2 transition-all duration-200"
+            >
+                <ChevronRight size={20} />
+            </button>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default TabNavigation;

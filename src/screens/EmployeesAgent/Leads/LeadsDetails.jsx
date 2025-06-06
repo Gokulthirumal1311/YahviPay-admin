@@ -150,8 +150,10 @@ export const LeadsDetails = () => {
     useEffect(() => {
 
         const leadId = JSON.parse(localStorage.getItem('leadId'))
+        if(leadId) {
 
-        setLeadId(leadId.leadId);
+            setLeadId(leadId.leadId);
+        }
     }, []);
     const isAnyModalOpen = Object.values(modalStates).some(state => state);
 
