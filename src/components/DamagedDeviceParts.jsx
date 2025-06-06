@@ -7,7 +7,7 @@ const parts = [
     createdDate: "2025-05-16T09:09:26.875Z",
     partStatus: "NEW",
     partType: "charger",
-    partCount: 5,
+    partCount: "5",
     addedBy: "admin",
   },
 ];

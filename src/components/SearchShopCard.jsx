@@ -82,6 +82,8 @@ export const SearchShopCard = () => {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
         </div>
       ))}
+
+      
     </div>
   )
 }

@@ -49,6 +49,10 @@ import Loading from './components/LoadingScreen'
 import TabNavigation from './components/TabNavigation'
 import { Tab } from './components/Tab'
 import AddAndSearchDevices from './components/AddAndSearchDevice'
+import { SuccessPop } from './components/SuccessPop'
+import { WarningPop } from './components/WarningPop'
+import { ErrorPop } from './components/ErrorPop'
+import { Action } from './components/Action'
 
 
 
@@ -96,6 +100,14 @@ function App() {
       <Tab/>
       <SettlementDetailsByAction />
       <AddAndSearchDevices/>
+
+      <Action/>
+      <SuccessPop/>
+      <WarningPop/>
+      <ErrorPop/>
+
+      
+      
       
     </div> 
   )

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ReusableComponent({title,columns,data,actions,onActionClick }) {
+export default function ReusableComponent({title,columns,data,actions}) {
   return (
     <div className="bg-white">
       <section className="container px-4 mx-auto">
@@ -66,7 +66,6 @@ export default function ReusableComponent({title,columns,data,actions,onActionCl
                                   <button
                                     key={action}
                                     className="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-700"
-                                    onClick={() => onActionClick(action, 0)}
                                   >
                                     {action}
                                   </button>

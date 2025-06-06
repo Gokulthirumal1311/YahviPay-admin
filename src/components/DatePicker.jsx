@@ -1,38 +1,38 @@
-import React from 'react'
+import React from "react"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 export const DatePicker = ({ fromDate, setFromDate, toDate, setToDate }) => {
-    return (
-        <div className="flex gap-4">
-            <div className="flex flex-col">
-                <label className="text-md text-gray-800 font-medium mb-1">From Date</label>
-                <input
-                    type="date"
-                    value={fromDate}
-                    onChange={(e) => setFromDate(e.target.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
-                />
-            </div>
+  return (
+    <div className="flex gap-4">
+      <div className="flex flex-col space-y-1.5">
+        <Label htmlFor="from-date">From Date</Label>
+        <Input
+          id="from-date"
+          type="date"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col space-y-1.5">
+        <Label htmlFor="to-date">To Date</Label>
+        <Input
+          id="to-date"
+          type="date"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+        />
+      </div>
 
-
-            <div className="flex flex-col">
-                <label className="text-md text-gray-800 font-medium mb-1">To Date</label>
-                <input
-                    type="date"
-                    value={toDate}
-                    onChange={(e) => setToDate(e.target.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm text-gray-900"
-                />
-            </div>
-
-
-            {/* <div className="flex items-end">
-                <button
-                    type="submit"
-                    className="h-[38px] px-6 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
-                >
-                    Search
-                </button>
-            </div> */}
-        </div>
-    )
+      {/* Optional: Search button */}
+      {/* 
+      <div className="flex items-end">
+        <Button type="submit" className="h-[38px]">
+          Search
+        </Button>
+      </div>
+      */}
+    </div>
+  )
 }

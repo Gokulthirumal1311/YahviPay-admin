@@ -118,3 +118,33 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideIn {
+    animation: slideIn 0.5s ease forwards;
+  }
+
+  @keyframes progressBar {
+    to {
+      width: 0;
+    }
+  }
+
+  .progress-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: currentColor;
+    animation: progressBar 3s linear forwards;
+  }
+}

@@ -83,7 +83,6 @@ export const Kycverification=()=>{
                 {store.bankValid === "yes" ? "✔️" : "❌"}
               </span>
             </div>
-
             <div>
               <span className="text-sm font-medium text-gray-600 block">
                 Aadhaar Verified
@@ -117,5 +116,6 @@ export const Kycverification=()=>{
         </div>
       ))}
     </div>
+    
   );
 };
