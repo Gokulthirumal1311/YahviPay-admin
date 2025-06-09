@@ -1,44 +1,63 @@
 import React from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 
-export const AddBusiness = ({ handleSubmit, addBusiness, handleAddBusiness }) => {
+export const ReportDevice = () => {
     return (
         <Dialog>
-            <form onSubmit={handleSubmit}>
+
+            <form>
                 <DialogTrigger asChild>
                     <button
                         type="button"
-                        className="text-blue-500 hover:underline font-semibold py-2 px-5 rounded-xl transition-all"
+                        className="text-yellow-500 hover:underline font-semibold py-2 px-2 rounded-xl transition-all"
                     >
-                        Add Business
+                        Remove Device
                     </button>
                 </DialogTrigger>
 
                 <DialogContent className="sm:max-w-[600px] w-full">
                     <DialogHeader>
-                        <DialogTitle>Add Business</DialogTitle>
+                        <DialogTitle>Remove Device from Agent</DialogTitle>
                         <DialogDescription>
                             Change Agent details in case any mistake.
                         </DialogDescription>
                     </DialogHeader>
 
                     {/* Responsive Grid */}
-                    <div className="mt-2">
-                        {/* Lead Name */}
-                        <div className="flex flex-col gap-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        {/* Device Id */}
+                        <div className="flex flex-col">
                             <label
-                                htmlFor="businessPhoneNumber"
+                                htmlFor="deviceId"
                                 className="text-sm font-medium text-gray-700 capitalize mb-1"
                             >
-                                Business PhoneNumber
+                                Device Id
                             </label>
                             <input
-                                id="businessPhoneNumber"
-                                name="businessPhoneNumber"
+                                id="deviceId"
+                                name="deviceId"
                                 type='text'
                                 className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                value={addBusiness}
-                                onChange={handleAddBusiness}
+                                // value={removeDevice.deviceId}
+                                // onChange={handleRemoveDeviceDetails}
+                                required
+                            />
+                        </div>
+                        {/* Notes */}
+                        <div className="flex flex-col md:col-span-2">
+                            <label
+                                htmlFor="notes"
+                                className="text-sm font-medium text-gray-700 capitalize mb-1"
+                            >
+                                Report Notes
+                            </label>
+                            <textarea
+                                id="notes"
+                                name="notes"
+                                rows="4"
+                                className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                                // value={removeDevice.notes}
+                                // onChange={handleRemoveDeviceDetails}
                                 required
                             />
                         </div>

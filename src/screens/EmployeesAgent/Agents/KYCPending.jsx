@@ -3,12 +3,14 @@ import SingleSearchBar from '../../../components/SingleSearchBar';
 import { AgentsAreas } from '../../../components/AgentsAreas';
 import { Check, X } from 'lucide-react';
 import { Layout } from '../Layout/Layout';
+import { NoDataFound } from '../../../components/NoDataFound';
 
 const pageContent = {
-    "title": "Get All Leads Details",
+    "title": "KYC Pending",
 
-    "subTitle": "Leads Details from one place with LeadId",
-    "searchInputPlaceholderName": "Enter the Merchant ID"
+    "subTitle": "Search for the Merchant ID to see if KYC verification is pending or completed.",
+    "searchInputPlaceholderName": "Enter the Merchant ID",
+    "noDataFoundDescription" : "No KYC information found for the entered Merchant ID. Please verify the ID and try again."
 }
 
 const SampleData = {
@@ -41,33 +43,20 @@ const stores = [
 
 export const KYCPending = () => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
-
-    const handleEdit = () => {
-        setIsModalOpen(true);
-    };
-
     return (
-
         <Layout>
-
-            <div className='overflow-y-auto'>
-
-
-
+            <div className={stores.length ? "overflow-y-auto" : ''}>
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
                 <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} />
 
-
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {stores.length ? <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {stores.map((store, index) => (
                         <div
                             key={index}
-                            className="relative group bg-gradient-to-br from-white to-indigo-50 border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
+                            className="group bg-gradient-to-br from-white to-indigo-50 border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
                         >
                             <div className="mb-6">
                                 <span className="text-sm font-medium text-gray-600 block">
@@ -137,6 +126,11 @@ export const KYCPending = () => {
                         </div>
                     ))}
                 </div>
+                    :
+                    <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                        <NoDataFound description={pageContent.noDataFoundDescription} />
+                    </div>
+                }
             </div>
         </Layout>
     )

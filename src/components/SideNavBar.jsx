@@ -355,6 +355,7 @@ export const SideNavBar = () => {
         );
     };
 
+    console.log('qqqq')
     return (
         <>
             {/* Sidebar */}

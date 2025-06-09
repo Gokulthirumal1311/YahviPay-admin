@@ -12,9 +12,12 @@ export const DoubleSearchBar = ({ placeholder1, placeholder2 }) => {
     useEffect(() => {
         const storedMerchantDetail = JSON.parse(localStorage.getItem('merchant'));
 
-        setPhoneNumber(storedMerchantDetail.phoneNumber)
+        if(storedMerchantDetail) {
 
-        setReferenceId(storedMerchantDetail.merchantId)
+            setPhoneNumber(storedMerchantDetail.phoneNumber)
+    
+            setReferenceId(storedMerchantDetail.merchantId)
+        }
     }, []);
 
     return (

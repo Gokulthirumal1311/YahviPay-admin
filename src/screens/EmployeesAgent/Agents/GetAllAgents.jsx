@@ -4,13 +4,17 @@ import SingleSearchBar from '../../../components/SingleSearchBar'
 import AgentTable from '../../../components/AgentTable'
 import { Layout } from '../Layout/Layout'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
+import CustomDropdown from '../../../components/CustomDropDown'
+
 
 const pageContent = {
     "title": "Get All Agents Account",
 
-    "subTitle": "Search all Agents from one place with AgentID",
+
+    "subTitle": "View and Manage All Registered Agent Accounts.",
     "searchInputPlaceholderName": "Enter the Agent ID"
 }
+
 
 const stores = [
     {
@@ -81,19 +85,69 @@ const agents = [
 ];
 
 
+const filterByAgentTypeList = [
+    { label: "All Types", value: "" },
+    { label: "Marketing", value: "marketing" },
+    { label: "Loan", value: "loan" },
+    { label: "Support", value: "support" },
+]
+
 export const GetAllAgents = () => {
 
-    const [selectedType, setSelectedType] = useState("");
-    
-    
+
+    const [selectedType, setSelectedType] = useState(filterByAgentTypeList[0].value);
+
     const filteredAgent = selectedType ? agents.filter((agent) => agent.agentType === selectedType) : agents;
+
+
+    const addAgent = () => {
+        return (
+            <Dialog>
+                <form className='inline-block'>
+                    <DialogTrigger asChild>
+                        <button variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Agent</button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                            <DialogTitle>Add Agent</DialogTitle>
+                            <DialogDescription>
+                                Enter Agent Details, Assign an Area, and Link to a Lead.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                            <div className="grid gap-1">
+                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Name</label>
+                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                            </div>
+                            <div className="grid gap-1">
+                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent PhoneNumber</label>
+                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                            </div>
+                            <div className="grid gap-1">
+                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Type</label>
+                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                            </div>
+                            <div className="grid gap-1">
+                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Lead</label>
+                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                            </div>
+                        </div>
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <button variant="outline" className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-1.5 px-4 rounded-md transition-all">Cancel</button>
+                            </DialogClose>
+                            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-1.5 px-4 rounded-md transition-all">Save changes</button>
+                        </DialogFooter>
+                    </DialogContent>
+                </form>
+            </Dialog>
+        )
+    }
     return (
 
-        <Layout >
 
+        <Layout>
             <div className='overflow-y-auto'>
-
-
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 '>{pageContent.subTitle}</h4>
@@ -105,46 +159,13 @@ export const GetAllAgents = () => {
                         {/* <button className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
                             Add Agents
                         </button> */}
-                        <Dialog>
-                            <form className='inline-block'>
-                                <DialogTrigger asChild>
-                                    <button variant="outline" className="transition-all bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Agent</button>
-                                </DialogTrigger>
-                                <DialogContent className="sm:max-w-[425px]">
-                                    <DialogHeader>
-                                        <DialogTitle>Add Agent</DialogTitle>
-                                        <DialogDescription>
-                                            Create new Agent 
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                                        <div className="grid gap-1">
-                                            <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
-                                            <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
-                                            <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
-                                            <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                                        </div>
-                                        <div className="grid gap-1">
-                                            <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
-                                            <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                                        </div>
-                                    </div>
-                                    <DialogFooter>
-                                        <DialogClose asChild>
-                                            <button variant="outline" className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1.5 px-4 rounded-md transition-all">Cancel</button>
-                                        </DialogClose>
-                                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-4 rounded-md transition-all">Save changes</button>
-                                    </DialogFooter>
-                                </DialogContent>
-                            </form>
-                        </Dialog>
-                        <select
+                        {addAgent()}
+                        <CustomDropdown 
+                            options={filterByAgentTypeList}
+                            selected={selectedType}
+                            setSelected={setSelectedType}
+                        />
+                        {/* <select
                             value={selectedType}
                             onChange={(e) => setSelectedType(e.target.value)}
                             className="px-3 py-2 border border-gray-300 rounded-md"
@@ -153,9 +174,9 @@ export const GetAllAgents = () => {
                             <option value="marketing">Marketing</option>
                             <option value="loan">Loan</option>
                             <option value="support">Support</option>
-                        </select>
+                        </select> */}
                     </div>
-                    <AgentTable filteredAgent = {filteredAgent} />
+                    <AgentTable filteredAgent={filteredAgent} />
                 </div>
             </div>
         </Layout>

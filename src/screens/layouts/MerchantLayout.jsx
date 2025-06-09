@@ -28,7 +28,6 @@ const tabs = [
   { id: 'tab7', label: 'Set BusinessVPA', url : 'SetBusinessVPA' },
   { id: 'tab8', label: 'Set MarketingAgent', url : 'SetMarketingAgent' },
   { id: 'tab9', label: 'Account Status', url : 'AccountStatus' },
-  { id: 'tab10', label: 'Set Location', url : 'SetLocation' },
 ]
 export const MerchantLayout = () => {
     
@@ -48,7 +47,6 @@ export const MerchantLayout = () => {
             case 'tab7': return <SetBusinessVPA />;
             case 'tab8': return <SetMarketingAgent />;
             case 'tab9': return <AccountStatus />;
-            case 'tab10': return <SetLocation />;
             default: return null;
         }
     };
@@ -70,7 +68,7 @@ export const MerchantLayout = () => {
                     />
 
                 </div>
-                <div className="tab-content">
+                <div className="tab-content overflow-y-auto">
                     {renderTabContent()}
                 </div>
             </div>

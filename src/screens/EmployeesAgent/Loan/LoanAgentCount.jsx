@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar'
 import AgentTable from '../../../components/AgentTable'
 import { Layout } from '../Layout/Layout';
+import { NoDataFound } from '../../../components/NoDataFound';
 
 const pageContent = {
     "title": "Loan Agent Count",
 
-    "subTitle": "Overview of loan distribution across assigned agents.",
-    "searchInputPlaceholderName": "Enter the Marketing ID"
+    "subTitle": "View the total number of loans processed by the selected Agent ID within the specified date range.",
+    "searchInputPlaceholderName": "Enter the Marketing ID",
+    "noDataFoundDescription" : "No loans found for the chosen Agent ID within the specified period. Please adjust the dates or agent ID."
 }
 
 const deviceData = [
@@ -133,7 +135,7 @@ export const LoanAgentCount = () => {
                 </div>
 
 
-                {searched && (
+                {searched ? (
                     <div className="bg-gray-100 mt-4 p-2 rounded-md">
                         {deviceCount > 0 ? (
                             <>
@@ -144,7 +146,13 @@ export const LoanAgentCount = () => {
                             <span className="text-gray-600">No Data Found</span>
                         )}
                     </div>
-                )}
+                )
+                    :
+                    <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                        
+                        <NoDataFound description={pageContent.noDataFoundDescription} />
+                    </div>
+                }
 
 
             </div>

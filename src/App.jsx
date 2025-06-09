@@ -1,7 +1,7 @@
 import './App.css'
 import { Layout } from './screens/layouts/Layout'
 import { Routes, Route } from 'react-router-dom'
-import { AdminDashboard } from './screens/AdminDashboard'
+import { AdminDashboard } from './screens/AdminDashboard/AdminDashboard'
 import { EmployeeAgent } from './screens/EmployeeAgent'
 import { AllMerchantAccount } from './screens/Merchant/AllMerchantAccount'
 import { UserDetails } from './screens/Merchant/UserDetails'

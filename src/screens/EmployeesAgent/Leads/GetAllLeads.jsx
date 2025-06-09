@@ -32,6 +32,34 @@ const stores = [
         PhoneNumber: '9988776655',
         Status: 'active'
     },
+    {
+        LeadId: 'MKTG111007',
+        LeadName: 'User007',
+        LeadEmail: 'user007@gmail.com',
+        PhoneNumber: '9988776655',
+        Status: 'active'
+    },
+    {
+        LeadId: 'MKTG111007',
+        LeadName: 'User007',
+        LeadEmail: 'user007@gmail.com',
+        PhoneNumber: '9988776655',
+        Status: 'active'
+    },
+    {
+        LeadId: 'MKTG111007',
+        LeadName: 'User007',
+        LeadEmail: 'user007@gmail.com',
+        PhoneNumber: '9988776655',
+        Status: 'active'
+    },
+    {
+        LeadId: 'MKTG111007',
+        LeadName: 'User007',
+        LeadEmail: 'user007@gmail.com',
+        PhoneNumber: '9988776655',
+        Status: 'active'
+    },
 ]
 
 
@@ -45,7 +73,7 @@ export const GetAllLeads = () => {
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
-                <div className='flex-1 overflow-y-auto'>
+                <div className='flex-1 overflow-y-auto rounded-2xl'>
 
                     <LeadCards stores={stores} />
                 </div>

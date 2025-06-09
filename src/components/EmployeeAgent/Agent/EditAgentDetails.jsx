@@ -26,7 +26,7 @@ export const EditAgentDetails = ({ handleSubmit, editAgentDetails, handleEditLea
 
                     {/* Responsive Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                        {/* Lead Name */}
+                        {/* Agent Name */}
                         <div className="flex flex-col">
                             <label
                                 htmlFor="agentName"
@@ -44,7 +44,7 @@ export const EditAgentDetails = ({ handleSubmit, editAgentDetails, handleEditLea
                                 required
                             />
                         </div>
-
+                        
                         <div className="flex flex-col">
                             <label
                                 htmlFor="agentPhoneNumber"
