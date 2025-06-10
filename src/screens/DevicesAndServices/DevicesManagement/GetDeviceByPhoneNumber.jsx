@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Layout } from '../Layouts/Layout'
+import { NoDataFound } from '../../../components/NoDataFound';
 
 
 const deviceData = [
@@ -19,8 +20,9 @@ const deviceData = [
 const pageContent = {
     "title": "Get Device By Phone Number",
 
-    "subTitle": "Leads Details from one place with LeadId",
-    "searchInputPlaceholderName" : 'Enter the Lead ID'
+    "subTitle": "Search by Phone Number and Merchant ID to view linked device details.",
+    "searchInputPlaceholderName": 'Enter the Lead ID',
+    "noDataFoundDescription" : "Enter a Phone Number or Merchant ID to find associated device details."
 }
 export const GetDeviceByPhoneNumber = () => {
 
@@ -47,7 +49,7 @@ export const GetDeviceByPhoneNumber = () => {
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <div className="bg-white p-5 rounded-xl shadow-md">
+            <div className="">
                 <h2 className="text-xl font-semibold text-blue-700">
                     Device Report <span className="text-gray-400 font-normal">| Get devices</span>
                 </h2>
@@ -63,7 +65,7 @@ export const GetDeviceByPhoneNumber = () => {
                         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl">Go</button>
                 </form>
 
-                {searched && (
+                {searched ? (
                     <div className="mt-6 border-t pt-4">
                         {deviceInfo ? (
                             <>
@@ -81,7 +83,13 @@ export const GetDeviceByPhoneNumber = () => {
                             <p className="text-gray-600">No Device Found</p>
                         )}
                     </div>
-                )}
+                )
+                    :
+                    <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+
+                        <NoDataFound description={pageContent.noDataFoundDescription} />
+                    </div>
+                }
             </div>
         </Layout>
     )

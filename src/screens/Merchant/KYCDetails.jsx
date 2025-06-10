@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 
 const SampleData = {
     name: 'Gokul',
     phone: '8667223194',
     category: 'Food & Dining',
-    
+
     subCategory: 'Eating Places, Restaurants',
     businessType: 'Fixed',
     pincode: '600085',
@@ -12,24 +13,129 @@ const SampleData = {
     latitude: '12.9555489',
     longitudes: '80.9555489',
 }
+const bankDetails = {
+    bankAccountHolderName: 'Gokul',
+    bankAccountNumber: '',
+    bankIFSC: "",
+    bankName: ''
+}
+const aadhaarDetails = {
+    aadhaarName: '',
+    aadhaarNumber: '',
+    aadhaarDOB: '',
+    aadhaarAddress: ''
+}
+const panDetails = {
+    panName: '',
+    panNumber: ''
+}
+const gstDetails = {
+    gstNumber: ''
+}
+
 export const KYCDetails = () => {
 
+    const [bankData, setBankData] = useState({
+        bankAccountHolderName: "Gokul",
+        bankAccountNumber: "",
+        bankIFSC: "",
+        bankName: ""
+    });
+
+    const [aadhaarData, setAadhaarData] = useState({
+        aadhaarName: "",
+        aadhaarNumber: "",
+        aadhaarDOB: "",
+        aadhaarAddress: ""
+    });
+
+    const [panData, setPanData] = useState({
+        panName: "",
+        panNumber: ""
+    });
+
+    const [gstData, setGstData] = useState({
+        gstNumber: ""
+    });
+
+    const handleChange = (setter) => (e) => {
+        setter((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const handleSubmit = (e, dataName) => {
+        e.preventDefault();
+        console.log(`${dataName} updated!`);
+    };
+
+    const renderDialog = (title, data, setter, dataName) => (
+        <Dialog>
+            <DialogTrigger asChild>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    Edit {title}
+                </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px]">
+                <DialogHeader>
+                    <DialogTitle>Edit {title}</DialogTitle>
+                    <DialogDescription>Update your {title.toLowerCase()} details below.</DialogDescription>
+                </DialogHeader>
+
+                <form onSubmit={(e) => handleSubmit(e, dataName)} className="mt-4 space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {Object.entries(data).map(([key, value]) => (
+                            <div key={key}>
+                                <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
+                                    {key.replace(/([A-Z])/g, " $1")}
+                                </label>
+                                <input
+                                    type="text"
+                                    name={key}
+                                    value={value}
+                                    onChange={handleChange(setter)}
+                                    className="w-full border px-3 py-2 rounded focus:ring-2 focus:ring-blue-500"
+                                    required
+                                />
+                            </div>
+                        ))}
+                    </div>
+
+                    <DialogFooter className="mt-4 flex justify-end gap-2">
+                        <DialogClose asChild>
+                            <button
+                                type="button"
+                                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1.5 px-4 rounded-md transition"
+                            >
+                                Cancel
+                            </button>
+                        </DialogClose>
+                        <button
+                            type="submit"
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1.5 px-4 rounded-md transition"
+                        >
+                            Save Changes
+                        </button>
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
+    );
     return (
-        <div className="relative group bg-gradient-to-br from-white border border-gray-200 rounded-2xl p-8">
+        <div className="group bg-gradient-to-br from-white border border-gray-200 rounded-2xl p-8">
             <div className="flex justify-between items-center mb-5 pb-4 border-b-2 border-gray-200">
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                     KYC Details
                 </h2>
             </div>
-                    
+
             <div className="border-b-2 border-gray-300 pb-8">
                 <div className="flex justify-between items-center mb-5 ">
                     <h2 className="text-2xl font-semibold">
                         Update Bank Details
                     </h2>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
                         Edit
-                    </button>
+                    </button> */}
+                    {renderDialog("Bank Details", bankData, setBankData, "Bank")}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -57,7 +163,7 @@ export const KYCDetails = () => {
                         <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600">
                             {SampleData.subCategory}
                         </div>
-                    </div>                           
+                    </div>
                 </div>
             </div>
             <div className="border-b-2 border-gray-300 pb-8">
@@ -65,9 +171,10 @@ export const KYCDetails = () => {
                     <h2 className="text-2xl font-semibold">
                         Update Aadhaar Details
                     </h2>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
                         Edit
-                    </button>
+                    </button> */}
+                    {renderDialog("Aadhaar Details", aadhaarData, setAadhaarData, "Aadhaar")}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -95,7 +202,7 @@ export const KYCDetails = () => {
                         <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600">
                             {SampleData.subCategory}
                         </div>
-                    </div>                           
+                    </div>
                 </div>
             </div>
             <div className="border-b-2 border-gray-300 pb-8">
@@ -103,9 +210,10 @@ export const KYCDetails = () => {
                     <h2 className="text-2xl font-semibold">
                         Update PAN Details
                     </h2>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
                         Edit
-                    </button>
+                    </button> */}
+                    {renderDialog("PAN Details", panData, setPanData, "PAN")}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
@@ -121,7 +229,7 @@ export const KYCDetails = () => {
                         </div>
                     </div>
 
-                                          
+
                 </div>
             </div>
             <div className="border-b-2 border-gray-300 pb-8">
@@ -129,12 +237,13 @@ export const KYCDetails = () => {
                     <h2 className="text-2xl font-semibold">
                         Update GST Details
                     </h2>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
+                    {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-10 rounded-xl transition-all duration-200 hover:shadow-lg transform hover:-translate-y-0.5">
                         Edit
-                    </button>
+                    </button> */}
+                    {renderDialog("GST Details", gstData, setGstData, "GST")}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                   
+
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">GST Number</label>
                         <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600">
@@ -142,13 +251,13 @@ export const KYCDetails = () => {
                         </div>
                     </div>
 
-                                      
+
                 </div>
             </div>
-                        
+
             {/* {isModalOpen && <ModalForm onClose={() => setIsModalOpen(false)} userData={userData} onSave={handleSave} />} */}
-                    
+
             {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div> */}
-        </div>        
+        </div>
     )
 }

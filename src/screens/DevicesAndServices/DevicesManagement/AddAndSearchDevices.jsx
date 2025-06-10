@@ -1,248 +1,197 @@
-// import React, { useState } from "react";
-// import ReusableComponent from "../../../components/ReusableComponent";
-// import { Layout } from "../Layouts/Layout";
-// // import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-// const pageContent = {
-//     "title": "Add & Search Devices",
-
-//     "subTitle": "Leads Details from one place with LeadId",
-//     "searchInputPlaceholderName" : 'Enter the Lead ID'
-// }
-// const devices = [
-//     {
-//         deviceId: "8667223194",
-//         deviceName: "Soundbox2",
-//         imei: "8667223194",
-//         simPhoneNumber: "8667223194",
-//         supplierRefId: "8667223194",
-//         supplierName: "airtel",
-//         status: "inactive",
-//         deviceType: "soundbox",
-//         rentalAmt: "150",
-//         rentalType: "RENTED",
-//         mqttServerIP: "8667223194",
-//         version: "v1",
-//         language: "en",
-//         business: [
-//             {
-//                 businessPhone: "8667223194",
-//                 createdDate: "2025-05-21T06:44:26.102Z",
-//                 paymentType: "",
-//                 InstalledDate: "",
-//                 paymentStartDate: "",
-//                 terminatedDate: "",
-//                 amount: "",
-//                 advancePaid: "",
-//                 pendingPaymentAmt: "",
-//                 maxDaysFineExempted: "",
-//                 paymentsMissed: "",
-//                 orderId: "DEVICE174780986042633294",
-//                 payments: [],
-//                 merchantId: "MC1747288873705"
-//             }
-//         ],
-//         agentId: "MKTG111012",
-//     },
-// ];
-// const columns = ["deviceId", "supplierRefId", "simPhoneNumber", "deviceName", "status"];
-
-// const actions = ["Edit"];
-
-// export function AddAndSearchDevices() {
-
-//     const [expandedIndex, setExpandedIndex] = useState(null);
-//     const [showBusinessIndex, setShowBusinessIndex] = useState(null);
-
-//     const handleToggle = (index) => {
-//         setExpandedIndex((prev) => (prev === index ? null : index));
-//         setShowBusinessIndex(null); // Reset business view when toggling device
-//     };
-
-//     const handleGetDeviceBusiness = (index) => {
-//         setShowBusinessIndex((prev) => (prev === index ? null : index));
-//     };
-
-//     const renderBusinessDetails = (business) => (
-//         <div className="mt-4 p-4 border rounded bg-blue-50 text-sm">
-//             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-2 text-blue-900">
-//                 <div><strong>Installed Date:</strong> {business.InstalledDate}</div>
-//                 <div><strong>Created Date:</strong> {business.createdDate}</div>
-//                 <div><strong>Advance Paid:</strong> {business.advancePaid}</div>
-//                 <div><strong>Amount:</strong> {business.amount}</div>
-//                 <div><strong>Business Phone:</strong> <a className="text-blue-600 underline" href={`tel:${business.businessPhone}`}>{business.businessPhone}</a></div>
-//                 <div><strong>Max Days Fine Exempted:</strong> {business.maxDaysFineExempted}</div>
-//                 <div><strong>Order ID:</strong> {business.orderId}</div>
-//                 <div><strong>Payment Mode:</strong> {business.paymentMode}</div>
-//                 <div><strong>Payment Start Date:</strong> {business.paymentStartDate}</div>
-//                 <div><strong>Payment Type:</strong> {business.paymentType}</div>
-//                 <div><strong>Payments Missed:</strong> {business.paymentsMissed}</div>
-//                 <div><strong>Pending Amount:</strong> {business.pendingPaymentAmt}</div>
-//                 <div><strong>Terminated Date:</strong> {business.terminatedDate}</div>
-//             </div>
-//             <div className="mt-2">
-//                 <button className="bg-blue-600 text-white px-4 py-1 rounded mr-2">Edit Device Business</button>
-//                 <button className="bg-blue-600 text-white px-4 py-1 rounded">Add Payments</button>
-//             </div>
-//         </div>
-//     );
-
-//     const renderDetails = (device, index) => (
-//         <div className="p-4 bg-gray-50 border rounded text-sm mt-2">
-//             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-2">
-//                 <div><strong>Device ID:</strong> {device.deviceId}</div>
-//                 <div><strong>IMEI:</strong> {device.imei}</div>
-//                 <div><strong>SIM:</strong> {device.simPhoneNumber}</div>
-//                 <div><strong>Supplier:</strong> {device.supplierName}</div>
-//                 <div><strong>Rental Type:</strong> {device.rentalType}</div>
-//                 <div><strong>Rental Amt:</strong> ₹{device.rentalAmt}</div>
-//                 <div><strong>Status:</strong> {device.status}</div>
-//                 <div><strong>MQTT IP:</strong> {device.mqttServerIP}</div>
-//                 <div><strong>Version:</strong> {device.version}</div>
-//                 <div><strong>Merchant ID:</strong> {device.business?.[0]?.merchantId}</div>
-//                 <div><strong>Agent ID:</strong> {device.agentId}</div>
-//                 <div><strong>Language:</strong> {device.language}</div>
-//             </div>
-//             <div className="flex gap-2 mt-2">
-//                 <button className="bg-blue-600 text-white px-3 py-1 rounded">Add Device-business</button>
-//                 <button
-//                     className="bg-blue-600 text-white px-3 py-1 rounded"
-//                     onClick={() => handleGetDeviceBusiness(index)}
-//                 >
-//                     Get Device Business
-//                 </button>
-//                 <button className="bg-red-500 text-white px-3 py-1 rounded">Remove Device Business</button>
-//             </div>
-
-//             {showBusinessIndex === index && renderBusinessDetails(device.business?.[0])}
-//         </div>
-//     );
-
-//     return (
-
-//         <Layout>
-//             <div>
-//                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
-//                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
-//             </div>
-//             <ReusableComponent
-//                 title="Device Report | Search Devices"
-//                 columns={columns}
-//                 data={devices}
-//                 actions={actions}
-//             />
-
-//             <div className="mt-6 px-6">
-//                 <h3 className="text-lg font-semibold mb-3">Device Details</h3>
-
-//                 {devices.map((device, index) => (
-//                     <div key={index} className="mb-4 border border-gray-200 p-3 rounded-md shadow-sm">
-//                         <div className="flex justify-between items-center">
-//                             <span className="font-medium text-sm text-gray-700">{device.deviceName} ({device.deviceId})</span>
-//                             <button onClick={() => handleToggle(index)}>
-//                                 {/* {expandedIndex === index ? <FaChevronUp /> : <FaChevronDown />} */}
-//                                 New
-//                             </button>
-//                         </div>
-//                         {expandedIndex === index && renderDetails(device, index)}
-//                     </div>
-//                 ))}
-//             </div>
-//         </Layout>
-//     );
-// }
-
-
 import React, { useState } from "react";
 import { ViewDeviceDetailDrawer } from "../../../components/Drawer/ViewDeviceDetailDrawer";
 import { Layout } from "../Layouts/Layout";
+import { NoDataFound } from "../../../components/NoDataFound";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, } from "@/components/ui/dialog";
+const pageContent = {
+    "title": "Add & Search Devices",
+    "subTitle": "Add a new device to the system or search for existing device details using a Phone Number or Merchant ID.",
+    "searchInputPlaceholderName": 'Enter the Lead ID',
+    "noDataFoundDescription": "No device details available for the provided device number."
+};
+
+const devices = [
+    {
+        deviceId: "8667223194",
+        deviceName: "Soundbox2",
+        imei: "8667223194",
+        simPhoneNumber: "8667223194",
+        supplierRefId: "8667223194",
+        supplierName: "airtel",
+        status: "inactive",
+        deviceType: "soundbox",
+        rentalAmt: "150",
+        rentalType: "RENTED",
+        mqttServerIP: "8667223194",
+        version: "v1",
+        language: "en",
+        business: [
+            {
+                businessPhone: "8667223194",
+                createdDate: "2025-05-21T06:44:26.102Z",
+                paymentType: "",
+                InstalledDate: "",
+                paymentStartDate: "",
+                terminatedDate: "",
+                amount: "",
+                advancePaid: "",
+                pendingPaymentAmt: "",
+                maxDaysFineExempted: "",
+                paymentsMissed: "",
+                orderId: "DEVICE174780986042633294",
+                payments: [],
+                merchantId: "MC1747288873705"
+            }
+        ],
+        agentId: "MKTG111012",
+    },
+    {
+        deviceId: "1111111111",
+        deviceName: "Soundbox2",
+        imei: "8667223194",
+        simPhoneNumber: "8667223194",
+        supplierRefId: "8667223194",
+        supplierName: "airtel",
+        status: "inactive",
+        deviceType: "soundbox",
+        rentalAmt: "150",
+        rentalType: "RENTED",
+        mqttServerIP: "8667223194",
+        version: "v1",
+        language: "en",
+        business: [
+            {
+                businessPhone: "8667223194",
+                createdDate: "2025-05-21T06:44:26.102Z",
+                paymentType: "",
+                InstalledDate: "",
+                paymentStartDate: "",
+                terminatedDate: "",
+                amount: "",
+                advancePaid: "",
+                pendingPaymentAmt: "",
+                maxDaysFineExempted: "",
+                paymentsMissed: "",
+                orderId: "DEVICE174780986042633294",
+                payments: [],
+                merchantId: "MC1747288873705"
+            }
+        ],
+        agentId: "MKTG111012",
+    },
+];
+
+const columns = ["deviceId", "supplierRefId", "simPhoneNumber", "deviceName", "status"];
 
 export function AddAndSearchDevices() {
-    const pageContent = {
-        "title": "Add & Search Devices",
-        "subTitle": "Leads Details from one place with LeadId",
-        "searchInputPlaceholderName": 'Enter the Lead ID'
-    };
-
-    const devices = [
-        {
-            deviceId: "8667223194",
-            deviceName: "Soundbox2",
-            imei: "8667223194",
-            simPhoneNumber: "8667223194",
-            supplierRefId: "8667223194",
-            supplierName: "airtel",
-            status: "inactive",
-            deviceType: "soundbox",
-            rentalAmt: "150",
-            rentalType: "RENTED",
-            mqttServerIP: "8667223194",
-            version: "v1",
-            language: "en",
-            business: [
-                {
-                    businessPhone: "8667223194",
-                    createdDate: "2025-05-21T06:44:26.102Z",
-                    paymentType: "",
-                    InstalledDate: "",
-                    paymentStartDate: "",
-                    terminatedDate: "",
-                    amount: "",
-                    advancePaid: "",
-                    pendingPaymentAmt: "",
-                    maxDaysFineExempted: "",
-                    paymentsMissed: "",
-                    orderId: "DEVICE174780986042633294",
-                    payments: [],
-                    merchantId: "MC1747288873705"
-                }
-            ],
-            agentId: "MKTG111012",
-        },
-        {
-            deviceId: "1111111111",
-            deviceName: "Soundbox2",
-            imei: "8667223194",
-            simPhoneNumber: "8667223194",
-            supplierRefId: "8667223194",
-            supplierName: "airtel",
-            status: "inactive",
-            deviceType: "soundbox",
-            rentalAmt: "150",
-            rentalType: "RENTED",
-            mqttServerIP: "8667223194",
-            version: "v1",
-            language: "en",
-            business: [
-                {
-                    businessPhone: "8667223194",
-                    createdDate: "2025-05-21T06:44:26.102Z",
-                    paymentType: "",
-                    InstalledDate: "",
-                    paymentStartDate: "",
-                    terminatedDate: "",
-                    amount: "",
-                    advancePaid: "",
-                    pendingPaymentAmt: "",
-                    maxDaysFineExempted: "",
-                    paymentsMissed: "",
-                    orderId: "DEVICE174780986042633294",
-                    payments: [],
-                    merchantId: "MC1747288873705"
-                }
-            ],
-            agentId: "MKTG111012",
-        },
-    ];
-
-    const columns = ["deviceId", "supplierRefId", "simPhoneNumber", "deviceName", "status"];
 
     const handleEdit = (device) => {
         console.log("Edit device:", device);
     };
 
+    const [formData, setFormData] = useState({
+        deviceName: "",
+        supplierRefId: "",
+        imei: "",
+        simPhoneNumber: "",
+        supplierName: "airtel",
+        version: "V1",
+        language: "English",
+        deviceType: "SOUNDBOX",
+        rentalType: "RENTED",
+        rentalAmount: "",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form Submitted:", formData);
+    };
+
+    const AddDevices = () => {
+
+        return (
+            <Dialog>
+                <form onSubmit={handleSubmit}>
+                    <DialogTrigger asChild>
+                        <button className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Add Device</button>
+                    </DialogTrigger>
+
+                    <DialogContent className="sm:max-w-5xl overflow-y-auto max-h-[90vh]">
+                        <DialogHeader>
+                            <DialogTitle>Add Device</DialogTitle>
+                            <DialogDescription>
+                                Enter device details and save when you're done.
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
+                            {[
+                                ["Device Name", "deviceName", "text"],
+                                ["Supplier Ref-ID", "supplierRefId", "text"],
+                                ["IMEI", "imei", "text"],
+                                ["Sim Phone Number", "simPhoneNumber", "text"],
+                                ["Rental Amount", "rentalAmount", "number"],
+                            ].map(([labelText, name, type]) => (
+                                <div key={name}>
+                                    <label className="text-gray-700 dark:text-gray-200">
+                                        {labelText}
+                                    </label>
+                                    <input
+                                        type={type}
+                                        name={name}
+                                        value={formData[name]}
+                                        onChange={handleChange}
+                                        className="block w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                                    />
+                                </div>
+                            ))}
+                            {[
+                                ["Supplier Name", "supplierName", ["airtel", "vodafone"]],
+                                ["Version", "version", ["V1", "V2"]],
+                                ["Language", "language", ["English", "Hindi"]],
+                                ["Device Type", "deviceType", ["SOUNDBOX", "POS"]],
+                                ["Rental Type", "rentalType", ["RENTED", "PURCHASED"]],
+                            ].map(([labelText, name, options]) => (
+                                <div key={name}>
+                                    <label className="text-gray-700 dark:text-gray-200">
+                                        {labelText}
+                                    </label>
+                                    <select
+                                        name={name}
+                                        value={formData[name]}
+                                        onChange={handleChange}
+                                        className="block w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                                    >
+                                        {options.map((opt) => (
+                                            <option key={opt} value={opt}>
+                                                {opt}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            ))}
+                        </div>
+
+                        <DialogFooter className="mt-6">
+                            <DialogClose asChild>
+                                <button className="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700">Cancel</button>
+                            </DialogClose>
+                            <button className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Save Changes</button>
+                        </DialogFooter>
+                    </DialogContent>
+                </form>
+            </Dialog>
+        );
+    }
+
     const SimpleTable = ({ data, columns, onEdit }) => {
         return (
-            <div className="bg-white rounded-lg shadow">
+            <div className="bg-white rounded-lg shadow mt-5">
                 <div className="px-6 py-4 border-b border-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900">Device Report | Search Devices</h3>
                 </div>
@@ -308,15 +257,24 @@ export function AddAndSearchDevices() {
             <div className="">
                 <div className="">
                     <div className="mb-6">
-                        <h2 className='text-2xl font-bold text-gray-900 mb-1'>{pageContent.title}</h2>
-                        <p className='text-gray-600'>{pageContent.subTitle}</p>
+                        <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
+                        <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                     </div>
+                    <div>
+                        {AddDevices()}
+                    </div>
+                    {devices.length ?
+                        <SimpleTable
+                            data={devices}
+                            columns={columns}
+                            onEdit={handleEdit}
+                        />
+                        :
+                        <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
 
-                    <SimpleTable
-                        data={devices}
-                        columns={columns}
-                        onEdit={handleEdit}
-                    />
+                            <NoDataFound description={pageContent.noDataFoundDescription} />
+                        </div>
+                    }
                 </div>
             </div>
         </Layout>

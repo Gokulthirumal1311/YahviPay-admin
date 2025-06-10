@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Layout } from '../Layouts/Layout';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, } from "@/components/ui/dropdown-menu";
+import { ChevronDown } from 'lucide-react';
+import { NoDataFound } from '../../../components/NoDataFound';
 
 const pageContent = {
     title: "Get Services By ID",
-    subTitle: "Leads Details from one place with LeadId",
-    searchInputPlaceholderName: 'Enter the Lead ID'
+    subTitle: "Filter and retrieve device service records by Agent ID, Device ID, or Status",
+    searchInputPlaceholderName: 'Enter the Lead ID',
+    noDataFoundDescription: "No service records found for the selected filters."
 };
 
 const searchOptions = {
@@ -35,16 +39,30 @@ export const GetServicesByID = () => {
             );
         } else if (searchType && Array.isArray(searchOptions[searchType])) {
             return (
-                <select
-                    className="border border-gray-400 rounded px-2 py-1"
-                    value={selectedValue}
-                    onChange={(e) => setSelectedValue(e.target.value)}
-                >
-                    <option value="">Select {searchType}</option>
-                    {searchOptions[searchType].map((item) => (
-                        <option key={item} value={item}>{item}</option>
-                    ))}
-                </select>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <button
+                            className="inline-flex items-center justify-between w-52 rounded-sm border border-gray-300 bg-white/20 backdrop-blur-md px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:shadow-md hover:bg-white/30 transition duration-200 focus:ring-offset-2"
+                        >
+                            {selectedValue || `Select ${searchType}`}
+                            <ChevronDown className="ml-2 h-4 w-4" />
+                        </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                        className="w-52 bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-black/10"
+                        align="start"
+                    >
+                        {searchOptions[searchType].map((option) => (
+                            <DropdownMenuItem
+                                key={option}
+                                onClick={() => setSelectedValue(option)}
+                                className="flex items-center gap-2 cursor-pointer"
+                            >
+                                {option}
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
             );
         }
         return null;
@@ -59,20 +77,45 @@ export const GetServicesByID = () => {
             <div className='flex items-center gap-4'>
                 <div>
                     <label className="text-base font-medium mb-1">Search by: </label>
-                    <select
-                        className="border border-gray-400 rounded px-2 py-1"
-                        value={searchType}
-                        onChange={handleSearchTypeChange}
-                    >
-                        <option value="">Select Option</option>
-                        {Object.keys(searchOptions).map((key) => (
-                            <option key={key} value={key}>{key}</option>
-                        ))}
-                    </select>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button
+                                className="inline-flex items-center justify-between w-52 rounded-sm border border-gray-300 bg-white/20 backdrop-blur-md px-4 py-2 text-sm font-medium text-gray-800 shadow-sm hover:shadow-md hover:bg-white/30 transition duration-200 focus:ring-offset-2"
+                            >
+                                {searchType || 'Select Option'}
+                                <ChevronDown className="ml-2 h-4 w-4" />
+                            </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                            className="w-52 bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-black/10"
+                            align="start"
+                        >
+                            {Object.keys(searchOptions).map((option) => (
+                                <DropdownMenuItem
+                                    key={option}
+                                    onClick={() => {
+                                        handleSearchTypeChange({ target: { value: option } });
+                                        setSelectedValue(""); // Reset selected value when type changes
+                                    }}
+                                    className="flex items-center gap-2 cursor-pointer"
+                                >
+                                    {option}
+                                </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
-                <div>
-                    <label className="text-base font-medium mb-1">Value: </label>
-                    {renderSecondInput()}
+
+                {searchType ? 
+                    <div>
+                        <label className="text-base font-medium mb-1">Value: </label>
+                        {renderSecondInput()}
+                    </div>
+                : ''}
+            </div>
+            <div>
+                <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                    <NoDataFound description={pageContent.noDataFoundDescription} />
                 </div>
             </div>
         </Layout>
