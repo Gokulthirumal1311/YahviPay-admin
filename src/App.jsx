@@ -60,6 +60,8 @@ import { ToastComponent } from './components/ToastComponent'
 import { ToolsVerificationCard } from './components/ToolsVerificationCard'
 import { SkeletonLoader } from './components/SkeletonLoader'
 import { Example } from './components/Example'
+import { SoundBoxQuickNav } from './components/SoundBoxQuickNav'
+
 
 
 
@@ -102,7 +104,7 @@ function App() {
       <NewDeviceOrder category='device'/>
       <CreateOrders/>
       <CalenderGrid/>
-      <AdminPage/>
+      {/* <AdminPage/> */}
       {/* <Loading/> */}
       <Tab/>
       <SettlementDetailsByAction />
@@ -119,6 +121,11 @@ function App() {
       <ToolsVerificationCard/>
       {/* <SkeletonLoader/> */}
       <Example/>
+
+      <SoundBoxQuickNav/>
+    
+
+   
 
       
       

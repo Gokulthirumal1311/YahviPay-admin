@@ -9,12 +9,6 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-
-
-
-
-
-
 export const AddDevices = () => {
   const [formData, setFormData] = useState({
     deviceName: "",

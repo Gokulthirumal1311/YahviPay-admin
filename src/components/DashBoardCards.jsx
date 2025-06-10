@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Flag, BarChart3, Users, ShoppingCart, Store, DollarSign, Ticket } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { Store, ShoppingCart, DollarSign, Ticket } from 'lucide-react';
 
-export default function DashboardCards() {
+export default function DashBoardCards() {
   const [stats, setStats] = useState({
     businessCount: 0,
     orderCount: 0,
@@ -24,50 +24,60 @@ export default function DashboardCards() {
     {
       title: "Business",
       value: stats.businessCount,
-      iconBg: "bg-gradient-to-tr from-blue-500 to-blue-700",
-      icon: <Store className="text-white w-6 h-6" />,
+      icon: <Store className="text-blue-600 w-8 h-8" />,
+      iconBg: "bg-blue-50",
     },
     {
       title: "Orders",
       value: stats.orderCount,
-      iconBg: "bg-gradient-to-tr from-pink-500 to-pink-700",
-      icon: <ShoppingCart className="text-white w-6 h-6" />,
+      icon: <ShoppingCart className="text-blue-600 w-8 h-8"  />,
+      iconBg: "bg-blue-50",
     },
     {
       title: "Unpaid Loans",
       value: stats.unpaidLoans,
-      iconBg: "bg-gradient-to-tr from-red-500 to-red-700",
-      icon: <DollarSign className="text-white w-6 h-6" />,
+      icon: <DollarSign className="text-blue-600 w-8 h-8" />,
+      iconBg: "bg-blue-50",
     },
     {
       title: "Tickets Count",
       value: stats.ticketsCount,
-      iconBg: "bg-gradient-to-tr from-orange-500 to-orange-700",
-      icon: <Ticket className="text-white w-6 h-6" />,
+      icon: <Ticket className="text-blue-600 w-8 h-8" />,
+      iconBg: "bg-blue-50",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
-      {cards.map((item, index) => (
-        <div
-          key={index}
-          className="flex flex-col justify-between bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-xl transition hover:scale-[1.02] hover:shadow-2xl group"
-        >
-          <div className="flex items-center gap-5">
-            <div
-              className={`w-14 h-14 rounded-xl flex items-center justify-center ${item.iconBg} shadow-lg`}
-            >
-              {item.icon}
-            </div>
-            <div>
-              <p className="text-base text-gray-600 font-semibold">{item.title}</p>
-              <h3 className="text-3xl font-bold text-gray-900">{item.value}</h3>
-            </div>
-          </div>
-          <div className="mt-5 h-1 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 opacity-70 group-hover:opacity-100 transition" />
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+          
         </div>
-      ))}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-sm border border-gray-200 p-6  ml-7 hover:shadow-md transition-shadow duration-200"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-4xl font-bold text-gray-900">
+                    {card.value}
+                  </p>
+                </div>
+                <div className={`p-3 rounded-lg ${card.iconBg}`}>
+                  {card.icon}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
