@@ -53,6 +53,13 @@ import { SuccessPop } from './components/SuccessPop'
 import { WarningPop } from './components/WarningPop'
 import { ErrorPop } from './components/ErrorPop'
 import { Action } from './components/Action'
+import { GetImageLink } from './components/GetImageLink'
+import { SearchShop } from './components/SearchShop'
+import { RemoveDialog } from './components/RemoveDialog'
+import { ToastComponent } from './components/ToastComponent'
+import { ToolsVerificationCard } from './components/ToolsVerificationCard'
+import { SkeletonLoader } from './components/SkeletonLoader'
+import { Example } from './components/Example'
 
 
 
@@ -105,6 +112,13 @@ function App() {
       <SuccessPop/>
       <WarningPop/>
       <ErrorPop/>
+      <GetImageLink/>
+      <SearchShop/>
+      <RemoveDialog/>
+      <ToastComponent/>
+      <ToolsVerificationCard/>
+      {/* <SkeletonLoader/> */}
+      <Example/>
 
       
       

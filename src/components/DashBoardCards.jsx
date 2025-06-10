@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flag, BarChart3, Users, ShoppingCart } from "lucide-react";
+import { Flag, BarChart3, Users, ShoppingCart, Store, DollarSign, Ticket } from "lucide-react";
 
 export default function DashboardCards() {
   const [stats, setStats] = useState({
@@ -25,7 +25,7 @@ export default function DashboardCards() {
       title: "Business",
       value: stats.businessCount,
       iconBg: "bg-gradient-to-tr from-blue-500 to-blue-700",
-      icon: <Flag className="text-white w-6 h-6" />,
+      icon: <Store className="text-white w-6 h-6" />,
     },
     {
       title: "Orders",
@@ -37,13 +37,13 @@ export default function DashboardCards() {
       title: "Unpaid Loans",
       value: stats.unpaidLoans,
       iconBg: "bg-gradient-to-tr from-red-500 to-red-700",
-      icon: <BarChart3 className="text-white w-6 h-6" />,
+      icon: <DollarSign className="text-white w-6 h-6" />,
     },
     {
       title: "Tickets Count",
       value: stats.ticketsCount,
       iconBg: "bg-gradient-to-tr from-orange-500 to-orange-700",
-      icon: <Users className="text-white w-6 h-6" />,
+      icon: <Ticket className="text-white w-6 h-6" />,
     },
   ];
 

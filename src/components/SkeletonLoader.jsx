@@ -1,5 +1,4 @@
 import React from 'react'
-
 export const SkeletonLoader = () => {
   return (
     <div className="animate-pulse">

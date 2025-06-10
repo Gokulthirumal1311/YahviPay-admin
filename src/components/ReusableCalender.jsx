@@ -6,7 +6,6 @@ const monthNames = [
 
 const ResusableCalender = ({ title, columns, data, actions, renderType = "table", year }) => {
   const monthStatusMap = {};
-
   if (renderType === "calendar") {
     data.forEach((item) => {
       if (item.year === year) {
@@ -14,11 +13,9 @@ const ResusableCalender = ({ title, columns, data, actions, renderType = "table"
       }
     });
   }
-
   return (
     <div className="p-6 bg-white rounded-xl shadow mb-6">
       <h2 className="text-2xl font-bold mb-4 text-gray-700">{title}</h2>
-
       {renderType === "table" && (
         <table className="w-full border-collapse">
           <thead>
@@ -48,11 +45,8 @@ const ResusableCalender = ({ title, columns, data, actions, renderType = "table"
             ))}
           </tbody>
         </table>
-      )}
-
-      
+      )}      
     </div>
   );
 };
-
 export default ResusableCalender;

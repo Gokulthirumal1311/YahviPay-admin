@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const stores = [
   {
-    deviceId: '7299700576',
-    CreatedDate: '18/04/2025, 12:51:40',
-    AgentId: 'MKTG111006',
-    Status: 'DAMAGED',
+    deviceId: "7299700576",
+    CreatedDate: "18/04/2025, 12:51:40",
+    AgentId: "MKTG111006",
+    Status: "DAMAGED",
     notes: [
       {
-        message: 'Swaped Device',
-        createdDate: '18/04/2025, 12:51:40',
-        agentId: 'MKTG111006',
-        partId: 'NIL',
-        partType: 'NIL',
-      }
-    ]
+        message: "Swapped Device",
+        createdDate: "18/04/2025, 12:51:40",
+        agentId: "MKTG111006",
+        partId: "NIL",
+        partType: "NIL",
+      },
+    ],
   },
   {
-    deviceId: '7299700576',
-    CreatedDate: '18/04/2025, 12:51:40',
-    AgentId: 'MKTG111006',
-    Status: 'DAMAGED',
+    deviceId: "7299700576",
+    CreatedDate: "18/04/2025, 12:51:40",
+    AgentId: "MKTG111006",
+    Status: "DAMAGED",
     notes: [
       {
-        message: 'Swaped Device',
-        createdDate: '18/04/2025, 12:51:40',
-        agentId: 'MKTG111006',
-        partId: 'NIL',
-        partType: 'NIL',
-      }
-    ]
+        message: "Swapped Device",
+        createdDate: "18/04/2025, 12:51:40",
+        agentId: "MKTG111006",
+        partId: "NIL",
+        partType: "NIL",
+      },
+    ],
   },
 ];
 
@@ -42,7 +42,7 @@ export const GetAllServices = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br p-6">
+    <div className="overflow-y-auto p-4">
       {stores.map((store, index) => (
         <div
           key={index}
@@ -54,13 +54,15 @@ export const GetAllServices = () => {
               onClick={() => toggleNotes(index)}
               className="text-blue-600 text-sm font-medium"
             >
-              {openNotes === index ? 'Hide Notes ▲' : 'Show Notes ▼'}
+              {openNotes === index ? "Hide Notes ▲" : "Show Notes ▼"}
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
             <div>
-              <span className="text-sm font-medium text-gray-600 block">Device ID</span>
+              <span className="text-sm font-medium text-gray-600 block">
+                Device ID
+              </span>
               <Link
                 className="text-blue-600 font-semibold hover:underline"
                 to={`${store.deviceId}`}
@@ -70,23 +72,34 @@ export const GetAllServices = () => {
             </div>
 
             <div>
-              <span className="text-sm font-medium text-gray-600 block">Created Date</span>
+              <span className="text-sm font-medium text-gray-600 block">
+                Created Date
+              </span>
               <span className="text-black">{store.CreatedDate}</span>
             </div>
 
             <div>
-              <span className="text-sm font-medium text-gray-600 block">Agent ID</span>
+              <span className="text-sm font-medium text-gray-600 block">
+                Agent ID
+              </span>
               <span className="text-black">{store.AgentId}</span>
             </div>
 
             <div>
-              <span className="text-sm font-medium text-gray-600 block">Status</span>
+              <span className="text-sm font-medium text-gray-600 block">
+                Status
+              </span>
               <span className="text-black">{store.Status}</span>
             </div>
           </div>
 
-          {openNotes === index && (
-            <div className="border border-gray-300 rounded-md overflow-hidden">
+  
+          <div
+            className={`overflow-hidden transition-all duration-500 ${
+              openNotes === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <div className="border border-gray-300 rounded-md overflow-hidden mt-4">
               <div className="bg-blue-50 px-4 py-3 text-center font-semibold text-blue-900">
                 Notes
               </div>
@@ -112,7 +125,7 @@ export const GetAllServices = () => {
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

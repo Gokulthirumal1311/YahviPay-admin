@@ -11,7 +11,6 @@ const parts = [
     addedBy: "admin",
   },
 ];
-
 export const DamagedDeviceParts = () => {
   return (
     <ReusableComponent
@@ -22,3 +21,6 @@ export const DamagedDeviceParts = () => {
     />
   );
 };
+
+
+ 
