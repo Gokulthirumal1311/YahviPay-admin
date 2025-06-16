@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
+import { Layout } from '../Layout/Layout'
 import { Link } from 'react-router-dom'
 import SingleSearchBar from '../../../components/SingleSearchBar'
-import { LeadCards } from '../../../components/LeadCards'
-import { LeadAccountSettingForm } from '../../../components/LeadAccountSettingForm'
-import { AgentsAreas } from '../../../components/AgentsAreas'
-import { DynamicModel } from '../../../components/DynamicModel/DynamicModel'
-import { Layout } from '../Layout/Layout'
-import { InputModal } from '../../../components/DynamicModel/InputModal'
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { NoDataFound } from '../../../components/NoDataFound'
 import { ExternalLink } from 'lucide-react'
 import CustomDropdown from '../../../components/CustomDropDown'
-
 
 const pageContent = {
     "title": "Leads Details",
@@ -52,24 +46,22 @@ const removeAgentList = initialAgents.map((item, index) => ({ label: item.agentI
 export const LeadsDetails = () => {
 
     const [leadId, setLeadId] = useState('');
-    const [ leadDetails, setLeadDetails ] = useState({
-        leadName: SampleData.LeadName,
-        leadPhoneNumber: SampleData.PhoneNumber,
-        leadEmail: SampleData.LeadEmail
-    })
+
     const [editLeadDetails, setEditLeadDetails] = useState({
         leadName: SampleData.LeadName,
         leadPhoneNumber: SampleData.PhoneNumber,
         leadEmail: SampleData.LeadEmail
     })
+
     const [addAgent, setAddAgent] = useState({
         agentId: '',
         assignArea: ''
     });
-    const [ agentArea, setAgentArea ] = useState('');
+
+    const [agentArea, setAgentArea] = useState('');
     const [updateArea, setUpdateArea] = useState('');
     const [selectedAgentToRemove, setSelectedAgentToRemove] = useState('');
-    
+
     console.log(selectedAgentToRemove)
 
     useEffect(() => {
@@ -85,7 +77,7 @@ export const LeadsDetails = () => {
             [e.target.name]: e.target.value
         }))
     }
-    
+
     const handleAddAgent = (e) => {
         setAddAgent(prev => ({
             ...prev,
@@ -96,7 +88,7 @@ export const LeadsDetails = () => {
     const handleSearchLeadDetails = (e) => {
 
     }
-    
+
     const handleSubmitEditDetails = (e) => {
 
     }
@@ -113,8 +105,6 @@ export const LeadsDetails = () => {
 
     }
 
-
-
     const handleViewAgentDetail = (agentId) => {
         localStorage.setItem('agentId', JSON.stringify({ agentId: agentId }))
     }
@@ -122,23 +112,23 @@ export const LeadsDetails = () => {
     const editLeadDetail = () => {
         return (
             <Dialog>
-                <form onSubmit={handleSubmitEditDetails}>
-                    <DialogTrigger asChild>
-                        <button
-                            type="button"
-                            className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                        >
-                            Edit Lead Details
-                        </button>
-                    </DialogTrigger>
+                <DialogTrigger asChild>
+                    <button
+                        type="button"
+                        className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
+                    >
+                        Edit Lead Details
+                    </button>
+                </DialogTrigger>
 
-                    <DialogContent className="sm:max-w-[600px] w-full">
-                        <DialogHeader>
-                            <DialogTitle>Edit Lead Details</DialogTitle>
-                            <DialogDescription>
-                                Update Lead Information to Keep Your Records Accurate.
-                            </DialogDescription>
-                        </DialogHeader>
+                <DialogContent className="sm:max-w-[600px] w-full">
+                    <DialogHeader>
+                        <DialogTitle>Edit Lead Details</DialogTitle>
+                        <DialogDescription>
+                            Update Lead Information to Keep Your Records Accurate.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleSubmitEditDetails}>
                         {/* Responsive Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             {/* Lead Name */}
@@ -213,8 +203,8 @@ export const LeadsDetails = () => {
                                 Save Changes
                             </button>
                         </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                </DialogContent>
             </Dialog>
         )
     }
@@ -222,23 +212,23 @@ export const LeadsDetails = () => {
     const addAgentDialog = () => {
         return (
             <Dialog>
-                <form onSubmit={handleSubmitEditDetails}>
-                    <DialogTrigger asChild>
-                        <button
-                            type="button"
-                            className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                        >
-                            Add Agent
-                        </button>
-                    </DialogTrigger>
+                <DialogTrigger asChild>
+                    <button
+                        type="button"
+                        className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
+                    >
+                        Add Agent
+                    </button>
+                </DialogTrigger>
 
-                    <DialogContent className="sm:max-w-[600px] w-full">
-                        <DialogHeader>
-                            <DialogTitle>Add Agent</DialogTitle>
-                            <DialogDescription>
-                                Provide Agent ID and Specify the Area for Lead Assignment.
-                            </DialogDescription>
-                        </DialogHeader>
+                <DialogContent className="sm:max-w-[600px] w-full">
+                    <DialogHeader>
+                        <DialogTitle>Add Agent</DialogTitle>
+                        <DialogDescription>
+                            Provide Agent ID and Specify the Area for Lead Assignment.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleSubmitEditDetails}>
                         {/* Responsive Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             {/* Agent Id */}
@@ -296,8 +286,8 @@ export const LeadsDetails = () => {
                                 Save Changes
                             </button>
                         </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                </DialogContent>
             </Dialog>
         )
     }
@@ -305,24 +295,24 @@ export const LeadsDetails = () => {
     const removeAgentDialog = () => {
         return (
             <Dialog>
-                <form onSubmit={handleRemoveAgent}>
-                    <DialogTrigger asChild>
-                        <button
-                            type="button"
-                            className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                        >
-                            Remove Agent
-                        </button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[600px] w-full">
-                        <DialogHeader>
-                            <DialogTitle>Remove Agent</DialogTitle>
-                            <DialogDescription>
-                                Select an Agent to Remove and Confirm Deletion.
-                            </DialogDescription>
-                        </DialogHeader>
-                        {/* Responsive Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                <DialogTrigger asChild>
+                    <button
+                        type="button"
+                        className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
+                    >
+                        Remove Agent
+                    </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[600px] w-full">
+                    <DialogHeader>
+                        <DialogTitle>Remove Agent</DialogTitle>
+                        <DialogDescription>
+                            Select an Agent to Remove and Confirm Deletion.
+                        </DialogDescription>
+                    </DialogHeader>
+                    {/* Responsive Grid */}
+                    <form onSubmit={handleRemoveAgent}>
+                        <div className="">
                             {/* Remove Agent */}
                             <div className="flex flex-col">
                                 <label className="text-base font-medium mb-1">
@@ -332,7 +322,7 @@ export const LeadsDetails = () => {
                                     options={removeAgentList}
                                     selected={selectedAgentToRemove}
                                     setSelected={setSelectedAgentToRemove}
-                                    placeholder="Actions"
+                                    placeholder="Select Agent"
                                 />
                             </div>
                         </div>
@@ -354,8 +344,8 @@ export const LeadsDetails = () => {
                                 Remove Agent
                             </button>
                         </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                </DialogContent>
             </Dialog>
         )
     }
@@ -364,21 +354,21 @@ export const LeadsDetails = () => {
     const updateAreaDialog = (area) => {
         return (
             <Dialog>
-                <form className='inline-block'>
-                    <DialogTrigger asChild>
-                        <button onClick={() => {
-                            setUpdateArea(area);
+                <DialogTrigger asChild>
+                    <button onClick={() => {
+                        setUpdateArea(area);
 
-                            setAgentArea(area);
-                        }} variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm">Update Area</button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                            <DialogTitle>Update Agent Assign Area</DialogTitle>
-                            <DialogDescription>
-                                Update the Assigned Area for the Selected Agent.
-                            </DialogDescription>
-                        </DialogHeader>
+                        setAgentArea(area);
+                    }} variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm">Update Area</button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Update Agent Assign Area</DialogTitle>
+                        <DialogDescription>
+                            Update the Assigned Area for the Selected Agent.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form className='inline-block'>
                         <div className="grid gap-4">
                             <div className="grid gap-1">
                                 <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
@@ -391,8 +381,8 @@ export const LeadsDetails = () => {
                             </DialogClose>
                             <button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-2 px-5 rounded-xl transition-all">Save changes</button>
                         </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                </DialogContent>
             </Dialog>
         )
     }
@@ -401,8 +391,8 @@ export const LeadsDetails = () => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button 
-                        disabled={!area} 
+                    <button
+                        disabled={!area}
                         className={`ml-3 px-2 py-1 rounded text-sm text-white cursor-pointer 
                             ${area ? "transition-all bg-red-600 hover:bg-red-700" : "bg-gray-300 cursor-not-allowed"}`}>
                         Remove Area
@@ -417,9 +407,11 @@ export const LeadsDetails = () => {
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
-                        <DialogClose className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-blue-600 hover:bg-blue-700 cursor-pointer ">Cancel</DialogClose >
-                        <DialogClose className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-red-600 hover:bg-red-700 cursor-pointer ">Continue</DialogClose>
+                        <DialogClose>
+                            <button className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-blue-600 hover:bg-blue-700 cursor-pointer ">Cancel</button>
+                        </DialogClose>
                     </DialogFooter>
+                    <button className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-red-600 hover:bg-red-700 cursor-pointer ">Continue</button>
                 </DialogContent>
             </Dialog>
         )
@@ -432,7 +424,7 @@ export const LeadsDetails = () => {
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
-                <SingleSearchBar onSearchClick = {handleSearchLeadDetails} placeholderName={pageContent.searchInputPlaceholderName} value={leadId} onChange={setLeadId} />
+                <SingleSearchBar onSearchClick={handleSearchLeadDetails} placeholderName={pageContent.searchInputPlaceholderName} value={leadId} onChange={setLeadId} />
                 <div className='flex-1 mt-6'>
 
                     {leadId ?
@@ -493,16 +485,7 @@ export const LeadsDetails = () => {
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.agentPhone}</td>
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.assignedArea || "-"}</td>
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold text-center">
-
                                                                         {updateAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
-                                                                        {/* <button
-                                                                            onClick={() => openModal('removeAgent')}
-                                                                            disabled={!agent.assignedArea}
-                                                                            className={`ml-3 px-2 py-1 rounded text-sm text-white cursor-pointer ${agent.assignedArea ? "transition-all bg-red-600 hover:bg-red-700" : "bg-gray-300 cursor-not-allowed"
-                                                                                }`}
-                                                                        >
-                                                                            Remove Area
-                                                                        </button> */}
                                                                         {removeAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
                                                                     </td>
                                                                 </tr>

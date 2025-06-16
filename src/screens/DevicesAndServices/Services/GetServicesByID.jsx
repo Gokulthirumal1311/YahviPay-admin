@@ -3,6 +3,7 @@ import { Layout } from '../Layouts/Layout';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from 'lucide-react';
 import { NoDataFound } from '../../../components/NoDataFound';
+import SingleSearchBar from '../../../components/SingleSearchBar';
 
 const pageContent = {
     title: "Get Services By ID",
@@ -26,16 +27,21 @@ export const GetServicesByID = () => {
         setSelectedValue(''); // Reset second field
     };
 
+    const handleSearchDeviceId = () => {
+
+    }
+
     const renderSecondInput = () => {
         if (searchType === 'Device ID') {
             return (
-                <input
-                    type="text"
-                    placeholder={pageContent.searchInputPlaceholderName}
-                    className="border border-gray-400 rounded px-2 py-1"
-                    value={selectedValue}
-                    onChange={(e) => setSelectedValue(e.target.value)}
-                />
+                // <input
+                //     type="text"
+                //     placeholder={pageContent.searchInputPlaceholderName}
+                //     className="border border-gray-400 rounded px-2 py-1"
+                //     value={selectedValue}
+                //     onChange={(e) => setSelectedValue(e.target.value)}
+                // />
+                <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} value={selectedValue} onChange={setSelectedValue} onSearchClick={handleSearchDeviceId} />
             );
         } else if (searchType && Array.isArray(searchOptions[searchType])) {
             return (
@@ -75,8 +81,8 @@ export const GetServicesByID = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
             <div className='flex items-center gap-4'>
-                <div>
-                    <label className="text-base font-medium mb-1">Search by: </label>
+                <div className='flex flex-col gap-2'>
+                    <label className="text-base font-medium mb-1">Search by</label>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <button
@@ -107,8 +113,8 @@ export const GetServicesByID = () => {
                 </div>
 
                 {searchType ? 
-                    <div>
-                        <label className="text-base font-medium mb-1">Value: </label>
+                    <div className='flex flex-col gap-1'>
+                        <label className="text-base font-medium mb-1">Value</label>
                         {renderSecondInput()}
                     </div>
                 : ''}

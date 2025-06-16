@@ -1,12 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import SingleSearchBar from '../../../components/SingleSearchBar'
-import { LeadCards } from '../../../components/LeadCards'
+import React, { useEffect, useState } from 'react'
 import { Layout } from '../Layout/Layout'
+import { LeadCards } from '../../../components/LeadCards'
 
 const pageContent = {
-
     "title": "Get All Leads Account",
+
     "subTitle": "Get a complete overview of all lead accounts and manage their details in one place."
 }
 
@@ -62,23 +60,25 @@ const stores = [
     },
 ]
 
-
 export const GetAllLeads = () => {
+
+    const [ getAllLeads, setGetAllLeads ] = useState([]);
+    
+    useEffect(() => {
+
+    }, []);
+
     return (
         <Layout>
-
             <div className='overflow-y-auto'>
-
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
                 <div className='flex-1 overflow-y-auto rounded-2xl'>
-
                     <LeadCards stores={stores} />
                 </div>
             </div>
         </Layout>
-
     )
 }

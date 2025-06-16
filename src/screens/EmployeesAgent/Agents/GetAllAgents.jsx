@@ -1,44 +1,17 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import SingleSearchBar from '../../../components/SingleSearchBar'
-import AgentTable from '../../../components/AgentTable'
 import { Layout } from '../Layout/Layout'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
+import AgentTable from '../../../components/AgentTable'
 import CustomDropdown from '../../../components/CustomDropDown'
-
 
 const pageContent = {
     "title": "Get All Agents Account",
-
-
     "subTitle": "View and Manage All Registered Agent Accounts.",
-    "searchInputPlaceholderName": "Enter the Agent ID"
+    "searchInputPlaceholderName": "Enter the Agent ID",
+    "addAgentDialogTitle": "Add Agent",
+    "addAgentDialogDescription": "Enter Agent Details, Assign an Area, and Link to a Lead.",
 }
 
-
-const stores = [
-    {
-        LeadId: 'MKTG111005',
-        LeadName: 'User005',
-        LeadEmail: 'gokul13@gmail.com',
-        PhoneNumber: '1234567891',
-        Status: 'active'
-    },
-    {
-        LeadId: 'MKTG111006',
-        LeadName: 'User006',
-        LeadEmail: 'user006@gmail.com',
-        PhoneNumber: '9876543210',
-        Status: 'inactive'
-    },
-    {
-        LeadId: 'MKTG111007',
-        LeadName: 'User007',
-        LeadEmail: 'user007@gmail.com',
-        PhoneNumber: '9988776655',
-        Status: 'active'
-    },
-]
 const agents = [
     {
         agentID: "MKTG111006",
@@ -84,7 +57,6 @@ const agents = [
     },
 ];
 
-
 const filterByAgentTypeList = [
     { label: "All Types", value: "" },
     { label: "Marketing", value: "marketing" },
@@ -94,58 +66,71 @@ const filterByAgentTypeList = [
 
 export const GetAllAgents = () => {
 
-
     const [selectedType, setSelectedType] = useState(filterByAgentTypeList[0].value);
+    const [addNewAgent, setAddNewAgent] = useState({
+        agentName: '',
+        agentPhoneNumber: '',
+        agentType: '',
+        assignLead: ''
+    });
+
+    const handleStoreAddNewAgentDetails = (e) => {
+        setAddNewAgent(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+    const handleSubmitAddNewAgent = (e) => {
+        e.preventDefault();
+
+        console.log(e);
+    }
 
     const filteredAgent = selectedType ? agents.filter((agent) => agent.agentType === selectedType) : agents;
-
 
     const addAgent = () => {
         return (
             <Dialog>
-                <form className='inline-block'>
-                    <DialogTrigger asChild>
-                        <button variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Agent</button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                            <DialogTitle>Add Agent</DialogTitle>
-                            <DialogDescription>
-                                Enter Agent Details, Assign an Area, and Link to a Lead.
-                            </DialogDescription>
-                        </DialogHeader>
+                <DialogTrigger asChild>
+                    <button variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Agent</button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>{pageContent.addAgentDialogTitle}</DialogTitle>
+                        <DialogDescription>{pageContent.addAgentDialogDescription}</DialogDescription>
+                    </DialogHeader>
+                    <form className='h-full grid gap-4' onSubmit={handleSubmitAddNewAgent}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             <div className="grid gap-1">
-                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Name</label>
-                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <label htmlFor="agentName" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Name</label>
+                                <input required value={addNewAgent.agentName} onChange={handleStoreAddNewAgentDetails} id="agentName" name="agentName" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
-                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent PhoneNumber</label>
-                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <label htmlFor="agentPhoneNumber" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent PhoneNumber</label>
+                                <input required value={addNewAgent.agentPhoneNumber} onChange={handleStoreAddNewAgentDetails} id="agentPhoneNumber" name="agentPhoneNumber" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
-                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Type</label>
-                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <label htmlFor="agentType" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Type</label>
+                                <input required value={addNewAgent.agentType} onChange={handleStoreAddNewAgentDetails} id="agentType" name="agentType" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
-                                <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Lead</label>
-                                <input id="LeadEmail" name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <label htmlFor="assignLead" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Lead</label>
+                                <input required value={addNewAgent.assignLead} onChange={handleStoreAddNewAgentDetails} id="assignLead" name="assignLead" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                         </div>
-                        <DialogFooter>
+                        <div className='text-end'>
                             <DialogClose asChild>
                                 <button variant="outline" className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-1.5 px-4 rounded-md transition-all">Cancel</button>
                             </DialogClose>
-                            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-1.5 px-4 rounded-md transition-all">Save changes</button>
-                        </DialogFooter>
-                    </DialogContent>
-                </form>
+                            <button type="submit" className="ml-4 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-1.5 px-4 rounded-md transition-all">Save changes</button>
+                        </div>
+                    </form>
+                </DialogContent>
             </Dialog>
         )
     }
+
     return (
-
-
         <Layout>
             <div className='overflow-y-auto'>
                 <div>
@@ -153,28 +138,15 @@ export const GetAllAgents = () => {
                     <h4 className='text-md font-semibold text-gray-500 '>{pageContent.subTitle}</h4>
                 </div>
 
-
                 <div className='flex-1 overflow-y-auto mt-5'>
                     <div className="flex justify-between items-center mb-4">
-                        {/* <button className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700">
-                            Add Agents
-                        </button> */}
                         {addAgent()}
-                        <CustomDropdown 
+                        <CustomDropdown
                             options={filterByAgentTypeList}
                             selected={selectedType}
                             setSelected={setSelectedType}
+                            placeholder={'All Types'}
                         />
-                        {/* <select
-                            value={selectedType}
-                            onChange={(e) => setSelectedType(e.target.value)}
-                            className="px-3 py-2 border border-gray-300 rounded-md"
-                        >
-                            <option value="">All Types</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="loan">Loan</option>
-                            <option value="support">Support</option>
-                        </select> */}
                     </div>
                     <AgentTable filteredAgent={filteredAgent} />
                 </div>
