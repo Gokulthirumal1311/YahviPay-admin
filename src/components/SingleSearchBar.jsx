@@ -24,7 +24,7 @@ const SingleSearchBar = ({ placeholderName, value, onChange, onSearchClick }) =>
                         />
                         <button
                             type="submit"
-                            className="px-5 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition"
+                            className="px-5 text-sm font-medium button-submit-color"
                             onClick={() => onSearchClick()}
                         >
                             Search

@@ -1,27 +1,23 @@
 import React from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 
+const dialogContent = {
+    "editAgentDetailsTitle" : "Edit Agent Details",
+    "editAgentDetailsDescription" : "Change Agent details in case any mistake.",
+}
+
 export const EditAgentDetails = ({ handleSubmit, editAgentDetails, handleEditLeadDetail }) => {
+
     return (
         <Dialog>
-
             <form onSubmit={handleSubmit}>
                 <DialogTrigger asChild>
-                    <button
-                        type="button"
-                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
-                    >
-
-                        Edit Agent
-                    </button>
+                    <button type="button" className="button-submit-color button-design">Edit Agent</button>
                 </DialogTrigger>
-
                 <DialogContent className="sm:max-w-[600px] w-full">
                     <DialogHeader>
-                        <DialogTitle>Edit Agent Details</DialogTitle>
-                        <DialogDescription>
-                            Change Agent details in case any mistake.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.editAgentDetailsTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.editAgentDetailsDescription}</DialogDescription>
                     </DialogHeader>
 
                     {/* Responsive Grid */}
@@ -120,14 +116,14 @@ export const EditAgentDetails = ({ handleSubmit, editAgentDetails, handleEditLea
                         <DialogClose asChild>
                             <button
                                 type="button"
-                                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                className="button-cancel-color button-design"
                             >
                                 Cancel
                             </button>
                         </DialogClose>
                         <button
                             type="submit"
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                            className="button-submit-color button-design"
                         >
                             Save Changes
                         </button>

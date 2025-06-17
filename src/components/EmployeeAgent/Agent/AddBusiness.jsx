@@ -1,28 +1,30 @@
 import React from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 
+const dialogContent = {
+    "addBusinessTitle" : "Add Business",
+    "addBusinessDescription" : "Change Agent details in case any mistake.",
+}
 export const AddBusiness = ({ handleSubmit, addBusiness, handleAddBusiness }) => {
     return (
         <Dialog>
-            <form onSubmit={handleSubmit}>
-                <DialogTrigger asChild>
-                    <button
-                        type="button"
-                        className="text-blue-500 hover:underline font-semibold py-2 px-5 rounded-xl transition-all"
-                    >
-                        Add Business
-                    </button>
-                </DialogTrigger>
+            <DialogTrigger asChild>
+                <button
+                    type="button"
+                    className="text-blue-500 hover:underline font-semibold py-2 px-5 rounded-xl transition-all"
+                >
+                    Add Business
+                </button>
+            </DialogTrigger>
 
-                <DialogContent className="sm:max-w-[600px] w-full">
-                    <DialogHeader>
-                        <DialogTitle>Add Business</DialogTitle>
-                        <DialogDescription>
-                            Change Agent details in case any mistake.
-                        </DialogDescription>
-                    </DialogHeader>
+            <DialogContent className="sm:max-w-[600px] w-full">
+                <DialogHeader>
+                    <DialogTitle>{dialogContent.addBusinessTitle}</DialogTitle>
+                    <DialogDescription>{dialogContent.addBusinessDescription}</DialogDescription>
+                </DialogHeader>
 
-                    {/* Responsive Grid */}
+                {/* Responsive Grid */}
+                <form onSubmit={handleSubmit}>
                     <div className="mt-2">
                         {/* Lead Name */}
                         <div className="flex flex-col gap-1">
@@ -36,7 +38,7 @@ export const AddBusiness = ({ handleSubmit, addBusiness, handleAddBusiness }) =>
                                 id="businessPhoneNumber"
                                 name="businessPhoneNumber"
                                 type='text'
-                                className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-300 focus:border-transparent"
                                 value={addBusiness}
                                 onChange={handleAddBusiness}
                                 required
@@ -49,20 +51,20 @@ export const AddBusiness = ({ handleSubmit, addBusiness, handleAddBusiness }) =>
                         <DialogClose asChild>
                             <button
                                 type="button"
-                                className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                                className="button-cancel-color button-design"
                             >
                                 Cancel
                             </button>
                         </DialogClose>
                         <button
                             type="submit"
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl transition-all"
+                            className="button-submit-color button-design"
                         >
                             Save Changes
                         </button>
                     </DialogFooter>
-                </DialogContent>
-            </form>
+                </form>
+            </DialogContent>
         </Dialog>
     )
 }

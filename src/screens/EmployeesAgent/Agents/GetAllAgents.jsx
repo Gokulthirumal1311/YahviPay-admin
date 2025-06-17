@@ -8,6 +8,9 @@ const pageContent = {
     "title": "Get All Agents Account",
     "subTitle": "View and Manage All Registered Agent Accounts.",
     "searchInputPlaceholderName": "Enter the Agent ID",
+}
+
+const dialogContent = {
     "addAgentDialogTitle": "Add Agent",
     "addAgentDialogDescription": "Enter Agent Details, Assign an Area, and Link to a Lead.",
 }
@@ -74,7 +77,7 @@ export const GetAllAgents = () => {
         assignLead: ''
     });
 
-    const handleStoreAddNewAgentDetails = (e) => {
+    const handleAddNewAgentDetails = (e) => {
         setAddNewAgent(prev => ({
             ...prev,
             [e.target.name]: e.target.value
@@ -92,30 +95,30 @@ export const GetAllAgents = () => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Add Agent</button>
+                    <button variant="outline" className="button-submit-color button-design">Add Agent</button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>{pageContent.addAgentDialogTitle}</DialogTitle>
-                        <DialogDescription>{pageContent.addAgentDialogDescription}</DialogDescription>
+                        <DialogTitle>{dialogContent.addAgentDialogTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.addAgentDialogDescription}</DialogDescription>
                     </DialogHeader>
                     <form className='h-full grid gap-4' onSubmit={handleSubmitAddNewAgent}>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             <div className="grid gap-1">
                                 <label htmlFor="agentName" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Name</label>
-                                <input required value={addNewAgent.agentName} onChange={handleStoreAddNewAgentDetails} id="agentName" name="agentName" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <input required value={addNewAgent.agentName} onChange={handleAddNewAgentDetails} id="agentName" name="agentName" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
                                 <label htmlFor="agentPhoneNumber" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent PhoneNumber</label>
-                                <input required value={addNewAgent.agentPhoneNumber} onChange={handleStoreAddNewAgentDetails} id="agentPhoneNumber" name="agentPhoneNumber" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <input required value={addNewAgent.agentPhoneNumber} onChange={handleAddNewAgentDetails} id="agentPhoneNumber" name="agentPhoneNumber" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
                                 <label htmlFor="agentType" className="block text-sm font-medium text-gray-700 capitalize mb-1">Agent Type</label>
-                                <input required value={addNewAgent.agentType} onChange={handleStoreAddNewAgentDetails} id="agentType" name="agentType" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <input required value={addNewAgent.agentType} onChange={handleAddNewAgentDetails} id="agentType" name="agentType" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                             <div className="grid gap-1">
                                 <label htmlFor="assignLead" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Lead</label>
-                                <input required value={addNewAgent.assignLead} onChange={handleStoreAddNewAgentDetails} id="assignLead" name="assignLead" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+                                <input required value={addNewAgent.assignLead} onChange={handleAddNewAgentDetails} id="assignLead" name="assignLead" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                             </div>
                         </div>
                         <div className='text-end'>

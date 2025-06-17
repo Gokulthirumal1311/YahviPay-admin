@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
-import { Layout } from '../Layout/Layout'
 import { Link } from 'react-router-dom'
 import SingleSearchBar from '../../../components/SingleSearchBar'
+import { Layout } from '../Layout/Layout'
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { NoDataFound } from '../../../components/NoDataFound'
 import { ExternalLink } from 'lucide-react'
 import CustomDropdown from '../../../components/CustomDropDown'
@@ -14,6 +14,19 @@ const pageContent = {
     "noDataFoundDescription": "There’s currently no data available. Try adjusting your filters or add new entries to get started."
 }
 
+const dialogContent = {
+    "editLeadDetailTitle" : "Edit Lead Details",
+    "editLeadDetailDescription" : "Update Lead Information to Keep Your Records Accurate.",
+    "addAgentDialogTitle" : "Add Agent",
+    "addAgentDialogDescription" : "Provide Agent ID and Specify the Area for Lead Assignment.",
+    "removeAgentDialogTitle" : "Remove Agent",
+    "removeAgentDialogDescription" : "Select an Agent to Remove and Confirm Deletion.",
+    "updateAgentAreaDialogTitle" : "Update Agent Assign Area",
+    "updateAgentAreaDialogDescription" : "Update the Assigned Area for the Selected Agent.",
+    "removeAgentAreaDialogTitle" : "Are you sure do you want to delete this area ?",
+    "removeAgentAreaDialogDescription" : "This action cannot be undone. This will permanently delete your area and remove your area from our servers.",
+}
+
 let SampleData = {
     LeadId: "MKTG111005",
     LeadName: "User005",
@@ -23,7 +36,9 @@ let SampleData = {
     Status: "active",
 };
 
+
 const tableHeaderTitle = ["Agent ID", "Assigned Agent", "Phone Number", "Assigned Area", "Edit Area"]
+
 
 const initialAgents = [
     {
@@ -46,23 +61,18 @@ const removeAgentList = initialAgents.map((item, index) => ({ label: item.agentI
 export const LeadsDetails = () => {
 
     const [leadId, setLeadId] = useState('');
-
+    const [leadDetails, setLeadDetails] = useState(SampleData)
     const [editLeadDetails, setEditLeadDetails] = useState({
         leadName: SampleData.LeadName,
         leadPhoneNumber: SampleData.PhoneNumber,
         leadEmail: SampleData.LeadEmail
     })
-
     const [addAgent, setAddAgent] = useState({
         agentId: '',
         assignArea: ''
     });
-
-    const [agentArea, setAgentArea] = useState('');
     const [updateArea, setUpdateArea] = useState('');
     const [selectedAgentToRemove, setSelectedAgentToRemove] = useState('');
-
-    console.log(selectedAgentToRemove)
 
     useEffect(() => {
         const leadId = JSON.parse(localStorage.getItem('leadId'))
@@ -70,6 +80,7 @@ export const LeadsDetails = () => {
             setLeadId(leadId.leadId);
         }
     }, []);
+
 
     const handleEditLeadDetail = (e) => {
         setEditLeadDetails(prev => ({
@@ -85,51 +96,60 @@ export const LeadsDetails = () => {
         }))
     }
 
-    const handleSearchLeadDetails = (e) => {
+
+    const handleSubmitSearchLeadDetails = (e) => {
+
 
     }
+
 
     const handleSubmitEditDetails = (e) => {
 
+
     }
+
+
     const handleSubmitAddAgent = (e) => {
 
-    }
-    const handleRemoveAgent = (e) => {
 
     }
+
+
+    const handleSubmitRemoveAgent = (e) => {
+
+
+    }
+
+
     const handleSubmitUpdateAgentArea = (e) => {
 
-    }
-    const handleSubmitRemoveAgentArea = (e) => {
 
     }
+
+
+    const handleSubmitRemoveAgentArea = (e) => {
+
+
+    }
+
 
     const handleViewAgentDetail = (agentId) => {
         localStorage.setItem('agentId', JSON.stringify({ agentId: agentId }))
     }
-
+   
     const editLeadDetail = () => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button
-                        type="button"
-                        className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                    >
-                        Edit Lead Details
-                    </button>
+                    <button type="button" className="button-submit-color button-design">Edit Lead Details</button>
                 </DialogTrigger>
-
                 <DialogContent className="sm:max-w-[600px] w-full">
                     <DialogHeader>
-                        <DialogTitle>Edit Lead Details</DialogTitle>
-                        <DialogDescription>
-                            Update Lead Information to Keep Your Records Accurate.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.editLeadDetailTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.editLeadDetailDescription}</DialogDescription>
                     </DialogHeader>
+                    {/* Responsive Grid */}
                     <form onSubmit={handleSubmitEditDetails}>
-                        {/* Responsive Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             {/* Lead Name */}
                             <div className="flex flex-col">
@@ -189,19 +209,9 @@ export const LeadsDetails = () => {
                         {/* Footer Buttons */}
                         <DialogFooter className="mt-6 flex justify-end gap-4">
                             <DialogClose asChild>
-                                <button
-                                    type="button"
-                                    className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                                >
-                                    Cancel
-                                </button>
+                                <button type="button" className="button-cancel-color button-cancel-design">Cancel</button>
                             </DialogClose>
-                            <button
-                                type="submit"
-                                className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                            >
-                                Save Changes
-                            </button>
+                            <button type="submit" className="button-submit-color button-design">Save Changes</button>
                         </DialogFooter>
                     </form>
                 </DialogContent>
@@ -209,26 +219,19 @@ export const LeadsDetails = () => {
         )
     }
 
+
     const addAgentDialog = () => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button
-                        type="button"
-                        className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                    >
-                        Add Agent
-                    </button>
+                    <button type="button" className="button-submit-color button-design">Add Agent</button>
                 </DialogTrigger>
-
                 <DialogContent className="sm:max-w-[600px] w-full">
                     <DialogHeader>
-                        <DialogTitle>Add Agent</DialogTitle>
-                        <DialogDescription>
-                            Provide Agent ID and Specify the Area for Lead Assignment.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.addAgentDialogTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.addAgentDialogDescription}</DialogDescription>
                     </DialogHeader>
-                    <form onSubmit={handleSubmitEditDetails}>
+                    <form onSubmit={handleSubmitAddAgent}>
                         {/* Responsive Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             {/* Agent Id */}
@@ -269,80 +272,54 @@ export const LeadsDetails = () => {
                             </div>
                         </div>
 
+
                         {/* Footer Buttons */}
                         <DialogFooter className="mt-6 flex justify-end gap-4">
                             <DialogClose asChild>
-                                <button
-                                    type="button"
-                                    className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                                >
-                                    Cancel
-                                </button>
+                                <button type="button" className="button-cancel-color button-cancel-design">Cancel</button>
                             </DialogClose>
-                            <button
-                                type="submit"
-                                className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                            >
-                                Save Changes
-                            </button>
+                            <button type="submit" className="button-submit-color button-design">Save Changes</button>
                         </DialogFooter>
                     </form>
                 </DialogContent>
             </Dialog>
         )
     }
+
 
     const removeAgentDialog = () => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button
-                        type="button"
-                        className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                    >
-                        Remove Agent
-                    </button>
+                    <button type="button" className="button-cancel-color button-cancel-design">Remove Agent</button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[600px] w-full">
                     <DialogHeader>
-                        <DialogTitle>Remove Agent</DialogTitle>
-                        <DialogDescription>
-                            Select an Agent to Remove and Confirm Deletion.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.removeAgentDialogTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.removeAgentDialogDescription}</DialogDescription>
                     </DialogHeader>
-                    {/* Responsive Grid */}
-                    <form onSubmit={handleRemoveAgent}>
-                        <div className="">
+                    <form onSubmit={handleSubmitRemoveAgent}>
+                        {/* Responsive Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                             {/* Remove Agent */}
                             <div className="flex flex-col">
-                                <label className="text-base font-medium mb-1">
-                                    Search by status
-                                </label>
+                                <label className="text-base font-medium mb-1">Select Agent</label>
                                 <CustomDropdown
                                     options={removeAgentList}
                                     selected={selectedAgentToRemove}
                                     setSelected={setSelectedAgentToRemove}
-                                    placeholder="Select Agent"
+                                    placeholder="Actions"
                                 />
                             </div>
                         </div>
 
+
                         {/* Footer Buttons */}
                         <DialogFooter className="mt-6 flex justify-end gap-4">
                             <DialogClose asChild>
-                                <button
-                                    type="button"
-                                    className="bg-red-600 hover:bg-red-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                                >
-                                    Cancel
-                                </button>
+                                <button type="button" className="button-cancel-color button-cancel-design">Cancel</button>
                             </DialogClose>
-                            <button
-                                type="submit"
-                                className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all"
-                            >
-                                Remove Agent
-                            </button>
+                            <button type="submit" className="button-submit-color button-design">Remove Agent</button>
                         </DialogFooter>
                     </form>
                 </DialogContent>
@@ -351,25 +328,19 @@ export const LeadsDetails = () => {
     }
 
 
-    const updateAreaDialog = (area) => {
+    const updateAgentAreaDialog = (area) => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
-                    <button onClick={() => {
-                        setUpdateArea(area);
-
-                        setAgentArea(area);
-                    }} variant="outline" className="cursor-pointer transition-all bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-sm">Update Area</button>
+                    <button onClick={() => setUpdateArea(area)} variant="outline" className="button-submit-color small-button-design">Update Area</button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>Update Agent Assign Area</DialogTitle>
-                        <DialogDescription>
-                            Update the Assigned Area for the Selected Agent.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.updateAgentAreaDialogTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.updateAgentAreaDialogDescription}</DialogDescription>
                     </DialogHeader>
-                    <form className='inline-block'>
-                        <div className="grid gap-4">
+                    <form className='inline-block' onSubmit={handleSubmitUpdateAgentArea}>
+                        <div className="grid gap-4 mb-4">
                             <div className="grid gap-1">
                                 <label htmlFor="LeadEmail" className="block text-sm font-medium text-gray-700 capitalize mb-1">Assign Area</label>
                                 <input id="LeadEmail" value={updateArea} onChange={(e) => setUpdateArea(e.target.value)} name="username" className="w-full border border-gray-300 px-3 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
@@ -377,9 +348,9 @@ export const LeadsDetails = () => {
                         </div>
                         <DialogFooter>
                             <DialogClose asChild>
-                                <button variant="outline" className="bg-red-600 hover:bg-red-700 cursor-pointer text-white font-semibold py-2 px-5 rounded-xl transition-all">Cancel</button>
+                                <button variant="outline" className="button-cancel-color button-cancel-design">Cancel</button>
                             </DialogClose>
-                            <button type="submit" className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-2 px-5 rounded-xl transition-all">Save changes</button>
+                            <button type="submit" className="button-submit-color button-design">Save changes</button>
                         </DialogFooter>
                     </form>
                 </DialogContent>
@@ -387,35 +358,31 @@ export const LeadsDetails = () => {
         )
     }
 
-    const removeAreaDialog = (area) => {
+
+    const removeAgentAreaDialog = (area) => {
         return (
             <Dialog>
                 <DialogTrigger asChild>
                     <button
                         disabled={!area}
-                        className={`ml-3 px-2 py-1 rounded text-sm text-white cursor-pointer 
-                            ${area ? "transition-all bg-red-600 hover:bg-red-700" : "bg-gray-300 cursor-not-allowed"}`}>
+                        className={`small-button-design ${area ? "button-cancel-color" : "bg-gray-300 cursor-not-allowed"}`}>
                         Remove Area
                     </button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Are you sure do you want to delete this area?</DialogTitle>
-                        <DialogDescription>
-                            This action cannot be undone. This will permanently delete your area
-                            and remove your area from our servers.
-                        </DialogDescription>
+                        <DialogTitle>{dialogContent.removeAgentAreaDialogTitle}</DialogTitle>
+                        <DialogDescription>{dialogContent.removeAgentAreaDialogDescription}</DialogDescription>
                     </DialogHeader>
                     <DialogFooter>
-                        <DialogClose>
-                            <button className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-blue-600 hover:bg-blue-700 cursor-pointer ">Cancel</button>
-                        </DialogClose>
+                        <DialogClose className="button-submit-color button-design">Cancel</DialogClose >
+                        <button onClick={handleSubmitRemoveAgentArea(area)} className="button-cancel-color button-cancel-design">Continue</button>
                     </DialogFooter>
-                    <button className="text-amber-50 border border-gray-300 px-2 py-1 rounded transition-all bg-red-600 hover:bg-red-700 cursor-pointer ">Continue</button>
                 </DialogContent>
             </Dialog>
         )
     }
+
 
     return (
         <Layout>
@@ -424,9 +391,8 @@ export const LeadsDetails = () => {
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
                 </div>
-                <SingleSearchBar onSearchClick={handleSearchLeadDetails} placeholderName={pageContent.searchInputPlaceholderName} value={leadId} onChange={setLeadId} />
+                <SingleSearchBar onSearchClick={handleSubmitSearchLeadDetails} placeholderName={pageContent.searchInputPlaceholderName} value={leadId} onChange={setLeadId} />
                 <div className='flex-1 mt-6'>
-
                     {leadId ?
                         <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg w-full">
                             <div className="flex justify-between items-center mb-6 border-b-2 border-b-gray-300 pb-4">
@@ -435,19 +401,48 @@ export const LeadsDetails = () => {
                                 </div>
                                 {editLeadDetail()}
                             </div>
-
+                            
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                {Object.entries(SampleData).map(([key, value]) => (
-                                    <div key={key}>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
-                                            {key.replace(/([A-Z])/g, " $1")}
-                                        </label>
-                                        <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
-                                            {value}
-                                        </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
+                                        Lead Id
+                                    </label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.LeadId}
                                     </div>
-                                ))}
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">Lead Name</label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.LeadName}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">Lead Email</label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.LeadEmail}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">PhoneNumber</label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.PhoneNumber}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">Registered Date</label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.RegisteredDate}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">Status</label>
+                                    <div className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-600 tracking-wider">
+                                        {leadDetails.Status}
+                                    </div>
+                                </div>
                             </div>
+                           
                             {/* Agents Section */}
                             <div className='pt-8'>
                                 <div className='border-b-2 border-b-gray-300 pb-4 flex justify-between items-center mb-6'>
@@ -457,7 +452,7 @@ export const LeadsDetails = () => {
                                         {removeAgentDialog()}
                                     </div>
                                 </div>
-                                <section className="container">
+                                <section className="">
                                     <div className="flex flex-col mt-6">
                                         <div className="overflow-x-auto ">
                                             <div className="inline-block min-w-full align-middle ">
@@ -485,8 +480,8 @@ export const LeadsDetails = () => {
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.agentPhone}</td>
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold tracking-widest text-center">{agent.assignedArea || "-"}</td>
                                                                     <td className="px-4 py-4 text-md text-gray-700 font-semibold text-center">
-                                                                        {updateAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
-                                                                        {removeAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
+                                                                        {updateAgentAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
+                                                                        {removeAgentAreaDialog(agent.assignedArea ? agent.assignedArea : '')}
                                                                     </td>
                                                                 </tr>
                                                             ))}
@@ -516,3 +511,4 @@ export const LeadsDetails = () => {
         </Layout>
     );
 };
+

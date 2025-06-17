@@ -125,7 +125,7 @@ export const LoanAgentCount = () => {
                             <div className="flex items-end">
                                 <button
                                     type="submit"
-                                    className="h-[38px] px-6 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
+                                    className="button-submit-color button-design"
                                 >
                                     Search
                                 </button>

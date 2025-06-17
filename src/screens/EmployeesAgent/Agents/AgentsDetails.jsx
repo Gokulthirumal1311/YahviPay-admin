@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SingleSearchBar from '../../../components/SingleSearchBar'
-import ReusableComponent from '../../../components/ReusableComponent'
 import { BanknoteX, Cable, Speaker } from 'lucide-react'
 import { Layout } from '../Layout/Layout'
 import { EditAgentDetails } from '../../../components/EmployeeAgent/Agent/EditAgentDetails'
@@ -25,7 +24,6 @@ const SampleData = {
     agentName: 'User010',
     agentPhone: '8667223194',
     agentEmail: 'gokulthirumal13@gmail.com',
-
     agentRegisteredDate: '2002-11-13',
     agentType: 'marketing',
     agentId: 'MKTG111010',
@@ -60,13 +58,15 @@ const workingParts = [
         partType: "charger",
     },
 ];
+
 const damageDevices = [
     {
         id: "1551555053",
         createdDate: "2025-05-15T12:04:37.559Z",
         status: "DAMAGED"
     }
-]
+];
+
 const damageParts = [
     {
         id: "P1747386566875322990",
@@ -421,10 +421,7 @@ export const AgentsDetails = () => {
         )
     }
 
-
-
     return (
-
         <Layout>
             <div className={agentId ? 'overflow-y-auto' : ''}>
                 <div>

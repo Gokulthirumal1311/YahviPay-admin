@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar'
 import { Link } from 'react-router-dom'
-import { ListMerchantOptions } from '../../../components/ListMerchantOptions'
 import { Layout } from '../Layout/Layout'
 import { Copy, ExternalLink } from "lucide-react";
 import { NoDataFound } from '../../../components/NoDataFound'
@@ -10,10 +9,10 @@ import CustomDropdown from '../../../components/CustomDropDown'
 const pageContent = {
     "title": "Search Shop",
     "subTitle": "Search for shop information by choosing a Marketing Agent and store name.",
-
     "searchInputPlaceholderName": "Enter the Store Name",
     "noDataFoundDescription": "No shops found matching the selected Marketing Agent ID and store name. Please try different filters."
 }
+
 const stores = [
     {
         address: "Srinivasa Nagar, Sholinganallur, Chennai, Tamil Nadu, 600096",
@@ -43,6 +42,7 @@ const stores = [
         shopPhone: "8667223194"
     },
 ]
+
 const agentIdList = [
     { label: "MKTG111012", value: "MKTG111012" },
     { label: "MKTG111013", value: "MKTG111013" },
@@ -59,10 +59,7 @@ export const SearchShop = () => {
 
     return (
         <Layout>
-
             <div className={stores.length ? "overflow-y-auto" : ""}>
-
-
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
@@ -70,13 +67,15 @@ export const SearchShop = () => {
                 <div className='flex gap-5 items-center mb-5'>
                     <div className='flex flex-col gap-2'>
                         <label htmlFor="agentId" className="text-base font-medium cha text-gray-700">Marketing Agent Id </label>
-
-                        <CustomDropdown options={agentIdList} selected={selectedAgentId} setSelected={setSelectedAgentId} />
+                        <CustomDropdown 
+                            options={agentIdList} 
+                            selected={selectedAgentId} 
+                            setSelected={setSelectedAgentId} 
+                        />
                     </div>
                     <div className='flex flex-col gap-2 w-full'>
                         <label htmlFor="storeName" className="text-base font-medium cha text-gray-700">Store Name</label>
                         <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} />
-
                     </div>
                 </div>
                 {stores.length ? <div className="flex-1 overflow-y-auto">

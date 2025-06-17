@@ -2,17 +2,13 @@ import './App.css'
 import { Layout } from './screens/layouts/Layout'
 import { Routes, Route } from 'react-router-dom'
 import { AdminDashboard } from './screens/AdminDashboard/AdminDashboard'
-import { EmployeeAgent } from './screens/EmployeeAgent'
 import { AllMerchantAccount } from './screens/Merchant/AllMerchantAccount'
-import { UserDetails } from './screens/Merchant/UserDetails'
 import { MerchantLayout } from './screens/Merchant/layouts/MerchantLayout'
 import { GetAllLeads } from './screens/EmployeesAgent/Leads/GetAllLeads'
 import { LeadsDetails } from './screens/EmployeesAgent/Leads/LeadsDetails'
 import { GetAllAgents } from './screens/EmployeesAgent/Agents/GetAllAgents'
-import { AgentDetails } from './screens/Merchant/AgentDetails'
 import { TrackLocation } from './screens/EmployeesAgent/Agents/TrackLocation'
 import { SearchShop } from './screens/EmployeesAgent/Agents/SearchShop'
-import { KYCDetails } from './screens/Merchant/KYCDetails'
 import { AgentsDetails } from './screens/EmployeesAgent/Agents/AgentsDetails'
 import { RegisterDevicesCount } from './screens/EmployeesAgent/Agents/RegisterDevicesCount'
 import { KYCPending } from './screens/EmployeesAgent/Agents/KYCPending'
@@ -34,59 +30,65 @@ import { NewOrders } from './screens/OrderDetails/NewOrders'
 import { CreateOrders } from './screens/OrderDetails/CreateOrders'
 import { GetOrderByPhone } from './screens/OrderDetails/GetOrderByPhone'
 import { GetOrderByStatus } from './screens/OrderDetails/GetOrderByStatus'
+import Button from './screens/Button'
+import IntegratedExample from './screens/IntegratedExample'
+
 
 function App() {
 
     return (
         <>
             <Routes>
-                <Route path = '/' element = {<Layout />}>
-                    <Route path = 'adminDashboard' element = {<AdminDashboard />} />
-                    <Route path = 'employeeAgent' element = {<EmployeeAgent />} />
+                <Route path='/' element={<Layout />}>
+                    {/* AdminDashBoard */}
+                    <Route path='adminDashboard' element={<AdminDashboard />} />
 
-                    <Route path = 'AllMerchantAccount' element = {<AllMerchantAccount />} />
-                    <Route path = 'AllMerchantAccount/:id' element = {<MerchantLayout />} />
-                    <Route path = 'MerchantDetails' element = {<MerchantLayout />} />
+                    {/* Employees Agent */}
+                    <Route path='GetAllLeads' element={<GetAllLeads />} />
+                    <Route path='LeadsDetails' element={<LeadsDetails />} />
+                    <Route path='GetAllAgents' element={<GetAllAgents />} />
+                    <Route path='AgentsDetails' element={<AgentsDetails />} />
+                    <Route path='RegisterDevicesCount' element={<RegisterDevicesCount />} />
+                    <Route path='TrackLocation' element={<TrackLocation />} />
+                    <Route path='SearchShop' element={<SearchShop />} />
+                    <Route path='KYCPending' element={<KYCPending />} />
+                    <Route path='LoanAgentCount' element={<LoanAgentCount />} />
 
-                    <Route path = 'VerifyFlags' element = {<VerifyFlags />} />
-                    <Route path = 'TransactionDetails' element = {<TransactionDetails />} />
-                    <Route path = 'SetLocation' element = {<SetLocation />} />
-                    <Route path = 'DownloadReport' element = {<DownloadReport />} />
+                    {/* Devices And Services */}
+                    <Route path='AddAndSearchDevices' element={<AddAndSearchDevices />} />
+                    <Route path='GetDeviceByPhone' element={<GetDeviceByPhoneNumber />} />
+                    <Route path='GetAllServices' element={<GetAllServices />} />
+                    <Route path='GetServicesByID' element={<GetServicesByID />} />
 
-                    <Route path = 'GetAllLeads' element = {<GetAllLeads />} />
-                    <Route path = 'LeadsDetails' element = {<LeadsDetails />} />
-                    
-                    <Route path = 'GetAllServices' element = {<GetAllServices />} />
-                    <Route path = 'GetServicesByID' element = {<GetServicesByID />} />
-                    
-                    <Route path = 'GetAllAgents' element = {<GetAllAgents />} />
-                    <Route path = 'AgentsDetails' element = {<AgentsDetails />} />
-                    
-                    <Route path = 'RegisterDevicesCount' element = {<RegisterDevicesCount />} />
-                    <Route path = 'TrackLocation' element = {<TrackLocation />} />
-                    <Route path = 'SearchShop' element = {<SearchShop />} />
-                    <Route path = 'KYCPending' element = {<KYCPending />} />
+                    {/* Merchant */}
+                    <Route path='AllMerchantAccount' element={<AllMerchantAccount />} />
+                    <Route path='MerchantDetails' element={<MerchantLayout />} />
+                    <Route path='VerifyFlags' element={<VerifyFlags />} />
+                    <Route path='TransactionDetails' element={<TransactionDetails />} />
+                    <Route path='SetLocation' element={<SetLocation />} />
+                    <Route path='DownloadReport' element={<DownloadReport />} />
 
-                    <Route path = 'LoanAgentCount' element = {<LoanAgentCount />} />
+                    {/* Settlements */}
+                    <Route path='SettlementsByAction' element={<SettlementsByAction />} />
+                    <Route path='SettlementsByPhoneNumber' element={<SettlementsByPhoneNumber />} />
+                    <Route path='SettlementsByStatus' element={<SettlementsByStatus />} />
 
-                    <Route path = 'AddAndSearchDevices' element = {<AddAndSearchDevices />} />
-                    <Route path = 'GetDeviceByPhone' element = {<GetDeviceByPhoneNumber />} />
+                    {/* OrderDetails */}
+                    <Route path='NewOrders' element={<NewOrders />} />
+                    <Route path='CreateOrders' element={<CreateOrders />} />
+                    <Route path='GetOrdersByPhone' element={<GetOrderByPhone />} />
+                    <Route path='GetOrdersByStatus' element={<GetOrderByStatus />} />
 
-                    <Route path = 'SettlementsByAction' element = {<SettlementsByAction />} />
-                    <Route path = 'SettlementsByPhoneNumber' element = {<SettlementsByPhoneNumber />} />
-                    <Route path = 'SettlementsByStatus' element = {<SettlementsByStatus />} />
-                    
-                    <Route path = 'GetTicketsByPhoneNumber' element = {<GetTicketsByPhoneNumber />} />
-                    <Route path = 'CreateNewTicketsStatus' element = {<CreateNewTicketsStatus />} />
-
-                    <Route path = 'NewOrders' element = {<NewOrders />} />
-                    <Route path = 'CreateOrders' element = {<CreateOrders />} />
-                    <Route path = 'GetOrdersByPhone' element = {<GetOrderByPhone />} />
-                    <Route path = 'GetOrdersByStatus' element = {<GetOrderByStatus />} />
-                    {/* <Route path = 'UserDetails' element = {<UserDetails />} /> */}
-                    {/* <Route path = 'BusinessDetails' element = {<UserDetails />} /> */}
+                    {/* Tickets */}
+                    <Route path='GetTicketsByPhoneNumber' element={<GetTicketsByPhoneNumber />} />
+                    <Route path='CreateNewTicketsStatus' element={<CreateNewTicketsStatus />} />
+                </Route>
+                <Route path='/button'>
+                    <Route path='btn' element={<Button />} />
+                    <Route path='example' element={<IntegratedExample />} />
                 </Route>
             </Routes>
+
         </>
     )
 }

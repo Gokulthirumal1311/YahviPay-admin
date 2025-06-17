@@ -3,12 +3,20 @@ import { ViewDeviceDetailDrawer } from "../../../components/Drawer/ViewDeviceDet
 import { Layout } from "../Layouts/Layout";
 import { NoDataFound } from "../../../components/NoDataFound";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, } from "@/components/ui/dialog";
+
+
 const pageContent = {
     "title": "Add & Search Devices",
     "subTitle": "Add a new device to the system or search for existing device details using a Phone Number or Merchant ID.",
     "searchInputPlaceholderName": 'Enter the Lead ID',
     "noDataFoundDescription": "No device details available for the provided device number."
 };
+
+const dialogContent = {
+
+    "addDeviceTitle" : "Add Device",
+    "addDeviceDescription" : "Enter device details and save when you're done.",
+}
 
 const devices = [
     {
@@ -118,15 +126,13 @@ export function AddAndSearchDevices() {
             <Dialog>
                 <form onSubmit={handleSubmit}>
                     <DialogTrigger asChild>
-                        <button className="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">Add Device</button>
+                        <button className="button-submit-color button-design">Add Device</button>
                     </DialogTrigger>
 
                     <DialogContent className="sm:max-w-5xl overflow-y-auto max-h-[90vh]">
                         <DialogHeader>
-                            <DialogTitle>Add Device</DialogTitle>
-                            <DialogDescription>
-                                Enter device details and save when you're done.
-                            </DialogDescription>
+                            <DialogTitle>{dialogContent.addDeviceTitle}</DialogTitle>
+                            <DialogDescription>{dialogContent.addDeviceDescription}</DialogDescription>
                         </DialogHeader>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-4">
