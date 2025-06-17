@@ -16,10 +16,11 @@ export const SoundBoxQuickNav = ({ soundBoxId }) => {
   }
 
   const items = [
-    { label: "Go device by phone", icon: Store, onClick: handleMerchantClick },
-    { label: "Go verify flags", icon: Megaphone, onClick: handleMarketingClick },
-    { label: "Go loans",icon: DollarSign, onclick:handleLoanClick}
-  ];
+  { label: "Go device by phone", icon: Store, onClick: handleMerchantClick },
+  { label: "Go verify flags", icon: Megaphone, onClick: handleMarketingClick },
+  { label: "Go loans", icon: DollarSign, onClick: handleLoanClick }
+];
+
 
   return <QuickNav trigger={soundBoxId} items={items} />;
 };

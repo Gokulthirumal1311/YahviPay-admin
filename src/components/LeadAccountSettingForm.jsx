@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 
-export const LeadAccountSettingForm = ({ onClose, userData, onSave }) => {
-  const [formData, setFormData] = useState({
-    PhoneNumber: "",
-    LeadEmail: "",
+export const LeadAccountSettingForm=({ onClose, userData, onSave })=>{
+  const [formData, setFormData]=useState({
+    PhoneNumber:"",
+    LeadEmail:"",
   });
 
-  useEffect(() => {
-    if (userData) {
+  useEffect(()=>{
+    if (userData){
       setFormData({
         PhoneNumber: userData.PhoneNumber,
         LeadEmail: userData.LeadEmail,
       });
     }
-  }, [userData]);
+  },[userData]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

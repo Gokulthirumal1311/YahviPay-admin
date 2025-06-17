@@ -42,8 +42,7 @@ import UserCard from './components/UserCard'
 import { NewDeviceOrder } from './components/NewDeviceOrder'
 import { CreateOrders } from './components/CreateOrders'
 import { CalenderGrid } from './components/CalenderGrid'
-import { AdminPage } from './components/AdminPage'
-
+//  import { AdminPage } from './components/AdminPage'
 import DashboardCards from './components/DashBoardCards'
 import Loading from './components/LoadingScreen'
 import TabNavigation from './components/TabNavigation'
@@ -61,6 +60,8 @@ import { ToolsVerificationCard } from './components/ToolsVerificationCard'
 import { SkeletonLoader } from './components/SkeletonLoader'
 import { Example } from './components/Example'
 import { SoundBoxQuickNav } from './components/SoundBoxQuickNav'
+import { LoginCard } from './components/LoginCard'
+import J_D from './components/J_D'
 
 
 
@@ -122,8 +123,9 @@ function App() {
       {/* <SkeletonLoader/> */}
       <Example/>
 
-      <SoundBoxQuickNav/>
-    
+      <SoundBoxQuickNav soundBoxId="SBX12345"/>
+      <LoginCard/>
+      <J_D/>
 
    
 

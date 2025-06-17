@@ -11,18 +11,18 @@ const stores = [
       {
         message: "Swapped Device",
         createdDate: "18/04/2025, 12:51:40",
-        agentId: "MKTG111006",
+        agentId:"MKTG111006",
         partId: "NIL",
         partType: "NIL",
       },
     ],
   },
   {
-    deviceId: "7299700576",
-    CreatedDate: "18/04/2025, 12:51:40",
-    AgentId: "MKTG111006",
-    Status: "DAMAGED",
-    notes: [
+    deviceId:"7299700576",
+    CreatedDate:"18/04/2025, 12:51:40",
+    AgentId:"MKTG111006",
+    Status:"DAMAGED",
+    notes:[
       {
         message: "Swapped Device",
         createdDate: "18/04/2025, 12:51:40",
