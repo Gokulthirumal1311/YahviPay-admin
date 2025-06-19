@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar'
-import AgentTable from '../../../components/AgentTable'
 import { Layout } from '../Layout/Layout';
 import { NoDataFound } from '../../../components/NoDataFound';
 
 const pageContent = {
     "title": "Register Devices Counts",
-
     "subTitle": "Track device registrations by Agent ID within the selected date range.",
     "searchInputPlaceholderName": "Enter the AgentId",
     "noDataFoundDescription" : "No device count data found for the selected period and Agent ID. Please modify your filters."
@@ -51,12 +49,9 @@ export const RegisterDevicesCount = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-
         const count = deviceData.reduce((acc, device) => {
             const [day, month, year] = device.registeredDate.split("-");
             const formattedDate = `${year}-${month}-${day}`;
-
-
             if (
                 device.agentId === agentId &&
                 formattedDate >= fromDate &&
@@ -69,7 +64,6 @@ export const RegisterDevicesCount = () => {
         setDeviceCount(count);
         setSearched(true);
     };
-
 
     useEffect(() => {
         console.log(deviceCount);
@@ -146,14 +140,9 @@ export const RegisterDevicesCount = () => {
                             <NoDataFound description={pageContent.noDataFoundDescription} />
                         </div>
                     }
-
-
                 </div>
-
             </div>
         </Layout>
-
-
     )
 }
 

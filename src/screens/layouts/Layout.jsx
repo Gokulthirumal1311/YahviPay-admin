@@ -6,7 +6,7 @@ import { Header } from '../../components/Header'
 export const Layout = () => {
   return (
 
-    <div className = 'layout-container'>
+    <div className = 'layout-container body-background-color'>
         <Header />
         <SideNavBar />
         <div className = 'layout-content-container-ml'>

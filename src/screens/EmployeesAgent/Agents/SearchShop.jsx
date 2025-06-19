@@ -5,6 +5,7 @@ import { Layout } from '../Layout/Layout'
 import { Copy, ExternalLink } from "lucide-react";
 import { NoDataFound } from '../../../components/NoDataFound'
 import CustomDropdown from '../../../components/CustomDropDown'
+import { ToastMessage, triggerToast } from '../../../components/ToastMessage/ToastMessage';
 
 const pageContent = {
     "title": "Search Shop",
@@ -30,7 +31,7 @@ const stores = [
         longitude: "80.247504",
         merchantId: "MC1747298937542",
         shopName: "Gokul2",
-        shopPhone: "8667223194"
+        shopPhone: "9080"
     },
     {
         address: "Srinivasa Nagar, Sholinganallur, Chennai, Tamil Nadu, 600096",
@@ -49,13 +50,15 @@ const agentIdList = [
     { label: "MKTG111014", value: "MKTG111014" }
 ]
 
-function handleCopy(text) {
-    navigator.clipboard.writeText(text);
-    alert("Copid: " + text);
-}
-export const SearchShop = () => {
 
+export const SearchShop = () => {
+    
     const [selectedAgentId, setSelectedAgentId] = useState("");
+
+    async function handleCopy(text) {
+        await navigator.clipboard.writeText(text);
+        triggerToast("success", `Copied: ${text}`);
+    }
 
     return (
         <Layout>
@@ -80,9 +83,9 @@ export const SearchShop = () => {
                 </div>
                 {stores.length ? <div className="flex-1 overflow-y-auto">
                     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
-                        {stores.map((store) => (
+                        {stores.map((store, index) => (
                             <div
-                                key={store.shopPhone}
+                                key={index}
                                 className="group bg-gradient-to-br from-white to-indigo-50 border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
                             >
                                 <div className="mb-6">
@@ -115,7 +118,7 @@ export const SearchShop = () => {
                                             </button>
                                         </span>
                                     </div>
-                                    <div className="col-span-2 flex space-x-10 group">
+                                    <div className="col-span-2 flex space-x-1 group">
                                         <div>
 
                                             <span className="text-sm font-medium text-gray-600 block">
@@ -128,7 +131,7 @@ export const SearchShop = () => {
                                                 className="text-blue-600 group-hover:underline cursor-pointer flex items-center"
                                             >
                                                 {store.latitude}
-                                                <ExternalLink className="ml-1 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                {/* <ExternalLink className="ml-1 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" /> */}
                                             </a>
                                         </div>
 
@@ -165,6 +168,8 @@ export const SearchShop = () => {
                     </div>
                 }
             </div>
+            {/* Toast gets rendered in-tree (no portal) */}
+            <ToastMessage />
         </Layout>
     )
 }

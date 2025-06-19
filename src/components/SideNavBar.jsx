@@ -290,7 +290,7 @@ export const SideNavBar = () => {
             <div
                 ref={el => dropdownRefs.current[itemId] = el}
                 className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ maxHeight: '0px', opacity: '0' }}
+                // style={{ maxHeight: '0px', opacity: '0' }}
             >
                 <div className="ml-4 mt-3 space-y-1 pb-2">
                     {subItems.map((subItem, index) => {
@@ -308,7 +308,7 @@ export const SideNavBar = () => {
                                             to = {`/${nestedItem.url}`}
                                             className={`w-full flex items-center space-x-3 px-4 py-2.5 text-left h-full text-md rounded-lg transition-all duration-200 ${
                                                 currentPath === removeSlash(nestedItem.url)
-                                                    ? 'bg-blue-600 text-white font-medium shadow-sm'
+                                                    ? 'background-secondary-color text-white font-medium shadow-sm'
                                                     : 'text-gray-800 hover:bg-gray-100 hover:text-gray-800'
                                             }`}
                                         >
@@ -334,7 +334,7 @@ export const SideNavBar = () => {
                                     onClick={() => handleNavigation(subItem.url)}
                                     className={`w-full h-full flex items-center text-start space-x-3 py-3 px-2.5 text-md rounded-lg transition-all duration-200 ${
                                         currentPath === removeSlash(subItem.url)
-                                            ? 'bg-blue-600 text-white font-medium shadow-sm'
+                                            ? 'background-secondary-color text-white font-medium shadow-sm'
                                             : 'text-gray-900 hover:bg-gray-100 hover:text-gray-800'
                                     }`}
                                 >
@@ -355,16 +355,16 @@ export const SideNavBar = () => {
         );
     };
 
-    console.log('qqqq')
+    
     return (
         <>
             {/* Sidebar */}
             <div 
                 ref={sidebarRef}
-                className={`layout-sidebar layout-sidebar-w ${sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]'} lg:translate-x-0 overflow-hidden overflow-y-auto `}
+                className={`layout-sidebar sidenavbar-background-color layout-sidebar-w ${sidebarOpen ? 'translate-x-0' : '-translate-x-[110%]'} lg:translate-x-0 overflow-hidden`}
             >
                 {/* Navigation */}
-                <div className="flex-1 py-6">
+                <div className="flex-1 py-6  overflow-y-auto custom-scroll h-full">
                     <nav className="space-y-4 px-4">
                         { menuItems.map((item) => (
                             <div key={item.id} className="group">
@@ -377,7 +377,7 @@ export const SideNavBar = () => {
                                     to={!item.hasDropdown && `/${item.pageUrl}`}
                                     className={`w-full flex items-center justify-between px-4 py-3 text-left rounded-xl font-medium transition-all duration-200 ${
                                         activeDropdown === item.id || currentPath === removeSlash(item.pageUrl || '') 
-                                            ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-200' 
+                                            ? 'background-primary-color text-white shadow-lg shadow-blue-200' 
                                             : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                                     }`}
                                 >

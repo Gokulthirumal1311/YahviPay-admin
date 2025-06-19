@@ -2,54 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-const stores = [
-    {
-        storeName: 'Gokul',
-        phoneNumber: '8667223194',
-        merchantId: 'MC1747288873705',
-    },
-    {
-        storeName: 'Mathes',
-        phoneNumber: '9566223194',
-        merchantId: 'MC1747288873710',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-    {
-        storeName: 'Mani',
-        phoneNumber: '7896223194',
-        merchantId: 'MC1747288873720',
-    },
-]
+const Cards = ({ stores }) => {
 
-const Cards = () => {
-
+    
     const handleStoreInLocalStorage = (phoneNumber, merchantId) => {
         localStorage.setItem('merchant', JSON.stringify({ phoneNumber : phoneNumber, merchantId : merchantId }))
     }
+    
     return (
         <div className="mt-6 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -99,7 +58,7 @@ const Cards = () => {
                                 <span className="text-sm font-medium text-gray-600 block">Merchant ID</span>
                                 <Link
                                     onClick={() => handleStoreInLocalStorage(store.phoneNumber, store.merchantId)}
-                                    to={`${store.merchantId}`}
+                                    to={`/MerchantDetails`}
                                     className="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-all duration-200 inline-flex items-center space-x-1 group"
                                     rel="noopener noreferrer"
                                 >

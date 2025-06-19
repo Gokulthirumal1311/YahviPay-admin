@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
 import SingleSearchBar from '../../components/SingleSearchBar';
+import CustomDropdown from '../../components/CustomDropDown';
 
 
 const pageContent = {
     "title": "Create Orders",
-
     "subTitle": "View and manage settlements organized by specific phone numbers.",
     "searchInputPlaceholderName": 'Enter the Phone Number'
 }
@@ -58,9 +58,17 @@ const products = [
         "keywords": ["Soundbox", "4G"]
     }
 ]
-export const CreateOrders = ({ category = "All" }) => {
-    const [selections, setSelections] = useState({});
 
+const searchByOptionsList = [
+    { label : "Devices", value : "devices" }, 
+    { label : "Stickers", value : "stickers" }
+]
+
+export const CreateOrders = ({ category = "All" }) => {
+
+    const [selections, setSelections] = useState({});
+    const [ searchByOptions, setSearchByOptions ] = useState('')
+    
     const filteredProducts = category !== "All" ? products.filter((ele) => ele.category === category) : products;
 
     const handleLanguageChange = (id, value) => {
@@ -89,23 +97,22 @@ export const CreateOrders = ({ category = "All" }) => {
 
     return (
         <Layout>
-
             <div>
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <div className='flex items-end justify-between'>
-
+            <div className='flex items-end justify-between gap-2'>
                 <div className='flex flex-col'>
-                                    <label className="text-base font-medium mb-1">Search by Options </label>
-                                    <select className="border border-gray-400 rounded px-2 py-1">
-                                        <option>Devices</option>
-                                        <option>Stickers</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholderName} />
-                                </div>
+                    <label className="text-base font-medium mb-1">Search by Options </label>
+                    <CustomDropdown
+                        options={searchByOptionsList} 
+                        selected={searchByOptions} 
+                        setSelected={setSearchByOptions} 
+                    />
+                </div>
+                <div className='w-full'>
+                    <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} />
+                </div>
             </div>
             <div className="overflow-y-auto">
                 {filteredProducts.map((ele) => (

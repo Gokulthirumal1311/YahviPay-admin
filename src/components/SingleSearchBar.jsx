@@ -20,7 +20,7 @@ const SingleSearchBar = ({ placeholderName, value, onChange, onSearchClick }) =>
                             value={value}
                             onChange={(e) => onChange(e.target.value)}
                             placeholder={placeholderName}
-                            className=" bg-white w-full px-4 py-2 text-md text-gray-900 rounded-tl-md rounded-bl-md font-semibold tracking-wider"
+                            className="w-full px-4 py-2 text-md text-gray-900 rounded-tl-md rounded-bl-md font-semibold tracking-wider"
                         />
                         <button
                             type="submit"

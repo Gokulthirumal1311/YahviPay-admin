@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Phone, Calendar, CreditCard, Building2, User, Settings, ChevronRight, ArrowLeft } from "lucide-react";
+import { Phone, Calendar, CreditCard, Building2, User, Settings, ChevronRight, ArrowLeft, ClipboardList, Server, Network, Plug, Terminal, Languages, IndianRupee } from "lucide-react";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, } from "@/components/ui/drawer";
 
 export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
@@ -29,7 +29,7 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
             <DrawerContent className="flex flex-col">
                 <DrawerHeader className="border-b">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
+                        <div className="flex items-center space-x-3 ">
                             {showBusinessDetails && (
                                 <button
                                     onClick={handleBackToDevice}
@@ -51,6 +51,11 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
                                 </DrawerDescription>
                             </div>
                         </div>
+                        <DrawerClose asChild>
+                            <button className="px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors">
+                                Close
+                            </button>
+                        </DrawerClose>
                     </div>
                 </DrawerHeader>
 
@@ -68,10 +73,10 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
                                         </h3>
                                         <div className="flex items-center mt-2">
                                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${device?.status === 'active'
-                                                    ? 'bg-green-100 text-green-800'
-                                                    : 'bg-red-100 text-red-800'
+                                                ? 'bg-green-100 text-green-800'
+                                                : 'bg-red-100 text-red-800'
                                                 }`}>
-                                                {device?.status}
+                                                {`${device?.status.charAt(0).toUpperCase()}${device?.status.slice(1)}`}
                                             </span>
                                         </div>
                                     </div>
@@ -83,10 +88,10 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
                             </div>
 
                             {/* Device Information Grid */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-5">
                                 {/* Basic Information */}
                                 <div className="space-y-4">
-                                    <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                                    <h4 className="text-md font-semibold text-gray-900 uppercase tracking-wide">
                                         Basic Information
                                     </h4>
                                     <div className="space-y-3">
@@ -116,7 +121,7 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
 
                                 {/* Supplier Information */}
                                 <div className="space-y-4">
-                                    <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                                    <h4 className="text-md font-semibold text-gray-900 uppercase tracking-wide">
                                         Supplier Information
                                     </h4>
                                     <div className="space-y-3">
@@ -143,43 +148,80 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Rental Information */}
-                            <div className="bg-gray-50 rounded-lg p-4">
-                                <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide mb-3">
-                                    Rental Information
-                                </h4>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <p className="text-sm text-gray-500">Rental Type</p>
-                                        <p className="font-medium">{device?.rentalType}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500">Rental Amount</p>
-                                        <p className="font-medium">₹{device?.rentalAmt}</p>
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500">MQTT Server IP</p>
-                                        <p className="font-medium">{device?.mqttServerIP}</p>
+                                {/* Rental Information */}
+                                <div className="space-y-4">
+                                    <h4 className="text-md font-semibold text-gray-900 uppercase tracking-wide">
+                                        Rental Information
+                                    </h4>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center">
+                                            <ClipboardList className="h-4 w-4 text-gray-400 mr-3"/>
+                                            <div>
+                                                <p className="text-sm text-gray-500">Rental Type</p>
+                                                <p className="font-medium">{device?.rentalType}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <IndianRupee className="h-4 w-4 text-gray-400 mr-3" />
+                                            <div>
+                                                <p className="text-sm text-gray-500">Rental Amount</p>
+                                                <p className="font-medium">₹{device?.rentalAmt}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Technical Information */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <p className="text-sm text-gray-500">Version</p>
-                                    <p className="font-medium">{device?.version}</p>
+                                {/* Server Information */}
+                                <div className="space-y-4">
+                                    <h4 className="text-md font-semibold text-gray-900 uppercase tracking-wide">
+                                        Server Information
+                                    </h4>
+                                    <div className="space-y-3">
+                                        <div className="flex items-center">
+                                            <Server className="h-4 w-4 text-gray-400 mr-3" />
+                                            <div>
+                                                <p className="text-sm text-gray-500">MQTT Server IP</p>
+                                                <p className="font-medium">{device?.mqttServerIP}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <Plug className="h-4 w-4 text-gray-400 mr-3" />
+                                            <div>
+                                                <p className="text-sm text-gray-500">MQTT Server Port</p>
+                                                <p className="font-medium">{device?.mqttServerPort}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p className="text-sm text-gray-500">Language</p>
-                                    <p className="font-medium uppercase">{device?.language}</p>
+
+                                {/* Device Version and Language */}
+                                <div className="space-y-4">
+                                    <h4 className="text-md font-semibold text-gray-900 uppercase tracking-wide">
+                                        Device Version and Language
+                                    </h4>
+                                    <div className="space-y-3">
+
+                                        <div className="flex items-center">
+                                            <Terminal className="h-4 w-4 text-gray-400 mr-3" />
+                                            <div>
+                                                <p className="text-sm text-gray-500">Version</p>
+                                                <p className="font-medium uppercase">{device?.version}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <Languages className="h-4 w-4 text-gray-400 mr-3" />
+                                            <div>
+                                                <p className="text-sm text-gray-500">Language</p>
+                                                <p className="font-medium uppercase">{device?.language}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Business Information */}
-                            <div className="border-t pt-6">
+                            {/* <div className="border-t pt-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <h4 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
                                         Associated Business ({device?.business?.length || 0})
@@ -226,7 +268,7 @@ export const ViewDeviceDetailDrawer = ({ device, trigger }) => {
                                 ) : (
                                     <p className="text-gray-500 text-center py-4">No business associated with this device</p>
                                 )}
-                            </div>
+                            </div> */}
                         </div>
                     ) : (
                         // Business Details View

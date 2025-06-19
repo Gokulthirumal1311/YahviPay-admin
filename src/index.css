@@ -3,18 +3,50 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* style.css or global.css */
+/* background colors */
+
+.body-background-color {
+    @apply bg-[#dee2e6]
+}
+
+.header-background-color {
+    @apply bg-white
+}
+
+.sidenavbar-background-color {
+    @apply bg-white
+}
+
+.background-primary-color {
+    @apply bg-gradient-to-r from-blue-600 to-blue-700
+}
+
+.background-secondary-color {
+    @apply bg-blue-600
+}
+
+/* primary secondary colors */
+
+.primary-color {
+    @apply text-blue-600
+}
+
+.secondary-color {
+    @apply text-blue-600
+}
+
+/* layout styles */
 
 .layout-container {
-    @apply p-2 bg-[#dee2e6] h-screen;
+    @apply p-2 h-screen;
 }
 
 .layout-header {
-    @apply z-50 bg-white border-b border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm rounded-xl;
+    @apply z-50 border-b border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm rounded-xl;
 }
 
 .layout-sidebar {
-    @apply fixed bottom-2 top-25 bg-white border-r border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm transition-all duration-300 rounded-xl;
+    @apply fixed bottom-2 top-25 transition-all duration-300 border-r border-gray-200 shadow-lg shadow-blue-100/50 backdrop-blur-sm rounded-xl;
 }
 
 .layout-sidebar-w {
@@ -33,16 +65,10 @@
     @apply py-5 px-6 h-full flex flex-col;
 }
 
-.button-submit-color {
-    @apply bg-blue-600 hover:bg-blue-700 text-white transition-colors;
-}
+/* button style colors */
 
 .button-design {
     @apply cursor-pointer font-semibold py-2 px-5 rounded-xl transition-all;
-}
-
-.button-cancel-color {
-    @apply bg-red-600 hover:bg-red-700 text-white;
 }
 
 .button-cancel-design {
@@ -53,7 +79,45 @@
     @apply ml-3 px-2 py-1 rounded text-sm text-white cursor-pointer transition-all;
 }
 
+.button-submit-color {
+    @apply bg-blue-600 hover:bg-blue-700 text-white transition-colors;
+}
 
+.button-cancel-color {
+    @apply bg-red-600 hover:bg-red-700 text-white;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: #3b82f6;
+    border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate-slideDown {
+    animation: slideDown 0.5s ease forwards;
+}
+
+/* style.css or global.css */
 
 @theme inline {
 

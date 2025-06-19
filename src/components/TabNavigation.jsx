@@ -22,13 +22,13 @@ const TabNavigation = ({ tabs, activeTab, setActiveTab }) => {
             </button>
 
             {/* Tab Navigation */}
-            <div className="bg-purple-50 p-2 rounded-lg overflow-x-auto no-scrollbar" ref={scrollRef}>
-                <div className="flex space-x-1 flex-nowrap gap-y-3 whitespace-nowrap">
+            <div className="bg-purple-50 p-2 rounded-lg overflow-x-scroll custom-scroll" ref={scrollRef}>
+                <div className="flex space-x-1 flex-nowrap gap-y-3 whitespace-nowrap pl-3">
                     {tabs.map((tab, index) => (
                         <button
                             key={index}
                             onClick={() => setActiveTab(tab.id)}
-                            className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
+                            className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-200 ${activeTab === tab.id
                                     ? "bg-blue-500 text-white shadow-md"
                                     : "text-gray-600 hover:text-gray-800 hover:bg-white/50"
                                 }`}

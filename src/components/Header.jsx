@@ -15,7 +15,7 @@ export const Header = () => {
     };
     return (
     <>
-        <header className="layout-header">
+        <header className="layout-header header-background-color">
                 <div className="flex items-center justify-between px-6 py-4">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">
@@ -40,7 +40,7 @@ export const Header = () => {
                     <nav className="ml-auto">
                         <div className="relative group">
                             <div className="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                                     <span className="text-white font-semibold text-sm">
                                         {username.charAt(0).toUpperCase()}
                                     </span>

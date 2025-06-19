@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
 import CustomDropdown from '../../components/CustomDropDown';
+import ReusableComponent from '../../components/ReusableComponent';
 
 const pageContent = {
     "title": "Create and Get New Tickets Status",
@@ -21,19 +22,19 @@ const columns = ["BusinessName", "Type", "Date", "Status"];
 const actions = [];
 
 const searchByStatusList = [
-    { label : "Assigned", value : "assigned" },
-    { label : "Resolved", value : "resolved" }
+    { label: "Assigned", value: "assigned" },
+    { label: "Resolved", value: "resolved" }
 ]
 
 const searchByAssignedList = [
-    { label : "Support", value : "support" },
-    { label : "Marketing", value : "marketing" }
+    { label: "Support", value: "support" },
+    { label: "Marketing", value: "marketing" }
 ]
 
 export const CreateNewTicketsStatus = () => {
 
-    const [ searchByStatus, setSearchByStatus ] = useState('');
-    const [ searchByAssigned, setSearchByAssigned ] = useState('');
+    const [searchByStatus, setSearchByStatus] = useState('');
+    const [searchByAssigned, setSearchByAssigned] = useState('');
 
     return (
         <Layout>
@@ -42,25 +43,35 @@ export const CreateNewTicketsStatus = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
 
-            <div className="mb-4 flex justify-between">       
+            <div className="mb-4 flex justify-between items-end">
                 <div className='flex items-center gap-2'>
-                    <label className="text-base font-medium mb-1">Search by status</label>
-                    <CustomDropdown 
-                        options={searchByStatusList} 
-                        selected={searchByStatus} 
-                        setSelected={setSearchByStatus} 
-                    />
-                    <label className="text-base font-medium mb-1">Search by Assigned To</label>
-                    <CustomDropdown 
-                        options={searchByAssignedList} 
-                        selected={searchByAssigned} 
-                        setSelected={setSearchByAssigned} 
-                    />
+                    <div className='flex flex-col'>
+                        <label className="text-base font-medium mb-1">Search by status</label>
+                        <CustomDropdown
+                            options={searchByStatusList}
+                            selected={searchByStatus}
+                            setSelected={setSearchByStatus}
+                        />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className="text-base font-medium mb-1">Search by Assigned To</label>
+                        <CustomDropdown
+                            options={searchByAssignedList}
+                            selected={searchByAssigned}
+                            setSelected={setSearchByAssigned}
+                        />
+                    </div>
                 </div>
                 <div>
-                    <button className='bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700'>Create Ticket</button>
+                    <button className='button-submit-color button-design'>Create Ticket</button>
                 </div>
             </div>
+            <ReusableComponent
+                title="Get Tickets By Phone"
+                columns={columns}
+                data={parts}
+                actions={actions}
+            />
         </Layout>
     )
 }

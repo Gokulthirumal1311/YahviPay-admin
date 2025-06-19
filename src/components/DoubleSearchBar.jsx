@@ -21,15 +21,15 @@ export const DoubleSearchBar = ({ placeholder1, placeholder2 }) => {
     }, []);
 
     return (
-        <div className="flex items-center justify-center">
-            <form onSubmit={handleSubmit} className="w-full">       
-                <div className="flex w-full overflow-hidden rounded-md gap-2">
+        <div className="">
+            <form onSubmit={handleSubmit} className="flex items-center ">       
+                <div className="flex rounded-md w-full overflow-hidden border border-gray-300">
                     <input
                         type="text"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         placeholder={placeholder1}
-                        className="flex-1 px-4 py-2 text-sm text-gray-900 border-[1px] border-gray-500 rounded-md"
+                        className="w-full px-4 py-2 text-md text-gray-900 border-[1px] rounded-tl-md rounded-bl-md font-semibold tracking-wider"
                     />
 
                     <input
@@ -37,7 +37,7 @@ export const DoubleSearchBar = ({ placeholder1, placeholder2 }) => {
                         value={referenceId}
                         onChange={(e) => setReferenceId(e.target.value)}
                         placeholder={placeholder2}
-                        className="flex-1 px-4 py-2 text-sm text-gray-900 border-[1px] border-gray-500 rounded-md"
+                        className="w-full px-4 py-2 text-md text-gray-900 border-[1px] font-semibold tracking-wider"
                     />
 
                     <button

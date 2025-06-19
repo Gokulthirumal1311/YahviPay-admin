@@ -8,7 +8,6 @@ import { DatePicker } from '../../components/DatePicker';
 
 const pageContent = {
     "title": "Download Report",
-
     "subTitle": "Search all Merchant from one place with phone number",
     "doubleSearchInputPlaceholderName1": 'Enter the Phone Number ID',
     "doubleSearchInputPlaceholderName2": 'Enter the Merchant ID',
@@ -42,20 +41,14 @@ export const DownloadReport = () => {
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-
-
             <div className='flex gap-3 items-end'>
                 <DatePicker />
-
                 <SingleSearchBar placeholderName = {pageContent.busniessVpaSearchInputPlaceholderName} />
             </div>
 
-            <div className='my-4'>
-                
-                <DoubleSearchBar placeholder1={pageContent.doubleSearchInputPlaceholderName1} placeholder2={pageContent.doubleSearchInputPlaceholderName2} />
-                
+            <div className='my-4'>                
+                <DoubleSearchBar placeholder1={pageContent.doubleSearchInputPlaceholderName1} placeholder2={pageContent.doubleSearchInputPlaceholderName2} />    
             </div>
-
             <div>
                 <ReusableComponent
                     title="Download Report"
@@ -66,5 +59,4 @@ export const DownloadReport = () => {
             </div>
         </Layout>
     );
-
 }

@@ -64,6 +64,7 @@ export const MerchantLayout = () => {
             </div>
 
             <DoubleSearchBar />
+            
             <div className='my-4 '>
                 <TabNavigation
                     tabs={tabs}
@@ -72,7 +73,7 @@ export const MerchantLayout = () => {
                 />
 
             </div>
-            <div className="tab-content overflow-y-auto">
+            <div className="tab-content overflow-y-auto custom-scroll">
                 {renderTabContent()}
             </div>
         </Layout>

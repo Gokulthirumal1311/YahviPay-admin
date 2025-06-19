@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar';
-import { AgentsAreas } from '../../../components/AgentsAreas';
 import { Check, X } from 'lucide-react';
 import { Layout } from '../Layout/Layout';
 import { NoDataFound } from '../../../components/NoDataFound';

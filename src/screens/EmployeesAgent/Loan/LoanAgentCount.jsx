@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import SingleSearchBar from '../../../components/SingleSearchBar'
-import AgentTable from '../../../components/AgentTable'
 import { Layout } from '../Layout/Layout';
 import { NoDataFound } from '../../../components/NoDataFound';
 

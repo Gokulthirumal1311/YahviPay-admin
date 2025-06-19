@@ -6,31 +6,31 @@ import { DatePicker } from '../../components/DatePicker';
 import { DoubleSearchBar } from '../../components/DoubleSearchBar';
 
 const pageContent = {
-    
-    "title" : "All Settlements By Phone Number",
 
-    "subTitle" : "View and manage settlements organized by specific phone numbers.",
-    "searchInputPlaceholderName" : 'Enter the Merchant ID'
+    "title": "All Settlements By Phone Number",
+
+    "subTitle": "View and manage settlements organized by specific phone numbers.",
+    "searchInputPlaceholderName": 'Enter the Merchant ID'
 }
 const settlements = [
-  {
-    phoneNumber: "8667223194",
-    settlementID: "1747631926224160996",
-    dateSettled: "21/05/2025, 11:43:53",
-    amountSettled: "200.00",
-  },
-  {
-    phoneNumber: "8667223194",
-    settlementID: "1747631926224160997",
-    dateSettled: "22/05/2025, 10:43:34",
-    amountSettled: "100.00",
-  },
-  {
-    phoneNumber: "9080355312",
-    settlementID: "1747631926224160998",
-    dateSettled: "23/05/2025, 11:49:50",
-    amountSettled: "200.00",
-  },
+    {
+        phoneNumber: "8667223194",
+        settlementID: "1747631926224160996",
+        dateSettled: "21/05/2025, 11:43:53",
+        amountSettled: "200.00",
+    },
+    {
+        phoneNumber: "8667223194",
+        settlementID: "1747631926224160997",
+        dateSettled: "22/05/2025, 10:43:34",
+        amountSettled: "100.00",
+    },
+    {
+        phoneNumber: "9080355312",
+        settlementID: "1747631926224160998",
+        dateSettled: "23/05/2025, 11:49:50",
+        amountSettled: "200.00",
+    },
 ];
 
 export const SettlementsByPhoneNumber = () => {
@@ -44,7 +44,7 @@ export const SettlementsByPhoneNumber = () => {
 
     const handleSearch = () => {
         const filtered = settlements.filter((item) =>
-        item.phoneNumber.includes(searchValue)
+            item.phoneNumber.includes(searchValue)
         );
         setFilteredData(filtered);
         setShowCards(true);
@@ -63,26 +63,19 @@ export const SettlementsByPhoneNumber = () => {
                 <div className="">
                     <div className="flex items-center gap-3 mb-8">
                         <DatePicker />
-                        <div>
-                            
+                        <div className='w-full'>
                             <div className='text-md text-gray-800 font-medium mb-1'>Search Settlements Details</div>
                             <DoubleSearchBar />
                         </div>
-                        {/* <button
-                            onClick={handleSearch}
-                            className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700"
-                        >
-                            Search
-                        </button> */}
                     </div>
-                    { showCards && (
+                    {showCards && (
                         <ReusableComponent
                             title={`Summary Details for Phone Number`}
                             columns={columns}
                             data={filteredData}
                             actions={actions}
                         />
-                        )}
+                    )}
 
                 </div>
             </div>
