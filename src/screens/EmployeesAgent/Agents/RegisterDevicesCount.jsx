@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import SingleSearchBar from '../../../components/SingleSearchBar'
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar'
 import { Layout } from '../Layout/Layout';
-import { NoDataFound } from '../../../components/NoDataFound';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Register Devices Counts",
@@ -71,7 +71,7 @@ export const RegisterDevicesCount = () => {
 
     return (
         <Layout>
-            <div className='overflow-y-auto'>
+            <div className='overflow-y-auto custom-scroll'>
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 '>{pageContent.subTitle}</h4>

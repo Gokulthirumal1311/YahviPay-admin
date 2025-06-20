@@ -2,27 +2,28 @@ import React, { useEffect, useState } from 'react';
 
 export const DoubleSearchBar = ({ placeholder1, placeholder2 }) => {
 
-    const [ phoneNumber, setPhoneNumber ] = useState('');
-    const [ referenceId, setReferenceId ] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [referenceId, setReferenceId] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
         alert(`Phone: ${phoneNumber} | Reference ID: ${referenceId}`);
     };
+
     useEffect(() => {
         const storedMerchantDetail = JSON.parse(localStorage.getItem('merchant'));
 
-        if(storedMerchantDetail) {
+        if (storedMerchantDetail) {
 
             setPhoneNumber(storedMerchantDetail.phoneNumber)
-    
+
             setReferenceId(storedMerchantDetail.merchantId)
         }
     }, []);
 
     return (
         <div className="">
-            <form onSubmit={handleSubmit} className="flex items-center ">       
+            <form onSubmit={handleSubmit} className="flex items-center ">
                 <div className="flex rounded-md w-full overflow-hidden border border-gray-300">
                     <input
                         type="text"

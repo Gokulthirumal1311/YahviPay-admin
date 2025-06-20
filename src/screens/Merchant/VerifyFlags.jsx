@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Layout } from './Layouts/Layout'
-import { DoubleSearchBar } from '../../components/DoubleSearchBar'
+import { DoubleSearchBar } from '../../components/SearchBar/DoubleSearchBar'
 import { Check, ChevronDown, X } from 'lucide-react';
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, } from "@/components/ui/dropdown-menu";

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import TabNavigation from '../../../components/TabNavigation';
-import { DoubleSearchBar } from '../../../components/DoubleSearchBar';
+import TabNavigation from '../../../components/TabNavigation/TabNavigation';
+import { DoubleSearchBar } from '../../../components/SearchBar/DoubleSearchBar';
 import { UserDetails } from '../UserDetails';
 import { BusinessDetails } from '../BusinessDetails';
 import { KYCDetails } from '../KYCDetails';
@@ -33,7 +33,7 @@ const tabs = [
     { id: 'tab9', label: 'Account Status', url: 'AccountStatus' },
     { id: 'tab10', label: 'Account Verify Details', url: 'AccountVerifyDetails' },
 ]
-export const MerchantLayout = () => {
+export const MerchantByDetailsLayout = () => {
 
     const [activeTab, setActiveTab] = useState(tabs[0].id);
     const params = useParams();

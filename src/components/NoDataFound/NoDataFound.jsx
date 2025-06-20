@@ -1,11 +1,9 @@
 import React from 'react';
 
-
 export const NoDataFound = ({ title = 'No Data Found', description }) => {
     return (
         <div className="flex flex-col items-center justify-center h-full text-center p-6">
-            <div className="max-w-xs w-full mb-1">
-               
+            <div className="max-w-xs w-full mb-1">               
                 <img
                     src="/no-data-found-pana.svg"
                     alt="No Data Found"

@@ -23,7 +23,7 @@ const TabNavigation = ({ tabs, activeTab, setActiveTab }) => {
 
             {/* Tab Navigation */}
             <div className="bg-purple-50 p-2 rounded-lg overflow-x-scroll custom-scroll" ref={scrollRef}>
-                <div className="flex space-x-1 flex-nowrap gap-y-3 whitespace-nowrap pl-3">
+                <div className="flex space-x-1 justify-between flex-nowrap gap-y-3 whitespace-nowrap pl-3">
                     {tabs.map((tab, index) => (
                         <button
                             key={index}

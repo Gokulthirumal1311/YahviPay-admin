@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../Layouts/Layout';
-import { NoDataFound } from '../../../components/NoDataFound';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Get All Services",

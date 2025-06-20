@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import SingleSearchBar from '../../../components/SingleSearchBar'
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar'
 import { Layout } from '../Layout/Layout'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
-import { NoDataFound } from '../../../components/NoDataFound'
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound'
 import { ExternalLink } from 'lucide-react'
-import CustomDropdown from '../../../components/CustomDropDown'
+import CustomDropdown from '../../../components/CustomDropDown/CustomDropDown'
 
 const pageContent = {
     "title": "Leads Details",
@@ -386,7 +386,7 @@ export const LeadsDetails = () => {
 
     return (
         <Layout>
-            <div className='overflow-y-auto'>
+            <div className='overflow-y-auto custom-scroll'>
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>

@@ -1,109 +1,110 @@
 import React from 'react'
 import { Layout } from './Layout/Layout'
-import SingleSearchBar from '../../components/SingleSearchBar';
-
+import SingleSearchBar from '../../components/SearchBar/SingleSearchBar';
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Get Orders By Phone Number",
-
-    "subTitle": "View and manage settlements organized by specific phone numbers.",
-    "searchInputPlaceholder" : "Enter the Phone Number"
+    "subTitle": "View all soundbox device orders by entering a merchant’s phone number.",
+    "searchInputPlaceholder": "Enter the Phone Number",
+    "noDataFoundTitle": "No Order's Found",
+    "noDataFoundDescription": "No orders were found for the entered phone number. Everything seems up to date, please verify the phone number or adjust your filters."
 }
 
 const orders = [
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
 
 ]
 
@@ -118,10 +119,10 @@ export const GetOrderByPhone = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
             <div>
-                <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholder} />
+                <SingleSearchBar placeholderName={pageContent.searchInputPlaceholder} />
             </div>
-            <div className='overflow-y-auto'>
-                {orders.map((order, index) => (
+            <div className={orders.length ? "overflow-y-auto custom-scroll" : 'h-full'}>
+                {orders.length ? orders.map((order, index) => (
                     <div
                         key={order.orderId + index}
                         className="bg-white py-6 my-6 rounded-3xl shadow-md border-2 border-gray-100"
@@ -205,7 +206,14 @@ export const GetOrderByPhone = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) :
+                    <div className='h-full bg-gray-100 mt-2 rounded-2xl'>
+                        <NoDataFound
+                            title={pageContent.noDataFoundTitle}
+                            description={pageContent.noDataFoundDescription}
+                        />
+                    </div>
+                }
             </div>
         </Layout>
     )

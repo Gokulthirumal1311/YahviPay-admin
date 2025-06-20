@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import SingleSearchBar from '../../../components/SingleSearchBar'
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar'
 import { BanknoteX, Cable, Speaker } from 'lucide-react'
 import { Layout } from '../Layout/Layout'
 import { EditAgentDetails } from '../../../components/EmployeeAgent/Agent/EditAgentDetails'
@@ -8,7 +8,7 @@ import { AddDevices } from '../../../components/EmployeeAgent/Agent/AddDevices'
 import { AddDeviceParts } from '../../../components/EmployeeAgent/Agent/AddDeviceParts'
 import { AddBusiness } from '../../../components/EmployeeAgent/Agent/AddBusiness'
 import { RemoveDevice } from '../../../components/EmployeeAgent/Agent/RemoveDevice'
-import { NoDataFound } from '../../../components/NoDataFound'
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound'
 import { ReportDevice } from '../../../components/EmployeeAgent/Agent/ReportDevice'
 
 const pageContent = {
@@ -229,12 +229,9 @@ export const AgentsDetails = () => {
                                         )}
                                     </td>
                                 ))}
-                                <td className="px-4 py-4 space-x-2 flex">
+                                <td className="px-4 py-4 space-x-2 flex justify-center">
                                     <AddBusiness handleSubmit={handleAddBusiness} addbusiness={addBusiness} handleAddBusiness={handleAddBusinessDetails} />
-                                    {/* <button className="text-blue-500 hover:underline">Add Business</button> */}
                                     <RemoveDevice handleSubmit={handleRemoveDevice} removeDevice={removeDevice} handleRemoveDeviceDetails={handleRemoveDeviceDetails} subRemoveTypeList = {subRemoveTypeList} />
-                                    {/* <button className="text-red-500 hover:underline">Remove Device</button>
-                                    <button className="text-yellow-500 hover:underline">Report Damage</button> */}
                                     <ReportDevice />
                                 </td>
                             </tr>
@@ -423,7 +420,7 @@ export const AgentsDetails = () => {
 
     return (
         <Layout>
-            <div className={agentId ? 'overflow-y-auto' : ''}>
+            <div className={agentId ? 'overflow-y-auto custom-scroll' : ''}>
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>

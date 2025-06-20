@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-import SingleSearchBar from '../../components/SingleSearchBar';
-import CustomDropdown from '../../components/CustomDropDown';
+import SingleSearchBar from '../../components/SearchBar/SingleSearchBar';
+import CustomDropdown from '../../components/CustomDropDown/CustomDropDown';
 
 
 const pageContent = {
     "title": "Create Orders",
-    "subTitle": "View and manage settlements organized by specific phone numbers.",
+    "subTitle": "Create a new soundbox device order using the merchant’s phone number.",
     "searchInputPlaceholderName": 'Enter the Phone Number'
 }
 
@@ -114,7 +114,7 @@ export const CreateOrders = ({ category = "All" }) => {
                     <SingleSearchBar placeholderName={pageContent.searchInputPlaceholderName} />
                 </div>
             </div>
-            <div className="overflow-y-auto">
+            <div className="overflow-y-auto custom-scroll">
                 {filteredProducts.map((ele) => (
                     <div
                         key={ele.id}

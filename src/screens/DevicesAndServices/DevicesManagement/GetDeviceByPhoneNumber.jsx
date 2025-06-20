@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Layout } from '../Layouts/Layout'
-import { NoDataFound } from '../../../components/NoDataFound';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
 
 
 const deviceData = [

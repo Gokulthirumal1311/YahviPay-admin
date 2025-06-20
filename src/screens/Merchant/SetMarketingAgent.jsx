@@ -15,11 +15,12 @@ const secondaryAgent = {
 }
 
 const optionsAgentType = [
-  { label: "Primary", value: "primary" },
-  { label: "Secondary", value: "secondary" },
+    { label: "Primary", value: "primary" },
+    { label: "Secondary", value: "secondary" },
 ];
 
-const agentIds = ["AGT123", "AGT456", "AGT789"]
+const agentIds = ["AGT123", "AGT456", "AGT789"];
+
 export const SetMarketingAgent = () => {
 
     const [formData, setFormData] = useState({
@@ -233,10 +234,6 @@ export const SetMarketingAgent = () => {
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </div>
             </div>
-
-            {/* {isModalOpen && <ModalForm onClose={() => setIsModalOpen(false)} userData={userData} onSave={handleSave} />} */}
-
-            {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div> */}
         </div>
     )
 }

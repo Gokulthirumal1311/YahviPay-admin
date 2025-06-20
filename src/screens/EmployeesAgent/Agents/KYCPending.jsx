@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import SingleSearchBar from '../../../components/SingleSearchBar';
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar';
 import { Check, X } from 'lucide-react';
 import { Layout } from '../Layout/Layout';
-import { NoDataFound } from '../../../components/NoDataFound';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "KYC Pending",
@@ -44,7 +44,7 @@ export const KYCPending = () => {
 
     return (
         <Layout>
-            <div className={stores.length ? "overflow-y-auto" : ''}>
+            <div className={stores.length ? "overflow-y-auto custom-scroll" : ''}>
                 <div>
                     <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                     <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>

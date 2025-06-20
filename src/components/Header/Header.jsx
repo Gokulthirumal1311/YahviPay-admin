@@ -4,24 +4,25 @@ import { Menu, ChevronDown, LogOut } from 'lucide-react';
 export const Header = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
     const [username, setUsername] = useState('Admin User');
 
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
     };
+
     const handleSignOut = () => {
         alert('Sign out clicked');
     };
+
     return (
-    <>
-        <header className="layout-header header-background-color">
+        <>
+            <header className="layout-header header-background-color">
                 <div className="flex items-center justify-between px-6 py-4">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
                                 {/* <span className="text-white font-bold text-lg">YP</span> */}
-                                <img src="https://www.yahvipay.com/assets/favIconYahvi.png" alt="" className='rounded-full'/>
+                                <img src="https://www.yahvipay.com/assets/favIconYahvi.png" alt="" className='rounded-full' />
                                 {/* <link rel="icon" type="image/png" href="assets/favIconYahvi.png" style="width: 32px; height: 32px; border-radius: 50%; display: block;"></link> */}
                             </div>
                             <div className="hidden lg:block">
@@ -51,7 +52,7 @@ export const Header = () => {
                                 </div>
                                 <ChevronDown size={16} className="text-gray-500 group-hover:text-gray-700" />
                             </div>
-                            
+
                             <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                                 <div className="px-4 py-3 border-b border-gray-100">
                                     <div className="text-sm font-semibold text-gray-900">{username}</div>
@@ -68,7 +69,7 @@ export const Header = () => {
                         </div>
                     </nav>
                 </div>
-        </header>
-    </>
+            </header>
+        </>
     )
 }

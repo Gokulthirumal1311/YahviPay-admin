@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-import ReusableComponent from '../../components/ReusableComponent';
-import { DatePicker } from '../../components/DatePicker';
-import CustomDropdown from '../../components/CustomDropDown';
+import ReusableComponent from '../../components/TableComponent/ReusableComponent';
+import { DatePicker } from '../../components/DatePicker/DatePicker';
+import CustomDropdown from '../../components/CustomDropDown/CustomDropDown';
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "All Settlements By Status",
-    "subTitle": "View and manage settlements organized by specific phone numbers.",
-    "searchInputPlaceholderName": 'Enter the Merchant ID'
+    "subTitle": "View and manage orders based on their current status.",
+    "searchInputPlaceholderName": 'Enter the Merchant ID',
+    "noDataFoundTitle": "No Data Found",
+    "noDataFoundDescription": "We couldn't find any settlements matching your selected status and date range. Please check your filters and try again.",
 }
 
 const settlements = [
@@ -32,14 +35,14 @@ const settlements = [
 ];
 
 const searchByStatusOptionsList = [
-    { label : "Success", value : "success" }, 
-    { label : "Inprogress", value : "inprogress" }
+    { label: "Success", value: "success" },
+    { label: "Inprogress", value: "inprogress" }
 ]
 
 export const SettlementsByStatus = () => {
 
     const [showCards, setShowCards] = useState(false);
-    const [ searchByStatus, setSearchByStatus ] = useState(''); 
+    const [searchByStatus, setSearchByStatus] = useState('');
     const columns = ["amountSettled", "dateSettled", "businessVPA", "settledBy"];
     const actions = [];
 
@@ -67,15 +70,15 @@ export const SettlementsByStatus = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
 
-            <div className='flex-1 overflow-y-auto mt-4'>
+            <div className='flex-1 overflow-y-auto mt-1'>
                 <div className="">
                     <div className="flex items-end gap-3 mb-8 ">
                         <DatePicker />
                         <div className='flex flex-col'>
                             <label className="text-base font-medium mb-1">Search by status </label>
                             <CustomDropdown
-                                options={searchByStatusOptionsList} 
-                                selected={searchByStatus} 
+                                options={searchByStatusOptionsList}
+                                selected={searchByStatus}
                                 setSelected={setSearchByStatus}
                             />
                         </div>
@@ -83,7 +86,7 @@ export const SettlementsByStatus = () => {
                             search
                         </button>
                     </div>
-                    {showCards && (
+                    {showCards ? (
                         <>
                             <p className="font-normal text-lg flex justify-between">
                                 <span className="">SUCCESSFULL TRANSACTION : <span className='font-bold'>{count()}</span> </span>
@@ -96,7 +99,14 @@ export const SettlementsByStatus = () => {
                                 actions={actions}
                             />
                         </>
-                    )}
+                    ) :
+                        <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                            <NoDataFound
+                                title={pageContent.noDataFoundTitle}
+                                description={pageContent.noDataFoundDescription}
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         </Layout>

@@ -3,7 +3,7 @@ import { Layout } from './screens/layouts/Layout'
 import { Routes, Route } from 'react-router-dom'
 import { AdminDashboard } from './screens/AdminDashboard/AdminDashboard'
 import { AllMerchantAccount } from './screens/Merchant/AllMerchantAccount'
-import { MerchantLayout } from './screens/Merchant/layouts/MerchantLayout'
+import { MerchantByDetailsLayout } from './screens/Merchant/layouts/MerchantByDetailsLayout'
 import { GetAllLeads } from './screens/EmployeesAgent/Leads/GetAllLeads'
 import { LeadsDetails } from './screens/EmployeesAgent/Leads/LeadsDetails'
 import { GetAllAgents } from './screens/EmployeesAgent/Agents/GetAllAgents'
@@ -30,9 +30,8 @@ import { NewOrders } from './screens/OrderDetails/NewOrders'
 import { CreateOrders } from './screens/OrderDetails/CreateOrders'
 import { GetOrderByPhone } from './screens/OrderDetails/GetOrderByPhone'
 import { GetOrderByStatus } from './screens/OrderDetails/GetOrderByStatus'
-import Button from './screens/Button'
-import IntegratedExample from './screens/IntegratedExample'
-
+import Button from './hooks/Button'
+import IntegratedExample from './hooks/IntegratedExample'
 
 function App() {
 
@@ -62,7 +61,7 @@ function App() {
 
                     {/* Merchant */}
                     <Route path='AllMerchantAccount' element={<AllMerchantAccount />} />
-                    <Route path='MerchantDetails' element={<MerchantLayout />} />
+                    <Route path='MerchantDetails' element={<MerchantByDetailsLayout />} />
                     <Route path='VerifyFlags' element={<VerifyFlags />} />
                     <Route path='TransactionDetails' element={<TransactionDetails />} />
                     <Route path='SetLocation' element={<SetLocation />} />

@@ -5,7 +5,6 @@ const SampleData = {
     name: 'Gokul',
     phone: '8667223194',
     category: 'Food & Dining',
-    
     subCategory: 'Eating Places, Restaurants',
     businessType: 'Fixed',
     pincode: '600085',
@@ -14,19 +13,20 @@ const SampleData = {
     longitudes: '80.9555489',
 }
 const agents = [
-  {
-    name : "Gokul10",
-    phoneNumber: "8667223194",
-    password: "no",
-  },
-  {
-    name : "Gokul11",
-    phoneNumber: "8667223194",
-    password: "yes",
-  },
+    {
+        name: "Gokul10",
+        phoneNumber: "8667223194",
+        password: "no",
+    },
+    {
+        name: "Gokul11",
+        phoneNumber: "8667223194",
+        password: "yes",
+    },
 ];
 
 export const AgentDetails = () => {
+
     return (
         <div className="relative bg-gradient-to-br from-white border border-gray-200 rounded-2xl p-8">
             <div className="flex justify-between items-center mb-5 pb-4 border-b-2 border-gray-200">
@@ -35,9 +35,8 @@ export const AgentDetails = () => {
                 </h2>
             </div>
 
-                
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                { agents.map((agent, index) => (
+                {agents.map((agent, index) => (
                     <div
                         key={index}
                         className="relative group bg-gradient-to-br from-white to-indigo-50 border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 overflow-hidden"
@@ -69,28 +68,18 @@ export const AgentDetails = () => {
                                 </span>
                                 <span>{agent.phoneNumber}</span>
                             </div>
-                           
+
                             <div>
                                 <span className="text-sm font-medium text-gray-600 block">
                                     Password
                                 </span>
                                 <span>{agent.password}</span>
                             </div>
-                           
-
-                            
-
-                            
                         </div>
-                            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                        </div>
-                    ))}
-
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </div>
+                ))}
             </div>
-                        
-            {/* {isModalOpen && <ModalForm onClose={() => setIsModalOpen(false)} userData={userData} onSave={handleSave} />} */}
-                    
-            {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div> */}
-        </div>        
+        </div>
     )
 }

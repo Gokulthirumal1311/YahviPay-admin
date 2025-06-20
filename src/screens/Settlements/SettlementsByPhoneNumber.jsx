@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
 import { ChevronDown, ChevronUp } from "lucide-react";
-import ReusableComponent from '../../components/ReusableComponent';
-import { DatePicker } from '../../components/DatePicker';
-import { DoubleSearchBar } from '../../components/DoubleSearchBar';
+import ReusableComponent from '../../components/TableComponent/ReusableComponent';
+import { DatePicker } from '../../components/DatePicker/DatePicker';
+import { DoubleSearchBar } from '../../components/SearchBar/DoubleSearchBar';
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
-
     "title": "All Settlements By Phone Number",
-
     "subTitle": "View and manage settlements organized by specific phone numbers.",
-    "searchInputPlaceholderName": 'Enter the Merchant ID'
+    "searchInputPlaceholderName": 'Enter the Merchant ID',
+    "noDataFoundTitle": "No Data Found",
+    "noDataFoundDescription": "We couldn’t find any settlements matching the entered phone number, merchant ID, or selected date range. Please review the filters and try again.",
 }
+
 const settlements = [
     {
         phoneNumber: "8667223194",
@@ -58,7 +60,7 @@ export const SettlementsByPhoneNumber = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
 
-            <div className='flex-1 overflow-y-auto mt-4'>
+            <div className='flex-1 overflow-y-auto mt-1'>
 
                 <div className="">
                     <div className="flex items-center gap-3 mb-8">
@@ -68,14 +70,21 @@ export const SettlementsByPhoneNumber = () => {
                             <DoubleSearchBar />
                         </div>
                     </div>
-                    {showCards && (
+                    {showCards ? (
                         <ReusableComponent
                             title={`Summary Details for Phone Number`}
                             columns={columns}
                             data={filteredData}
                             actions={actions}
                         />
-                    )}
+                    ) :
+                        <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                            <NoDataFound
+                                title={pageContent.noDataFoundTitle}
+                                description={pageContent.noDataFoundDescription}
+                            />
+                        </div>
+                    }
 
                 </div>
             </div>

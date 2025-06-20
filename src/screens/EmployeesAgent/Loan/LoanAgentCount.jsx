@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import SingleSearchBar from '../../../components/SingleSearchBar'
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar'
 import { Layout } from '../Layout/Layout';
-import { NoDataFound } from '../../../components/NoDataFound';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Loan Agent Count",
@@ -83,7 +83,7 @@ export const LoanAgentCount = () => {
 
             {/* <SingleSearchBar placeholderName = {pageContent.searchInputPlaceholderName}/> */}
 
-            <div className='flex-1 overflow-y-auto'>
+            <div className='flex-1 overflow-y-auto custom-scroll'>
                 <div className="flex justify-center">
                     <form onSubmit={handleSubmit} className="w-full">
                         <div className="flex gap-4">

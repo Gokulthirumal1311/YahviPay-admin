@@ -12,7 +12,6 @@ export const AccountStatus = () => {
             <div>
                 
             </div>
-
         </div>
     )
 }

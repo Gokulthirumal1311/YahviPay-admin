@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-import CustomDropdown from '../../components/CustomDropDown';
-import ReusableComponent from '../../components/ReusableComponent';
+import CustomDropdown from '../../components/CustomDropDown/CustomDropDown';
+import ReusableComponent from '../../components/TableComponent/ReusableComponent';
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Create and Get New Tickets Status",
-    "subTitle": "Settlement Records Organized by Action Type",
+    "subTitle": "Create new support tickets and view existing ticket enquiries by status and Assigned.",
+    "noDataFoundTitle" : "No Ticket Found",
+    "noDataFoundDescription" : "There are currently no tickets matching found. Please check back later."
 }
 
 const parts = [
@@ -15,6 +18,12 @@ const parts = [
         Date: "16/05/2025, 16:45:56",
         Status: 'PENDING',
     },
+    {
+        BusinessName: "Gokul",
+        Type: 'Damage',
+        Date: "16/05/2025, 16:45:56",
+        Status: 'PENDING',
+    }
 ];
 
 
@@ -43,35 +52,49 @@ export const CreateNewTicketsStatus = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
 
-            <div className="mb-4 flex justify-between items-end">
-                <div className='flex items-center gap-2'>
-                    <div className='flex flex-col'>
-                        <label className="text-base font-medium mb-1">Search by status</label>
-                        <CustomDropdown
-                            options={searchByStatusList}
-                            selected={searchByStatus}
-                            setSelected={setSearchByStatus}
-                        />
+            <div className='overflow-y-auto custom-scroll'>
+
+
+                <div className="mb-4 flex justify-between items-end">
+                    <div className='flex items-center gap-2'>
+                        <div className='flex flex-col'>
+                            <label className="text-base font-medium mb-1">Search by Status</label>
+                            <CustomDropdown
+                                options={searchByStatusList}
+                                selected={searchByStatus}
+                                setSelected={setSearchByStatus}
+                            />
+                        </div>
+                        <div className='flex flex-col'>
+                            <label className="text-base font-medium mb-1">Search by Assigned To</label>
+                            <CustomDropdown
+                                options={searchByAssignedList}
+                                selected={searchByAssigned}
+                                setSelected={setSearchByAssigned}
+                            />
+                        </div>
                     </div>
-                    <div className='flex flex-col'>
-                        <label className="text-base font-medium mb-1">Search by Assigned To</label>
-                        <CustomDropdown
-                            options={searchByAssignedList}
-                            selected={searchByAssigned}
-                            setSelected={setSearchByAssigned}
-                        />
+                    <div>
+                        <button className='button-submit-color button-design'>Create Ticket</button>
                     </div>
                 </div>
-                <div>
-                    <button className='button-submit-color button-design'>Create Ticket</button>
-                </div>
+                {parts.length ? (
+                    <ReusableComponent
+                        title="Get Tickets By Phone"
+                        columns={columns}
+                        data={parts}
+                        actions={actions}
+                    />
+                )
+                    :
+                    <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                        <NoDataFound
+                            title={pageContent.noDataFoundTitle}
+                            description={pageContent.noDataFoundDescription}
+                        />
+                    </div>
+                }
             </div>
-            <ReusableComponent
-                title="Get Tickets By Phone"
-                columns={columns}
-                data={parts}
-                actions={actions}
-            />
         </Layout>
     )
 }

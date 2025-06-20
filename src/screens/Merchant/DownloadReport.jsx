@@ -1,10 +1,10 @@
 import React from 'react'
 import { Layout } from './Layouts/Layout'
-import ReusableComponent from '../../components/ReusableComponent';
+import ReusableComponent from '../../components/TableComponent/ReusableComponent';
 import { RefreshCw } from 'lucide-react';
-import SingleSearchBar from '../../components/SingleSearchBar';
-import { DoubleSearchBar } from '../../components/DoubleSearchBar';
-import { DatePicker } from '../../components/DatePicker';
+import SingleSearchBar from '../../components/SearchBar/SingleSearchBar';
+import { DoubleSearchBar } from '../../components/SearchBar/DoubleSearchBar';
+import { DatePicker } from '../../components/DatePicker/DatePicker';
 
 const pageContent = {
     "title": "Download Report",
@@ -41,21 +41,25 @@ export const DownloadReport = () => {
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <div className='flex gap-3 items-end'>
-                <DatePicker />
-                <SingleSearchBar placeholderName = {pageContent.busniessVpaSearchInputPlaceholderName} />
-            </div>
+            <div className='overflow-y-auto custom-scroll'>
 
-            <div className='my-4'>                
-                <DoubleSearchBar placeholder1={pageContent.doubleSearchInputPlaceholderName1} placeholder2={pageContent.doubleSearchInputPlaceholderName2} />    
-            </div>
-            <div>
-                <ReusableComponent
-                    title="Download Report"
-                    columns={columns}
-                    data={devices}
-                    actions={actions}
-                />
+
+                <div className='flex gap-3 items-end'>
+                    <DatePicker />
+                    <SingleSearchBar placeholderName={pageContent.busniessVpaSearchInputPlaceholderName} />
+                </div>
+
+                <div className='my-4'>
+                    <DoubleSearchBar placeholder1={pageContent.doubleSearchInputPlaceholderName1} placeholder2={pageContent.doubleSearchInputPlaceholderName2} />
+                </div>
+                <div>
+                    <ReusableComponent
+                        title="Download Report"
+                        columns={columns}
+                        data={devices}
+                        actions={actions}
+                    />
+                </div>
             </div>
         </Layout>
     );

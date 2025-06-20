@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Layout } from '../Layouts/Layout';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from 'lucide-react';
-import { NoDataFound } from '../../../components/NoDataFound';
-import SingleSearchBar from '../../../components/SingleSearchBar';
+import { NoDataFound } from '../../../components/NoDataFound/NoDataFound';
+import SingleSearchBar from '../../../components/SearchBar/SingleSearchBar';
 
 const pageContent = {
     title: "Get Services By ID",

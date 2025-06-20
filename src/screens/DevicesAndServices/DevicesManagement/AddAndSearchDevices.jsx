@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "../Layouts/Layout";
-import { NoDataFound } from "../../../components/NoDataFound";
+import { NoDataFound } from "../../../components/NoDataFound/NoDataFound";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, } from "@/components/ui/dialog";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, } from "@/components/ui/drawer";
 import { Phone, Calendar, CreditCard, Building2, User, Settings, ChevronRight, ArrowLeft, ClipboardList, Server, Network, Plug, Terminal, Languages, IndianRupee, Store, Fingerprint, Speaker, Barcode, ClipboardSignature } from "lucide-react";
@@ -117,21 +117,6 @@ export function AddAndSearchDevices() {
     const [showBusinessDetails, setShowBusinessDetails] = useState(false);
     const [selectedBusiness, setSelectedBusiness] = useState(null);
 
-    // const handleGetDeviceBusiness = (business) => {
-    //     setSelectedBusiness(business);
-    //     setShowBusinessDetails(true);
-    // };
-
-    // const handleBackToDevice = () => {
-    //     setShowBusinessDetails(false);
-    //     setSelectedBusiness(null);
-    // };
-
-    // const resetDrawerState = () => {
-    //     setShowBusinessDetails(false);
-    //     setSelectedBusiness(null);
-    // };
-
     // Function to handle getting device business
     const handleGetDeviceBusiness = () => {
         // Use the business data that's already available in your device object
@@ -175,7 +160,7 @@ export function AddAndSearchDevices() {
                                         Back to Device
                                     </button>
                                 )}
-                                <div>
+                                <div className="flex flex-col items-start">
                                     <DrawerTitle className="text-xl">
                                         {showBusinessDetails ? 'Business Details' : 'Device Details'}
                                     </DrawerTitle>
@@ -789,7 +774,7 @@ export function AddAndSearchDevices() {
                                                     ? 'bg-green-100 text-green-800'
                                                     : 'bg-red-100 text-red-800'
                                                     }`}>
-                                                    {item[column]}
+                                                    {`${item[column].charAt(0).toUpperCase()}${item[column].slice(1)}`}
                                                 </span>
                                             ) : (
                                                 item[column]
@@ -797,14 +782,6 @@ export function AddAndSearchDevices() {
                                         </td>
                                     ))}
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                                        {/* <ViewDeviceDetailDrawer
-                                            device={item}
-                                            trigger={
-                                                <button className="text-green-600 hover:text-green-900">
-                                                    View Details
-                                                </button>
-                                            }
-                                        /> */}
                                         {ViewDeviceDetailDrawer(item)}
                                     </td>
                                 </tr>
@@ -818,8 +795,8 @@ export function AddAndSearchDevices() {
 
     return (
         <Layout>
-            <div className="">
-                <div className="overflow-y-auto custom-scroll">
+            <div className="overflow-y-auto custom-scroll">
+                <div className="">
                     <div className="mb-6">
                         <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                         <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>

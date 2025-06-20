@@ -1,108 +1,108 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "New Orders",
-
-    "subTitle": "View and manage settlements organized by specific phone numbers."
+    "subTitle": "View all newly placed soundbox device orders.",
+    "noDataFoundTitle" : "No New Orders.",
+    "noDataFoundDescription" : "There are no new soundbox device orders available at the moment. Please check back later or verify your data source."
 }
 
 const orders = [
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
 ]
 
 const Label = ({ text }) => (
@@ -116,11 +116,11 @@ export const NewOrders = () => {
                 <h2 className='text-xl font-semibold text-gray-800 mb-0.5'>{pageContent.title}</h2>
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
-            <div className='overflow-y-auto'>
-                {orders.map((order, index) => (
+            <div className={orders.length ? "overflow-y-auto custom-scroll" : 'h-full'}>
+                {orders.length ? orders.map((order, index) => (
                     <div
                         key={order.orderId + index}
-                        className="bg-white p-6 m-6 rounded-3xl shadow-xl border-2 border-gray-100"
+                        className="bg-white p-6 mt-2 mb-6 rounded-3xl shadow-xl border-2 border-gray-100"
                     >
                         <div className="flex flex-wrap gap-6">
                             {/* QR Image */}
@@ -201,7 +201,14 @@ export const NewOrders = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) :
+                    <div className='h-full bg-gray-100 mt-2 rounded-2xl'>
+                        <NoDataFound
+                            title={pageContent.noDataFoundTitle}
+                            description={pageContent.noDataFoundDescription}
+                        />
+                    </div>
+                }
             </div>
         </Layout>
     );

@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-import ReusableComponent from '../../components/ReusableComponent'
-import { DatePicker } from '../../components/DatePicker'
-import CustomDropdown from '../../components/CustomDropDown'
+import ReusableComponent from '../../components/TableComponent/ReusableComponent'
+import { DatePicker } from '../../components/DatePicker/DatePicker'
+import CustomDropdown from '../../components/CustomDropDown/CustomDropDown'
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound'
 
 const pageContent = {
     "title": "All Settlements By Action",
     "subTitle": "Settlement Records Organized by Action Type",
-    "searchInputPlaceholderName": 'Enter the Merchant ID'
+    "searchInputPlaceholderName": 'Enter the Merchant ID',
+    "noDataFoundTitle": "No Data Found",
+    "noDataFoundDescription": "No settlements match your selected action type or date range. Try changing the filters to see other results.",
 }
 
 const settlements = [
@@ -38,7 +41,7 @@ const searchByStatusOptionsList = [
 
 export const SettlementsByAction = () => {
 
-    const [ searchByStatus, setSearchByStatus ] = useState('');
+    const [searchByStatus, setSearchByStatus] = useState('');
     const [showCards, setShowCards] = useState(false);
     const columns = ["amountSettled", "businessVPA", "settledBy"];
     const actions = [];
@@ -50,16 +53,16 @@ export const SettlementsByAction = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
 
-            <div className='flex-1 overflow-y-auto mt-4'>
+            <div className='flex-1 overflow-y-auto mt-1'>
                 <div className="">
                     <div className="flex items-end gap-3 mb-8">
                         <DatePicker />
                         <div className='flex flex-col'>
                             <label className="text-base font-medium mb-1">Search by status </label>
                             <CustomDropdown
-                                options={searchByStatusOptionsList} 
-                                selected={searchByStatus} 
-                                setSelected={setSearchByStatus} 
+                                options={searchByStatusOptionsList}
+                                selected={searchByStatus}
+                                setSelected={setSearchByStatus}
                             />
                         </div>
                         <button
@@ -69,7 +72,7 @@ export const SettlementsByAction = () => {
                             search
                         </button>
                     </div>
-                    {showCards && (
+                    {showCards ? (
                         <>
                             <ReusableComponent
                                 title="Settlement Summary By Status"
@@ -78,7 +81,14 @@ export const SettlementsByAction = () => {
                                 actions={actions}
                             />
                         </>
-                    )}
+                    ) :
+                        <div className='h-full bg-gray-100 mt-4 rounded-2xl'>
+                            <NoDataFound
+                                title={pageContent.noDataFoundTitle}
+                                description={pageContent.noDataFoundDescription}
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         </Layout>

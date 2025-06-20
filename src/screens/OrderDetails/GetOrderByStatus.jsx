@@ -1,114 +1,128 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from './Layout/Layout'
-import SingleSearchBar from '../../components/SingleSearchBar'
-
+import CustomDropdown from '../../components/CustomDropDown/CustomDropDown';
+import { NoDataFound } from '../../components/NoDataFound/NoDataFound';
 
 const pageContent = {
     "title": "Get Orders By Status",
-
-    "subTitle": "View and manage settlements organized by specific phone numbers.",
+    "subTitle": "View soundbox device orders by selecting a specific order status such as Processing, Pick From Shop, Delivered, or Returned.",
+    "noDataFoundTitle": "No Order's Found",
+    "noDataFoundDescription": "No orders found for the selected status. Please try a different status or check back later."
 }
 
 const orders = [
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-    {
-        orderId: "DEVICE174833867625314350",
-        deviceName: "All In One QR Stickers (Set Of 3)",
-        img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
-        businessPhone: "7010562663",
-        language: "NIL",
-        simType: "NIL",
-        address: {
-            name: "Sgwgh",
-            address: "hah,Bzsb,Jhsn,Chennai",
-            phone: "6663666666",
-            pincode: "614616",
-            landmark: "Ghvggg",
-        },
-        productPrice: 69,
-        orderDate: "2025-05-27T15:07:56.257Z",
-        status: "processing",
-        deviceId: "",
-        orderType: "DEVICE",
-        orderedBy: "7010562663",
-        courier: {
-            courierId: "",
-            courierName: "",
-            shipDate: "",
-            courierStatus: "NONE",
-            trackingUrl: "nill",
-            packedBy: "",
-        },
-        comments: "",
-        merchantId: "MC1748335960510",
-    },
-
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
+    // {
+    //     orderId: "DEVICE174833867625314350",
+    //     deviceName: "All In One QR Stickers (Set Of 3)",
+    //     img: "https://renambl.blr1.cdn.digitaloceanspaces.com/ypay/stand01.png",
+    //     businessPhone: "7010562663",
+    //     language: "NIL",
+    //     simType: "NIL",
+    //     address: {
+    //         name: "Sgwgh",
+    //         address: "hah,Bzsb,Jhsn,Chennai",
+    //         phone: "6663666666",
+    //         pincode: "614616",
+    //         landmark: "Ghvggg",
+    //     },
+    //     productPrice: 69,
+    //     orderDate: "2025-05-27T15:07:56.257Z",
+    //     status: "processing",
+    //     deviceId: "",
+    //     orderType: "DEVICE",
+    //     orderedBy: "7010562663",
+    //     courier: {
+    //         courierId: "",
+    //         courierName: "",
+    //         shipDate: "",
+    //         courierStatus: "NONE",
+    //         trackingUrl: "nill",
+    //         packedBy: "",
+    //     },
+    //     comments: "",
+    //     merchantId: "MC1748335960510",
+    // },
 ]
+
 const Label = ({ text }) => (
     <span className="text-blue-800 font-semibold capitalize">{text} :</span>
 );
+
+const getOrderByStatusList = [
+    { label: "Processing", value: "processing" },
+    { label: "Pick From Shop", value: "pickfromshop" },
+    { label: "Delivered", value: "delivered" },
+    { label: "Cancelled", value: "cancelled" },
+    { label: "Pick From Company", value: "pickfromcompany" },
+    { label: "Returned", value: "returned" }
+]
+
 export const GetOrderByStatus = () => {
+
+    const [selectedOrderStatus, setSelectedOrderStatus] = useState('');
+
     return (
         <Layout>
             <div>
@@ -116,13 +130,18 @@ export const GetOrderByStatus = () => {
                 <h4 className='text-md font-semibold text-gray-500 mb-5'>{pageContent.subTitle}</h4>
             </div>
             <div>
-                {/* <SingleSearchBar placeholderName={pageContent.searchInputPlaceholder} /> */}
+                <CustomDropdown
+                    options={getOrderByStatusList}
+                    selected={selectedOrderStatus}
+                    setSelected={setSelectedOrderStatus}
+                    placeholder='Select Status'
+                />
             </div>
-            <div className='overflow-y-auto'>
-                {orders.map((order, index) => (
+            <div className={orders.length ? "overflow-y-auto custom-scroll" : "h-full"}>
+                {orders.length ? orders.map((order, index) => (
                     <div
                         key={order.orderId + index}
-                        className="bg-white py-6 my-6 rounded-3xl shadow-md border-2 border-gray-100"
+                        className="bg-white py-6 mt-2 mb-6 rounded-3xl shadow-md border-2 border-gray-100"
                     >
                         <div className="flex flex-wrap gap-6">
                             {/* QR Image */}
@@ -203,7 +222,14 @@ export const GetOrderByStatus = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) :
+                    <div className='h-full bg-gray-100 mt-2 rounded-2xl'>
+                        <NoDataFound
+                            title={pageContent.noDataFoundTitle}
+                            description={pageContent.noDataFoundDescription}
+                        />
+                    </div>
+                }
             </div>
         </Layout>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, } from "@/components/ui/dropdown-menu";
 
-import CustomDropdown from '../../CustomDropDown'
+import CustomDropdown from '../../CustomDropDown/CustomDropDown'
 import { ChevronDown } from 'lucide-react';
 const subRemoveTypeList = [
 
