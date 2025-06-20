@@ -1,8 +1,19 @@
 import React from "react";
 
 const stores = [
+  { 
+    businessId: "1234",
+    bankAccountHolder: "Chandra Sekar M",
+    bankAccountNumber: "1234567890",
+    bankIFSC: "MAHB0000232",
+    bankName: "Bank Of Maharastra",
+  },
   {
-    Aadhar_Number:"123456789012",
+    businessId: "1235",
+    bankAccountHolder: "Gokul T",
+    bankAccountNumber: "9876543210",
+    bankIFSC: "HDFC0001234",
+    bankName: "HDFC Bank",
   },
 ];
 

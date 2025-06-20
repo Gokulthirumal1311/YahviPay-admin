@@ -2,9 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Authentication } from './screens/Authentication'
 import Layout from './Layout'
-import { Ex } from './screens/Ex'
 import Modal from './components/Modal'
 import Modal2 from './components/Modal2'
 import { AccountSettingForm } from './components/AccountSettingForm'
@@ -62,11 +60,9 @@ import { Example } from './components/Example'
 import { SoundBoxQuickNav } from './components/SoundBoxQuickNav'
 import { LoginCard } from './components/LoginCard'
 import J_D from './components/J_D'
-
-
-
-
-
+import Login from './components/Login'
+import { SmallScrollBar } from './components/SmallScrollBar'
+import { SideNavBar } from './components/SideNavBar'
 
 
 function App() {
@@ -127,6 +123,9 @@ function App() {
       <LoginCard/>
       <J_D/>
 
+      <Login/>
+      <SmallScrollBar/>
+      <SideNavBar/>
    
 
       

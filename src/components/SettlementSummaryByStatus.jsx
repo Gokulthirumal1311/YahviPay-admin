@@ -8,6 +8,8 @@ const settlements = [
     businessVPA: "rena.12345678@kvb",
     settledBy: "customer",
   },
+
+  
   {
     amountSettled: "10000000.00",
     dateSettled: "21/05/2025, 11:41:58",

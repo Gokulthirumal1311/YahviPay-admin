@@ -1,47 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import ReusableComponent from "./ReusableComponent";
-const devices = [
-  {
-    deviceId: "8667223194",
-    deviceName: "Soundbox2",
-    imei: "8667223194",
-    simPhoneNumber: "8667223194",
-    supplierRefId: "8667223194",
-    supplierName: "airtel",
-    status: "inactive",
-    deviceType: "soundbox",  
-    rentalAmt: "150",
-    rentalType: "RENTED",
-    mqttServerIP: "8667223194",
-    version: "v1",
-    language: "en",
-    business: [
-      {
-        businessPhone: "8667223194",
-        createdDate: "2025-05-21T06:44:26.102Z",
-        paymentType: "",
-        InstalledDate: "",
-        paymentStartDate: "",
-        terminatedDate: "",
-        amount: "",
-        advancePaid: "",
-        pendingPaymentAmt: "",
-        maxDaysFineExempted: "",
-        paymentsMissed: "",
-        orderId: "DEVICE174780986042633294",
-        payments: [],
-        merchantId: "MC1747288873705"
-      }
-    ],
-    agentId: "MKTG111012",
-  },
-];
+import { findDevices } from "../api/Api";
+
+
+const payLoad = {
+  businessPhone: "0000000000",
+  searchStr: "1234567890"
+
+  };
 export default function SearchDevices() {
   const columns = ["deviceId", "supplierRefId", "simPhoneNumber", "deviceName", "status"];
   const actions = ["Edit"];
+  const [devices,setDevices]=useState([])
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [showBusinessIndex, setShowBusinessIndex] = useState(null);
+
+
+  useEffect(()=>{
+    const fetchDevices=async ()=>{
+      try{
+         const data = await findDevices(payLoad);
+         console.log(data);
+         
+        if (response?.Success?.devices) {
+          setDevices(response.Success.devices);
+        } else {
+          console.warn("No devices found or unexpected response structure");
+        }
+      } catch (error) {
+        console.error("Failed to fetch devices:", error);
+      }
+    };
+
+    fetchDevices();
+  }, []);
+
   const handleToggle = (index) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
     setShowBusinessIndex(null); 

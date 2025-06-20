@@ -11,7 +11,7 @@ export const DynamicFormModal = ({ title = "Edit Details", onClose, userData, on
 
   const handleClose = () => {
     setShow(false);
-    setTimeout(() => onClose(), 200); // match transition duration
+    setTimeout(() => onClose(), 200); 
   };
 
   const handleChange = (e) => {
